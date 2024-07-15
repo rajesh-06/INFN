@@ -29,6 +29,10 @@ void PDE() {
         "40deg/40deg.scanx.yoff",
         "40deg-a/40deg-a.scanx.yoff",
         "40deg-b/40deg-b.scanx.yoff",
+        "40deg-c/40deg-c.scanx.yoff",
+        "40deg-d/40deg-d.scanx.yoff",
+        "40deg-e/40deg-e.scanx.yoff",
+        "40deg-f/40deg-f.scanx.yoff",
         "auto_scan_50deg/test-autoscan.scanx.yoff"
     };
 
@@ -96,7 +100,7 @@ void PDE() {
 
     gr_pde->Draw("AP");
     c1->Draw();
-    c1->SaveAs("results/relative_photodetction_efficiency.png");
+    c1->SaveAs("results/relative_photodetction_efficiency_1.png");
 
     // delete c1;
     // delete gr_pde;

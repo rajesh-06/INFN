@@ -14,11 +14,22 @@
 
 using namespace std;
 
-TGraphErrors* get_graph (vector <string> filenames, int par){    
+TGraphErrors* get_graph (vector <string> filenames, int par, string scan_axis = "x"){    
         auto *gr = new TGraphErrors(filenames.size());
         for (int i = 0; i< filenames.size(); ++i){
-            auto scan = get_sensor_scan(filenames[i]);
+            auto scan = get_sensor_scan(filenames[i], scan_axis);
             auto fit = get_fermi_fit(scan);
+            gr->SetPoint(i, i+1 , fit->GetParameter(par));
+            gr->SetPointError(i, 0 , fit->GetParError(par) );      
+        }
+        return gr;
+}
+
+TGraphErrors* get_cen_graph (vector <string> filenames, int par, string scan_axis = "x"){    
+        auto *gr = new TGraphErrors(filenames.size());
+        for (int i = 0; i< filenames.size(); ++i){
+            auto scan = get_sensor_scan(filenames[i], scan_axis);
+            auto fit = get_scan_fit(scan);
             gr->SetPoint(i, i+1 , fit->GetParameter(par));
             gr->SetPointError(i, 0 , fit->GetParError(par) );      
         }
@@ -82,12 +93,18 @@ void rate_loop() {
 
 
     std::vector<std::string> filenames;
+    std::vector<std::string> file_ycen;
+    std::vector<std::string> file_xcen;
+
     std::vector<string> measurements;
     vector <float> x;
 
     // Loop from 0 to 33 (inclusive)
     for (int i = 0; i <= 99; ++i) {
-        auto file_end = ".scanx.yoff.chip-0.channel-A1.txt.tree.root";
+        auto yoff = ".scanx.yoff.chip-0.channel-A1.txt.tree.root";
+        auto ycen = ".scanx.ycen.chip-0.channel-A1.txt.tree.root";
+        auto xcen = ".scany.xcen.chip-0.channel-A1.txt.tree.root";
+        
         std::stringstream filename_stream;
 
         // Construct the filename with padding
@@ -98,7 +115,10 @@ void rate_loop() {
 
     // Add the filename to the vector
     measurements.push_back(filename_stream.str());
-    filenames.push_back(filename_stream.str()+"/"+filename_stream.str()+file_end);
+    filenames.push_back(filename_stream.str()+"/"+filename_stream.str()+yoff);
+    file_ycen.push_back(filename_stream.str()+"/"+filename_stream.str()+ycen);
+    file_xcen.push_back(filename_stream.str()+"/"+filename_stream.str()+xcen);
+
     cout<<filenames[i]<<endl;
     cout<<measurements[i]<<endl;
     x.push_back(i+1);
@@ -107,22 +127,25 @@ void rate_loop() {
 
     
 
-    auto *gr_low = get_graph(filenames, 2);
-    auto *gr_high = get_graph(filenames, 3);
+    auto *gr = get_graph(filenames, 0);
+    auto *gr_ycen = get_graph(file_ycen, 0);
+    auto *gr_xcen = get_graph(file_xcen, 0, "y");
 
-    auto gr = new TGraphErrors(gr_low->GetN());
-    for (int i = 0; i < gr_low->GetN(); i++){
-        gr->SetPoint(i, i+1, gr_high->GetPointY(i) - gr_low->GetPointY(i) );
-        auto error = propagate_error_add_sub({gr_high->GetErrorY(i), gr_low->GetErrorY(i) });
-        gr->SetPointError(i, 0, error );
+    // auto *gr_high = get_graph(filenames, 3);
 
-    }
+    // auto gr = new TGraphErrors(gr_low->GetN());
+    // for (int i = 0; i < gr_low->GetN(); i++){
+    //     gr->SetPoint(i, i+1, gr_high->GetPointY(i) - gr_low->GetPointY(i) );
+    //     auto error = propagate_error_add_sub({gr_high->GetErrorY(i), gr_low->GetErrorY(i) });
+    //     gr->SetPointError(i, 0, error );
+
+    // }
 
     //auto gr = PlotPulls(gr_a1);
   //string _data = " Photon rate detected by the sensor";
-  string _data = " Sensor width";
+  string _data = " DCR";
 
-  string title = "; loop number ;"+ _data+" [mm]";
+  string title = "; loop number ;"+ _data+" [Hz]";
 
 
   gr->SetTitle(title.c_str());
@@ -131,14 +154,29 @@ void rate_loop() {
   gr->SetMarkerSize(1);
   gr->SetMarkerColor(kRed);
 
+  gr_ycen->Draw("samelp");
+  gr_ycen->SetMarkerStyle(21);
+  gr_ycen->SetMarkerSize(1);
+  gr_ycen->SetMarkerColor(kBlue);
+
+  gr_xcen->Draw("samelp");
+  gr_xcen->SetMarkerStyle(21);
+  gr_xcen->SetMarkerSize(1);
+  gr_xcen->SetMarkerColor(kViolet);
+
+
 
 
   
-    // auto *legend = new TLegend(0.7,0.7, 0.9, 0.9);
+    auto *legend = new TLegend(0.7,0.75, 0.9, 0.87);
+    legend->AddEntry(gr, "yoff", "lpfe");
+    legend->AddEntry(gr_ycen, "ycen", "lpfe");
+    legend->AddEntry(gr_xcen, "xcen", "lpfe");
 
-    // legend->SetBorderSize(0);
-    // legend->SetFillColor(0);
-    // legend->Draw();
+
+    legend->SetBorderSize(0);
+    legend->SetFillColor(0);
+    legend->Draw();
 
     // TAxis *axis = gr->GetXaxis();
     // axis->SetNdivisions(measurements.size(), kFALSE);
