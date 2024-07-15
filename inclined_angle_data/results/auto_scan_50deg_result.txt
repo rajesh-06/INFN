@@ -1,0 +1,16 @@
+File	 backgroud 	 max rate 	 xlow 	 xhigh 	 center 	 dip center 	 dip height
+auto_scan_50deg/test-autoscan.scanx.ycen.chip-0.channel-A1.txt.tree.root	1357.23	24913.7	-91.4439	-88.4601	-89.952	-89.9638	3459.79
+auto_scan_50deg/test-autoscan.scanx.ycen.chip-1.channel-A1.txt.tree.root	1644.08	23923.9	-122.261	-120.349	-121.305	-121.323	2037.68
+auto_scan_50deg/test-autoscan.scanx.ycen.chip-1.channel-A2.txt.tree.root	1928.43	25096.9	-124.552	-122.636	-123.594	-123.592	2335.72
+auto_scan_50deg/test-autoscan.scanx.ycen.chip-1.channel-A3.txt.tree.root	1634.48	24217.7	-126.881	-124.969	-125.925	-125.923	2553.03
+auto_scan_50deg/test-autoscan.scanx.ycen.chip-1.channel-A4.txt.tree.root	1547.69	24531.9	-129.229	-127.348	-128.289	-128.291	2560.11
+auto_scan_50deg/test-autoscan.scanx.yoff.chip-0.channel-A1.txt.tree.root	1362.95	24848.3	-91.4714	-88.4766	-89.974	-90.4582	-385.163
+auto_scan_50deg/test-autoscan.scanx.yoff.chip-1.channel-A1.txt.tree.root	1666.72	24020	-122.281	-120.396	-121.339	-121.332	3962.31
+auto_scan_50deg/test-autoscan.scanx.yoff.chip-1.channel-A2.txt.tree.root	1912.45	24740.3	-124.581	-122.662	-123.621	-123.622	160.534
+auto_scan_50deg/test-autoscan.scanx.yoff.chip-1.channel-A3.txt.tree.root	1704.4	24260.2	-126.888	-124.973	-125.93	-126.043	301.921
+auto_scan_50deg/test-autoscan.scanx.yoff.chip-1.channel-A4.txt.tree.root	1536.64	24504.6	-129.219	-127.338	-128.279	-128.261	-6077.35
+auto_scan_50deg/test-autoscan.scany.xcen.chip-0.channel-A1.txt.tree.root	1341.88	24975.1	-46.7883	-43.7617	-45.275	-45.2545	2744.35
+auto_scan_50deg/test-autoscan.scany.xcen.chip-1.channel-A1.txt.tree.root	1640.45	23803.5	-22.3467	-19.3075	-20.8271	-20.844	2851.49
+auto_scan_50deg/test-autoscan.scany.xcen.chip-1.channel-A2.txt.tree.root	1927.15	24640.5	-22.2057	-19.164	-20.6849	-20.6771	2151.58
+auto_scan_50deg/test-autoscan.scany.xcen.chip-1.channel-A3.txt.tree.root	1637.93	23897.3	-22.06	-19.0254	-20.5427	-20.525	2119.4
+auto_scan_50deg/test-autoscan.scany.xcen.chip-1.channel-A4.txt.tree.root	1570.18	24258.8	-21.9311	-18.9007	-20.4159	-20.4141	2220.35

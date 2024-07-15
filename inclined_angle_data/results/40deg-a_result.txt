@@ -1,0 +1,16 @@
+File	 backgroud 	 max rate 	 xlow 	 xhigh 	 center 	 dip center 	 dip height
+40deg-a/40deg-a.scanx.ycen.chip-0.channel-A1.txt.tree.root	1373.7	25548.3	-91.3777	-88.3967	-89.8872	-89.9145	3967.49
+40deg-a/40deg-a.scanx.ycen.chip-1.channel-A1.txt.tree.root	1634.37	24786.5	-120.658	-118.597	-119.628	-119.67	2497.63
+40deg-a/40deg-a.scanx.ycen.chip-1.channel-A2.txt.tree.root	1935.93	25545.4	-123.114	-121.065	-122.09	-122.099	2679.36
+40deg-a/40deg-a.scanx.ycen.chip-1.channel-A3.txt.tree.root	1683.4	24071.9	-125.604	-123.548	-124.576	-124.578	2352.2
+40deg-a/40deg-a.scanx.ycen.chip-1.channel-A4.txt.tree.root	1536.72	24349.7	-128.123	-126.089	-127.106	-127.097	2174.14
+40deg-a/40deg-a.scanx.yoff.chip-0.channel-A1.txt.tree.root	1377.3	25304.5	-91.4037	-88.4221	-89.9129	-90.1195	-655.166
+40deg-a/40deg-a.scanx.yoff.chip-1.channel-A1.txt.tree.root	1647.66	24395.3	-120.657	-118.595	-119.626	-118.71	2657.65
+40deg-a/40deg-a.scanx.yoff.chip-1.channel-A2.txt.tree.root	1907.27	25412.8	-123.141	-121.094	-122.118	-121.428	-580.227
+40deg-a/40deg-a.scanx.yoff.chip-1.channel-A3.txt.tree.root	1649.48	24035.7	-125.607	-123.555	-124.581	-123.844	-139.055
+40deg-a/40deg-a.scanx.yoff.chip-1.channel-A4.txt.tree.root	1548.67	24473.8	-128.146	-126.082	-127.114	-128.019	2431.59
+40deg-a/40deg-a.scany.xcen.chip-0.channel-A1.txt.tree.root	1354.21	25736.3	-46.7629	-43.7338	-45.2483	-45.2339	4394.06
+40deg-a/40deg-a.scany.xcen.chip-1.channel-A1.txt.tree.root	1625.21	24459	-22.3426	-19.3389	-20.8407	-20.8578	2168.71
+40deg-a/40deg-a.scany.xcen.chip-1.channel-A2.txt.tree.root	1919.38	24981.9	-22.1906	-19.1764	-20.6835	-20.6903	2853.77
+40deg-a/40deg-a.scany.xcen.chip-1.channel-A3.txt.tree.root	1656.83	23972.4	-22.0585	-19.0425	-20.5505	-20.5445	2858.76
+40deg-a/40deg-a.scany.xcen.chip-1.channel-A4.txt.tree.root	1574.91	24476.2	-21.9182	-18.9066	-20.4124	-20.4058	2766.65
