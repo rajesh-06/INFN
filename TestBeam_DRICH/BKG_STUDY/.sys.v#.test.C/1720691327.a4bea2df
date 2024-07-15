@@ -1,0 +1,164 @@
+#include "iostream"
+#include "radius.h"
+
+void test(){
+
+radius rad_1;
+radius rad_2;
+radius rad_3;
+radius rad_4;
+    
+radius rad_5;   
+    
+    
+radius rad_6;    
+    
+    
+radius rad_7;        
+    
+    
+    
+    
+    //rad_1.find_radius("../20231017-194703/recodata.root");
+    
+   // cout<< rad_1.center_x << " , " << rad_1.center_y << endl;
+    
+    
+    rad_1.Set_Time_Cut(-10,20);
+    rad_2.Set_Time_Cut(-10,20);
+    rad_3.Set_Time_Cut(-10,20);
+    rad_4.Set_Time_Cut(-10,20);
+    
+    rad_5.Set_Time_Cut(-10,20);
+    rad_6.Set_Time_Cut(-10,20);
+    
+    rad_7.Set_Time_Cut(-10,20);
+    
+    rad_1.find_radius("../Data/TB_24/Mirror_Scan/20240526-221557/recodata.root"); 
+    
+    rad_2.find_radius("../Data/TB_24/Mirror_Scan/20240526-220929/recodata.root");
+    
+    rad_3.find_radius("../Data/TB_24/Mirror_Scan/20240527-000410/recodata.root");
+    
+    rad_4.find_radius("../Data/TB_24/Mirror_Scan/20240527-001117/recodata.root");
+    
+    
+    
+    
+    rad_5.find_radius("../Data/TB_24/No_Aerogel/20240530-200252/recodata.root");
+    
+  //  rad_6.find_radius("../Data/TB_24/No_Aerogel/20240530-202344/recodata.root");
+    
+    
+   // rad_7.find_radius("../Data/TB_24/No_Gas/20240602-000143/recodata.root");
+    
+    
+   // cout<< rad_1.center_x << " , " << rad_1.center_y << endl;
+    
+   /* vector<float> rad1 = rad_1.rad_;
+    vector<float> tim1 = rad_1.time;
+    
+    
+    vector<float> rad2 = rad_2.rad_;
+    vector<float> tim2 = rad_2.time;
+    
+    
+    
+    //auto histo_rad_1 = rad_1.plot_histo2d("check1", rad1 ,tim1,"COLZ");
+    auto rad_histo1 = rad_1.plot_histo1d("20240526-221557", rad_1.rad_);
+    auto rad_histo2 = rad_1.plot_histo1d("20240526-220929", rad_2.rad_);
+    auto rad_histo3 = rad_1.plot_histo1d("20240526-000410", rad_3.rad_);
+    auto rad_histo4 = rad_1.plot_histo1d("20240526-001117", rad_4.rad_);
+    
+    
+    
+    rad_1.beautify(rad_histo1,kRed,8);
+    rad_1.beautify(rad_histo2,kBlue,9);
+    rad_1.beautify(rad_histo3,kGreen,13);
+    rad_1.beautify(rad_histo4,kMagenta,11);
+    
+    
+    
+    auto can = rad_1.BuildCanvas("can");
+    can->cd();
+    rad_histo4->Draw("e");
+    rad_histo1->Draw("SAMEe");
+    rad_histo2->Draw("SAMEe");
+    rad_histo3->Draw("SAMEe");
+    //rad_histo4->Draw("SAMEe");
+    can->BuildLegend(0.3,0.3,0.5,0.5);
+    can->SaveAs("dist.png");
+    
+    
+    auto can2 = rad_1.BuildCanvas("can2");
+    
+    auto centx_histo1 = rad_1.plot_histo1d("20240526-221557", rad_1.cent_x);
+    auto centx_histo2 = rad_1.plot_histo1d("20240526-220929",  rad_2.cent_x);
+    auto centx_histo3 = rad_1.plot_histo1d("20240526-000410",  rad_3.cent_x);
+    auto centx_histo4 = rad_1.plot_histo1d("20240526-001117",  rad_4.cent_x);
+    
+    rad_1.beautify(centx_histo1,kRed,8);
+    rad_1.beautify(centx_histo2,kBlue,9);
+    rad_1.beautify(centx_histo3,kGreen,13);
+    rad_1.beautify(centx_histo4,kMagenta,11);
+    
+    
+    can2->cd();
+    centx_histo4->Draw("e");
+    centx_histo1->Draw("SAMEe");
+    centx_histo2->Draw("SAMEe");
+    centx_histo3->SetTitle(";hello;");
+    centx_histo3->Draw("SAMEe");
+    //rad_histo4->Draw("SAMEe");
+    can2->BuildLegend(0.3,0.3,0.5,0.5);
+    can2->SaveAs("xcent.png");
+    
+    
+    
+    
+    auto can3 = rad_1.BuildCanvas("can3");
+    
+    auto centy_histo1 = rad_1.plot_histo1d("20240526-221557", rad_1.cent_y);
+    auto centy_histo2 = rad_1.plot_histo1d("20240526-220929",  rad_2.cent_y);
+    auto centy_histo3 = rad_1.plot_histo1d("20240526-000410",  rad_3.cent_y);
+    auto centy_histo4 = rad_1.plot_histo1d("20240526-001117",  rad_4.cent_y);
+    
+    rad_1.beautify(centy_histo1,kRed,8);
+    rad_1.beautify(centy_histo2,kBlue,9);
+    rad_1.beautify(centy_histo3,kGreen,13);
+    rad_1.beautify(centy_histo4,kMagenta,11);
+    
+    
+    can3->cd();
+    centy_histo4->Draw("e");
+    centy_histo1->Draw("SAMEe");
+    centy_histo2->Draw("SAMEe");
+    centy_histo3->Draw("SAMEe");
+    //rad_histo4->Draw("SAMEe");
+    can3->BuildLegend(0.3,0.3,0.5,0.5);
+    can3->SaveAs("ycent.png");
+    
+    
+    //rad_2.SetBinWidth(0.1);
+    auto time_histo1 = rad_2.plot_histo1d("20240526-221557",rad_1.time);
+    auto time_histo2 = rad_2.plot_histo1d("20240526-220929",rad_2.time);
+     
+    auto can4 = rad_1.BuildCanvas("can4");
+    can4->cd();
+    rad_1.beautify(time_histo1,kRed,8);
+    rad_1.beautify(time_histo1,kBlue,9);
+    time_histo1->Draw("e");
+    time_histo2->Draw("SAMEe");
+    can4->SaveAs("time.png");
+    
+    
+    auto can5 = rad_1.BuildCanvas("can5");
+    auto cent_histo1 = rad_1.plot_histo2d("20240526-221557-cent", rad_1.cent_x,rad_1.cent_x);
+    can5->cd();
+    cent_histo1->Draw("COLZ");
+    can5->SaveAs("20240526-221557-cent.png");
+    
+    
+*/
+
+}

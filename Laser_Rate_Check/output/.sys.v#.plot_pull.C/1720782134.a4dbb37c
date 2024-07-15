@@ -1,0 +1,76 @@
+#include "iostream"
+using namespace std;
+
+TGraphErrors *pull_graph(TGraphErrors *graph, int mstyle ){
+    float sumy =0;
+    float erry= 0; 
+    //TMultiGraph *mgraph = new TMultiGraph();
+    for(int i =0; i < graph->GetN(); i++){
+        sumy += graph->GetY()[i];
+
+        erry += graph->GetErrorX(i)*graph->GetErrorX(i); 
+    
+    }
+
+    float avgy = sumy/graph->GetN();
+    erry = TMath::Sqrt(erry)/graph->GetN();
+    TGraph * pull_gr = new TGraph();
+    for(int i =0; i < graph->GetN(); i++){
+        TGraph * pull_gr = new TGraph();
+        pull_gr->SetName(Form("loop-%i",i));
+        cout << Form("loop-%i",i)<< endl;
+        float pull = (graph->GetY()[i]-avgy)/erry;
+        //pull_gr->SetPoint(0,Sen_A1->GetX()[i], pull);pull_gr->SetMarkerStyle(33);
+        pull_gr->SetPoint(i,i, pull);
+        
+        pull_gr->SetMarkerSize(5);
+
+        pull_gr->SetMarkerColor(33);
+        pull_gr->SetMarkerStyle(mstyle);
+
+        
+       // mgraph->Add(pull_gr);
+    
+    
+}
+    
+   return pull_gr;
+}
+
+
+
+void plot_pull_(TGraphErrors*graph ,int mstyle)
+{
+    TGraphErrors* Gr = pull_graph(graph,mstyle);
+    TCanvas * canvas = new TCanvas("canvas","",1200,1200);
+    canvas->SetLeftMargin(0.2);
+    Gr->Draw("AP");
+  //  TAxis *xAxis = Gr->GetXaxis();
+   // for (int i=0;i< graph->GetN(); i++){
+   //   xAxis->SetBinLabel(xAxis->FindFixBin(i),Form("loop-%i",i));
+   // }
+
+    Gr->GetYaxis()->SetTitle("PULL");
+   // Gr->SetTitle(graph->GetName());
+
+   // TLegend *legend1 = new TLegend(0.7, 0.7, 0.8, 0.8);
+   // legend1->AddEntry(Gr, graph->GetName(), "P");
+   // legend1->Draw();
+    //canvas->Draw();
+    canvas->SaveAs("pull.png");    
+    
+}
+
+
+
+void plot_pull(){
+    TFile *file = TFile::Open("outfile_.root");
+    file->ls();
+    auto ref_A1 =(TGraphErrors*) file->Get("ref_A1");
+    //TGraphErrors * re_A1 = (TGraphErrors*)ref_A1->Clone("re_A1");
+   // plot_pull_(ref_A1,43);
+    plot_pull_(ref_A1,33);
+    //auto mgraph = pull_graph(ref_A1,33);
+
+
+}

@@ -1,0 +1,987 @@
+#include "iostream"
+#include "fstream"
+
+using namespace std;
+
+void setProfessionalPalette() {
+    // Create a TStyle object
+    TStyle* myStyle = new TStyle("myStyle", "My ROOT Style");
+
+    // Use color wheel to define colors
+    Int_t colors[8] = { TColor::GetColor("#4E79A7"),   // muted blue
+                        TColor::GetColor("#F28E2B"),   // safety orange
+                        TColor::GetColor("#E15759"),   // brick red
+                        TColor::GetColor("#76B7B2"),   // muted cyan
+                        TColor::GetColor("#59A14F"),   // muted green
+                        TColor::GetColor("#EDC948"),   // muted yellow
+                        TColor::GetColor("#B07AA1"),   // muted purple
+                        TColor::GetColor("#FF9DA7") }; // muted pink
+
+    myStyle->SetPalette(8, colors); // Set the palette with 8 colors
+
+    // Set the style
+    gStyle->SetOptStat(0); // Turn off statistics box
+    gStyle->SetTitleAlign(23); // Center-align title
+    //gStyle->SetTitleX(0.5); // Center title horizontally
+    //gStyle->SetTitleY(0.98); // Adjust title vertically
+    gStyle->SetTitleBorderSize(0); // Remove border around title
+
+    gStyle->SetPadTickX(1); // Ticks on the x-axis of the pad
+    gStyle->SetPadTickY(1); // Ticks on the y-axis of the pad
+
+    // Apply the style
+    gROOT->SetStyle("myStyle");
+    //gStyle->SetPalette(kSolar);
+    gROOT->ForceStyle(); // Force the style to take effect
+}
+
+
+
+
+
+
+
+
+
+vector <float> Fitter(TGraphErrors * _graph, float minvalx =-104., float maxvalx =-101. , float bkg = 1000. , float sigtop = 25000){
+    cout<< "RUNNING THE FITTER" << endl;
+    
+    
+    
+   
+    
+    vector <float> outvect;
+    
+        
+    
+    
+    
+   // vector <float> fitresult;
+    
+    //double fermi function
+    
+    float mid = 0.5*(minvalx + maxvalx );
+    float xlimhistmin = -200;
+    float xlimhistmax = -70;
+
+    TF1 *doublefermiFunction = new TF1("doublefermiFunction", [](double *x, double *p) {
+            return p[0]+ (p[1]/(TMath::Exp((x[0] - p[3]) /p[4]) + 1.0)/(TMath::Exp((p[2]-x[0] ) /p[5]) + 1.0));
+    }, xlimhistmin, xlimhistmax, 6); // Defining the function from 0 to 10, 0 parameters
+
+    doublefermiFunction->SetParameters(bkg,sigtop,minvalx, maxvalx,0.05,0.05);
+
+
+    
+TF1 *doublefermiFunction_dip = new TF1("doublefermiFunction_dip", [](double *x, double *p) {
+            return p[0]+ (p[1]/(TMath::Exp((x[0] - p[3]) /p[4]) + 1.0)/(TMath::Exp((p[2]-x[0] ) /p[5]) + 1.0))-p[6]*exp(-0.5*((x[0]-p[7])/p[8])*((x[0]-p[7])/p[8]));
+    }, xlimhistmin, xlimhistmax, 9); // Defining the function from 0 to 10, 0 parameters
+
+    doublefermiFunction_dip->SetParameters(bkg,sigtop,minvalx, maxvalx,0.05,0.05,sigtop,mid,0.2);
+    
+    
+
+
+        //gaussian error function    
+    TF1 * double_erf = new TF1("double_erf", [](double *x, double *p) {
+            return p[0] + p[1] * (TMath::Erf((x[0] - p[2]) /p[4]) + 1.) * (TMath::Erf((p[3]-x[0] ) /p[5]) + 1.) * 0.25;
+    },xlimhistmin, xlimhistmax, 6); // Defining the function from 0 to 10, 0 parameters
+
+
+    double_erf->SetNpx(1000);
+    doublefermiFunction->SetNpx(1000); 
+    doublefermiFunction_dip->SetNpx(1000); 
+    doublefermiFunction_dip->SetLineColor(kBlue+3);
+
+    double_erf->SetParameters(bkg,sigtop,minvalx,maxvalx,0.1,0.1);
+    double_erf->SetLineColor(kGreen+3);
+    cout<< "DOUBLE FERMI FUNCTION "<< endl;
+    _graph->Fit("doublefermiFunction","R");
+    
+    
+     cout<< "DOUBLE ERF FUNCTION "<< endl;
+     _graph->Fit("double_erf","R");
+
+    
+    cout<< "DOUBLE FERMI FUNCTION  WITH DIP "<< endl;
+    _graph->Fit("doublefermiFunction_dip","R");
+    
+    
+    
+    
+     /*xmaxval = doublefermiFunction_dip->GetParameter(3);
+     xminval = doublefermiFunction_dip->GetParameter(2);
+     xmaxerror =doublefermiFunction_dip->GetParError(3);
+     xminerror=doublefermiFunction_dip->GetParError(2);
+     maxrate = doublefermiFunction_dip->GetParameter(1);
+     maxrate = doublefermiFunction_dip->GetParError(1);*/
+    
+    outvect.push_back(doublefermiFunction_dip->GetParameter(3));
+    outvect.push_back(doublefermiFunction_dip->GetParameter(2));
+    outvect.push_back(doublefermiFunction_dip->GetParError(3));
+    outvect.push_back(doublefermiFunction_dip->GetParError(2));
+    outvect.push_back(doublefermiFunction_dip->GetParameter(1));
+    outvect.push_back(doublefermiFunction_dip->GetParError(1));
+    
+  
+    //fitresult.push_back(doublefermiFunction->GetParameter(0));
+    
+    //fitresult.push_back(doublefermiFunction->GetParameter(1));
+   
+    
+    //fitresult.push_back(doublefermiFunction->GetParameter(2));
+    //fitresult.push_back(doublefermiFunction->GetParError(2));
+    //fitresult.push_back(doublefermiFunction->GetParameter(3));
+    //fitresult.push_back(doublefermiFunction->GetParError(3));
+    
+    //fitresult.push_back(doublefermiFunction->GetParameter(4));
+    //fitresult.push_back(doublefermiFunction->GetParameter(5));
+    //fitresult.push_back(doublefermiFunction->GetParameter(6));
+  doublefermiFunction->Draw("SAME");
+    
+   
+  double_erf->Draw("SAME");  
+  doublefermiFunction_dip->Draw("SAME");  
+ // cout << outvect[0] << "##########"<< endl;  
+    return outvect;
+}//end fitter
+
+
+
+
+
+
+
+
+
+vector <float> findcenter_file(const char * _filename="200mrad.A1"){
+     
+     const char *filename = Form("scanx.%s.txt.tree.root",_filename);
+     cout<< "reading tree : " << filename<< " creating tree " << _filename << endl;
+     int n_mes = 10; // number of measurement done for each position.
+    // this file is for the second test, we have 10 measurements for each position ,, 
+    TFile * File = new TFile(filename); // first sipm
+    
+    TH1D* ratehist= new TH1D("ratehist","",30,0,3000);
+    
+    if(!File){
+        cout << "can not find the file " << filename<<endl;
+        return std::vector<float>();
+    }
+    // getting treee from each file 
+    TTree *tree=(TTree*) File->Get("tree");
+    
+    // each tree have 3 branches x , y and rate 
+    float x, y, rate;
+    vector <float> vavx;
+    vector <float> vavrate;
+     
+    // defining branches for each file
+    tree->SetBranchAddress("x", &x);
+    tree->SetBranchAddress("y", &y);
+    tree->SetBranchAddress("rate", &rate);
+
+    
+
+    //setting some initial x and y limits to set graph frame to make sure the 
+    float xlim_min =0.;
+    float xlim_max =-1000.;  
+
+    //
+    float ylim_min = 10000000.;
+    float ylim_max  = 0.;   
+    TGraphErrors * RatevsX = new TGraphErrors();
+
+    for (int i = 0 ; i<tree->GetEntries();i=i+n_mes){
+        
+        
+        //bool remove = false;
+        
+        if(rate<ylim_min) ylim_min = rate;
+        if(rate> ylim_max) ylim_max = rate;
+    
+        std::vector <float> vrate; //vector of rate
+        std:: vector <float> vx; // vector of x
+        
+
+        for (int j = 0 ; j<n_mes ; j++){
+
+            tree->GetEntry(i+j);
+
+            if(rate<0.1) continue; // flag to remove measruement with zero rate
+            vrate.push_back(rate);
+            vx.push_back(x);
+
+             //if(x<-110 || x>-95){
+            if((j+i)<200){
+                 ratehist->Fill(rate);
+            }
+       
+        }
+        
+        //if(remove) continue; //removed the zero rate events
+        
+        
+       
+        if(x<xlim_min) xlim_min = x;
+      
+        if(x > xlim_max) xlim_max = x;
+
+        
+        
+        
+        // cout << vrate.size()<< endl; // checking if the size is correct should be 10 in my case because we have 10 measurements
+   
+        float average_rate = accumulate( vrate.begin(), vrate.end(), 0.0)/vrate.size(); // computing the averate
+       // cout << average_rate<< endl; // checking if average is computed correctly
+
+        float std_dev_rate = TMath::StdDev(vrate.begin(), vrate.end());
+        float err_ave_rate = std_dev_rate/TMath::Sqrt(vrate.size());
+   //  cout << "check calculations "<< "  " << std_dev_rate<< endl; // just to check calculcation if correct
+   
+        float av_x = accumulate( vx.begin(), vx.end(), 0.0)/vx.size(); // computing the averate 
+   
+        vavx.push_back(av_x);
+        vavrate.push_back(average_rate);
+       
+       // cout<< ((i+1)/10)<< endl;
+        int graph_entry = (i+1)/n_mes; // just to fill one value per 
+
+
+
+        //cout << graph_entry<< "    "<<i << endl;
+        RatevsX->SetPoint(graph_entry , av_x, average_rate);
+
+        RatevsX->SetPointError(graph_entry , 0., err_ave_rate);
+        
+        
+
+    
+    }// end get Entry A1
+    
+    
+    // computing the bkg initial value
+    TCanvas * cani = new TCanvas("cani", "", 1200,1200);
+    cani->cd();
+    TF1 * mygaus_bkg =new  TF1("mygaus_bkg","gaus" , 500,2500);
+    ratehist->Fit("mygaus_bkg","Q");
+    cani->SaveAs(Form("%s_bkg_fit.png",_filename));
+    
+    float bkg_val = mygaus_bkg->GetParameter(1);
+    
+    float bkg_err = mygaus_bkg->GetParameter(2);
+
+    float threshold_val = 10000;
+    
+        
+    float xmin = 1000;
+    float xmax = -1000;
+    float maxval = -1000;    
+    //cout<< vavrate.size()<< "#####"<<endl;    
+    for(int k=0; k<vavrate.size();k++){
+        // cout<< vavrate[k]<< "###########"<< threshold_val << endl;
+        if(vavrate[k]>threshold_val){
+         //   cout<< rate<< endl;
+          //  cout<< vavx[k]<< "###########"<< xmin << endl;
+            if(vavx[k]<xmin){
+                xmin = vavx[k] ;
+            }
+            
+            if(vavx[k]>xmax){
+                xmax=vavx[k];
+            }
+            if(vavrate[k]>maxval){
+                maxval = vavrate[k];
+            }
+    
+    
+        }
+    }   
+        
+        
+    
+    
+    
+    TCanvas * can = new TCanvas("can", "", 1200,1200);
+    can->cd();
+    can->DrawFrame(xlim_min,ylim_min,xlim_max,ylim_max);
+    
+    
+
+    RatevsX->Draw("Z");
+    
+    
+    
+    
+    vector <float> _outvect = Fitter(RatevsX,xmin,xmax,bkg_val,maxval);// calling the fitfunction here. 
+    
+    
+    float centx = 0.5 *(xmin+xmax);
+   
+    
+    
+    
+    
+    
+    can->Draw();
+    
+    
+    can->SaveAs(Form("%saveragerates_vs_x.png",_filename));
+    
+    return _outvect;
+
+}// end of findcenter
+
+float compute_err_Angle(float width_flat2_A1, float error_width_flat2_A1) {
+    // Compute angle
+    float angle = TMath::ACos(width_flat2_A1 / 3.0);
+    if(isnan(angle)) angle =0;
+    // Compute derivative (d(angle) / d(width_flat2_A1))
+    float derivative = -1.0 / (TMath::Sqrt(1.0 - (width_flat2_A1 / 3.0) * (width_flat2_A1 / 3.0)) * 3.0);
+
+    // Compute error in angle using error propagation
+    float error_angle = TMath::Abs(derivative) * error_width_flat2_A1;
+    if(isnan(error_angle)) error_angle =0;
+    return error_angle;
+}
+
+
+float propagateErrorDivision(float A, float sigma_A, float B, float sigma_B) {
+    // Calculate the quotient
+    double C = A / B;
+
+    // Calculate the propagated error using the formula
+    float sigma_C = std::abs(C) * std::sqrt((sigma_A / A) * (sigma_A / A) + (sigma_B / B) * (sigma_B / B));
+
+    return sigma_C;
+}
+
+
+void findcenter_dip_2(){
+    
+setProfessionalPalette();    
+//TFile* outfile = new TFile(filename.Data(),"RECREATE");  
+    
+vector <float> outputvect_flat2_A1 = findcenter_file("flat.A1");
+
+vector <float> outputvect_flat2_A2 = findcenter_file("flat.A2");
+    
+vector <float> outputvect_flat2_A3 = findcenter_file("flat.A3");
+    
+vector <float> outputvect_flat2_A4 = findcenter_file("flat.A4");    
+
+
+    
+vector <float> outputvect_200mrad_A1 = findcenter_file("200mrad.A1");
+
+vector <float> outputvect_200mrad_A2 = findcenter_file("200mrad.A2");
+    
+vector <float> outputvect_200mrad_A3 = findcenter_file("200mrad.A3");
+    
+vector <float> outputvect_200mrad_A4 = findcenter_file("200mrad.A4");  
+    
+    
+vector <float> outputvect_max_A1 = findcenter_file("max.A1");
+
+vector <float> outputvect_max_A2 = findcenter_file("max.A2");
+    
+vector <float> outputvect_max_A3 = findcenter_file("max.A3");
+    
+vector <float> outputvect_max_A4 = findcenter_file("max.A4"); 
+    
+    
+    
+vector <float> outputvect_maxmore_A1 = findcenter_file("maxmore.A1");
+
+vector <float> outputvect_maxmore_A2 = findcenter_file("maxmore.A2");
+    
+vector <float> outputvect_maxmore_A3 = findcenter_file("maxmore.A3");
+    
+vector <float> outputvect_maxmore_A4 = findcenter_file("maxmore.A4");     
+    
+    
+/*vect 0 = max 
+  vect 1 = min 
+  vect 2 = maxerror
+  vect 3 = min error
+  vect 4 = rate
+  vect 5 = rate error 
+*/
+
+float init_width = 3.0;    
+//flat A1    
+    
+    
+float width_flat2_A1 =  outputvect_flat2_A1[0]- outputvect_flat2_A1[1];    
+float error_width_flat2_A1 = TMath::Sqrt(outputvect_flat2_A1[2]*outputvect_flat2_A1[2] +outputvect_flat2_A1[3]*outputvect_flat2_A1[3]);         
+
+float angle_flat2_A1 =    TMath::ACos(width_flat2_A1/init_width);
+    if(isnan(angle_flat2_A1)) angle_flat2_A1 = 0;
+float error_angle_flat2_A1 =compute_err_Angle(width_flat2_A1,error_width_flat2_A1);    
+    
+
+    
+cout<< width_flat2_A1 << "    " << error_width_flat2_A1<< "   "<<angle_flat2_A1<< "  "<< error_angle_flat2_A1 << endl;
+
+
+//flat A2    
+float width_flat2_A2 =  outputvect_flat2_A2[0]- outputvect_flat2_A2[1];    
+float error_width_flat2_A2 = TMath::Sqrt(outputvect_flat2_A2[2]*outputvect_flat2_A2[2] +outputvect_flat2_A2[3]*outputvect_flat2_A2[3]);         
+
+float angle_flat2_A2 =    TMath::ACos(width_flat2_A2/init_width);
+    if(isnan(angle_flat2_A2)) angle_flat2_A2 = 0;
+float error_angle_flat2_A2 =compute_err_Angle(width_flat2_A2,error_width_flat2_A2);    
+    
+
+    
+    
+    
+cout<< width_flat2_A2 << "    " << error_width_flat2_A2<< "   "<<angle_flat2_A2<< "  "<< error_angle_flat2_A2 << endl;    
+
+////flat A3
+    
+float width_flat2_A3 =  outputvect_flat2_A3[0]- outputvect_flat2_A3[1];    
+float error_width_flat2_A3 = TMath::Sqrt(outputvect_flat2_A3[2]*outputvect_flat2_A3[2] +outputvect_flat2_A3[3]*outputvect_flat2_A3[3]);         
+
+float angle_flat2_A3 =    TMath::ACos(width_flat2_A3/init_width);
+    if(isnan(angle_flat2_A3)) angle_flat2_A3 = 0;
+float error_angle_flat2_A3 =compute_err_Angle(width_flat2_A3,error_width_flat2_A3);    
+    
+
+    
+cout<< width_flat2_A3 << "    " << error_width_flat2_A3<< "   "<<angle_flat2_A3<< "  "<< error_angle_flat2_A3 << endl;        
+
+//flat A4
+    
+float width_flat2_A4 =  outputvect_flat2_A4[0]- outputvect_flat2_A4[1];    
+float error_width_flat2_A4 = TMath::Sqrt(outputvect_flat2_A4[2]*outputvect_flat2_A4[2] +outputvect_flat2_A4[3]*outputvect_flat2_A4[3]);         
+
+float angle_flat2_A4 =    TMath::ACos(width_flat2_A4/init_width);
+    if(isnan(angle_flat2_A4)) angle_flat2_A4 = 0;
+float error_angle_flat2_A4 =compute_err_Angle(width_flat2_A4,error_width_flat2_A4);    
+    
+
+cout<< width_flat2_A4 << "    " << error_width_flat2_A4<< "   "<<angle_flat2_A4<< "  "<< error_angle_flat2_A4 << endl;           
+ 
+ 
+
+
+    
+float av_angle_flat2 =      (angle_flat2_A1 + angle_flat2_A2+ angle_flat2_A3 +angle_flat2_A4)/4.0;
+
+
+ float err_av_angle_flat2 = TMath::Sqrt(error_angle_flat2_A1* error_angle_flat2_A1+error_angle_flat2_A2* error_angle_flat2_A2+error_angle_flat2_A3* error_angle_flat2_A3 +error_angle_flat2_A4* error_angle_flat2_A4) ;  
+    
+//float av_rate_flat2 = (outputvect_flat2_A1[4] + outputvect_flat2_A2[4] +outputvect_flat2_A3[4] + outputvect_flat2_A4[4])/4.0;
+//float err_av_rate_flat2 =   TMath::Sqrt(outputvect_flat2_A1[5]*outputvect_flat2_A1[5] + outputvect_flat2_A2[5]*outputvect_flat2_A2[5] +outputvect_flat2_A3[5]*outputvect_flat2_A3[5] + outputvect_flat2_A4[5]*outputvect_flat2_A4[5]);  
+
+    
+//cout<< " Average Rate Flat:  " << av_rate_flat2 << " errror average rate Flat:  "<< err_av_rate_flat2 << endl;           
+    
+    
+
+//200mrad A1    
+float width_200mrad_A1 =  outputvect_200mrad_A1[0]- outputvect_200mrad_A1[1];    
+float error_width_200mrad_A1 = TMath::Sqrt(outputvect_200mrad_A1[2]*outputvect_200mrad_A1[2] +outputvect_200mrad_A1[3]*outputvect_200mrad_A1[3]);         
+
+float angle_200mrad_A1 =    TMath::ACos(width_200mrad_A1/init_width);
+    if(isnan(angle_200mrad_A1)) angle_200mrad_A1 = 0;
+float error_angle_200mrad_A1 =compute_err_Angle(width_200mrad_A1,error_width_200mrad_A1);    
+    
+
+    
+cout<< width_200mrad_A1 << "    " << error_width_200mrad_A1<< "   "<<angle_200mrad_A1<< "  "<< error_angle_200mrad_A1 << endl;
+
+
+//200mrad A2    
+float width_200mrad_A2 =  outputvect_200mrad_A2[0]- outputvect_200mrad_A2[1];    
+float error_width_200mrad_A2 = TMath::Sqrt(outputvect_200mrad_A2[2]*outputvect_200mrad_A2[2] +outputvect_200mrad_A2[3]*outputvect_200mrad_A2[3]);         
+
+float angle_200mrad_A2 =    TMath::ACos(width_200mrad_A2/init_width);
+    if(isnan(angle_200mrad_A2)) angle_200mrad_A2 = 0;
+float error_angle_200mrad_A2 =compute_err_Angle(width_200mrad_A2,error_width_200mrad_A2);    
+    
+
+    
+cout<< width_200mrad_A2 << "    " << error_width_200mrad_A2<< "   "<<angle_200mrad_A2<< "  "<< error_angle_200mrad_A2 << endl;    
+
+////200mrad A3
+    
+float width_200mrad_A3 =  outputvect_200mrad_A3[0]- outputvect_200mrad_A3[1];    
+float error_width_200mrad_A3 = TMath::Sqrt(outputvect_200mrad_A3[2]*outputvect_200mrad_A3[2] +outputvect_200mrad_A3[3]*outputvect_200mrad_A3[3]);         
+
+float angle_200mrad_A3 =    TMath::ACos(width_200mrad_A3/init_width);
+    if(isnan(angle_200mrad_A3)) angle_200mrad_A3 = 0;
+float error_angle_200mrad_A3 =compute_err_Angle(width_200mrad_A3,error_width_200mrad_A3);    
+    
+
+    
+cout<< width_200mrad_A3 << "    " << error_width_200mrad_A3<< "   "<<angle_200mrad_A3<< "  "<< error_angle_200mrad_A3 << endl;        
+
+//200mrad A4
+    
+float width_200mrad_A4 =  outputvect_200mrad_A4[0]- outputvect_200mrad_A4[1];    
+float error_width_200mrad_A4 = TMath::Sqrt(outputvect_200mrad_A4[2]*outputvect_200mrad_A4[2] +outputvect_200mrad_A4[3]*outputvect_200mrad_A4[3]);         
+
+float angle_200mrad_A4 =    TMath::ACos(width_200mrad_A4/init_width);
+    if(isnan(angle_200mrad_A4)) angle_200mrad_A4 = 0;
+float error_angle_200mrad_A4 =compute_err_Angle(width_200mrad_A4,error_width_200mrad_A4);    
+    
+
+    
+cout<< width_200mrad_A4 << "    " << error_width_200mrad_A4<< "   "<<angle_200mrad_A4<< "  "<< error_angle_200mrad_A4 << endl;        
+ 
+
+float av_angle_200mrad =      (angle_200mrad_A1 + angle_200mrad_A2+ angle_200mrad_A3 +angle_200mrad_A4)/4.0;
+
+float err_av_angle_200mrad = TMath::Sqrt(error_angle_200mrad_A1* error_angle_200mrad_A1+error_angle_200mrad_A2* error_angle_200mrad_A2+error_angle_200mrad_A3* error_angle_200mrad_A3 +error_angle_200mrad_A4* error_angle_200mrad_A4) ;  
+    
+
+//float av_rate_200mrad = (outputvect_200mrad_A1[4] + outputvect_200mrad_A2[4] +outputvect_200mrad_A3[4] + outputvect_200mrad_A4[4])/4.0;
+
+
+//float err_av_rate_200mrad =   TMath::Sqrt(outputvect_200mrad_A1[5]*outputvect_200mrad_A1[5] + outputvect_200mrad_A2[5]*outputvect_200mrad_A2[5] +outputvect_200mrad_A3[5]*outputvect_200mrad_A3[5] + outputvect_200mrad_A4[5]*outputvect_200mrad_A4[5]);  
+    
+
+//cout<< " Average Rate 200mrad:  " << av_rate_200mrad << " errror average rate Flat:  "<< err_av_rate_200mrad << endl;           
+   
+    
+    
+    
+//max A1    
+float width_max_A1 =  outputvect_max_A1[0]- outputvect_max_A1[1];    
+float error_width_max_A1 = TMath::Sqrt(outputvect_max_A1[2]*outputvect_max_A1[2] +outputvect_max_A1[3]*outputvect_max_A1[3]);         
+
+float angle_max_A1 =    TMath::ACos(width_max_A1/init_width);
+    if(isnan(angle_max_A1)) angle_max_A1 = 0;
+float error_angle_max_A1 =compute_err_Angle(width_max_A1,error_width_max_A1);    
+    
+
+    
+cout<< width_max_A1 << "    " << error_width_max_A1<< "   "<<angle_max_A1<< "  "<< error_angle_max_A1 << endl;
+
+
+//max A2    
+float width_max_A2 =  outputvect_max_A2[0]- outputvect_max_A2[1];    
+float error_width_max_A2 = TMath::Sqrt(outputvect_max_A2[2]*outputvect_max_A2[2] +outputvect_max_A2[3]*outputvect_max_A2[3]);         
+
+float angle_max_A2 =    TMath::ACos(width_max_A2/init_width);
+    if(isnan(angle_max_A2)) angle_max_A2 = 0;
+float error_angle_max_A2 =compute_err_Angle(width_max_A2,error_width_max_A2);    
+    
+
+    
+cout<< width_max_A2 << "    " << error_width_max_A2<< "   "<<angle_max_A2<< "  "<< error_angle_max_A2 << endl;    
+
+////max A3
+    
+float width_max_A3 =  outputvect_max_A3[0]- outputvect_max_A3[1];    
+float error_width_max_A3 = TMath::Sqrt(outputvect_max_A3[2]*outputvect_max_A3[2] +outputvect_max_A3[3]*outputvect_max_A3[3]);         
+
+float angle_max_A3 =    TMath::ACos(width_max_A3/init_width);
+    if(isnan(angle_max_A3)) angle_max_A3 = 0;
+float error_angle_max_A3 =compute_err_Angle(width_max_A3,error_width_max_A3);    
+    
+
+    
+cout<< width_max_A3 << "    " << error_width_max_A3<< "   "<<angle_max_A3<< "  "<< error_angle_max_A3 << endl;        
+
+    
+        
+//max A4
+    
+float width_max_A4 =  outputvect_max_A4[0]- outputvect_max_A4[1];    
+float error_width_max_A4 = TMath::Sqrt(outputvect_max_A4[2]*outputvect_max_A4[2] +outputvect_max_A4[3]*outputvect_max_A4[3]);         
+
+float angle_max_A4 =    TMath::ACos(width_max_A4/init_width);
+    if(isnan(angle_max_A4)) angle_max_A4 = 0;
+float error_angle_max_A4 =compute_err_Angle(width_max_A4,error_width_max_A4);    
+    
+
+    
+cout<< width_max_A4 << "    " << error_width_max_A4<< "   "<<angle_max_A4<< "  "<< error_angle_max_A4 << endl;        
+ 
+
+    
+float av_angle_max =      (angle_max_A1 + angle_max_A2+ angle_max_A3 +angle_max_A4)/4.0;
+
+float err_av_angle_max = TMath::Sqrt(error_angle_max_A1* error_angle_max_A1+error_angle_max_A2* error_angle_max_A2+error_angle_max_A3* error_angle_max_A3 +error_angle_max_A4* error_angle_max_A4) ;  
+    
+
+//float av_rate_max = (outputvect_max_A1[4] + outputvect_max_A2[4] +outputvect_max_A3[4] + outputvect_max_A4[4])/4.0;
+
+
+//float err_av_rate_max =   TMath::Sqrt(outputvect_max_A1[5]*outputvect_max_A1[5] + outputvect_max_A2[5]*outputvect_max_A2[5] +outputvect_max_A3[5]*outputvect_max_A3[5] + outputvect_max_A4[5]*outputvect_max_A4[5]);  
+ //   cout<< " Average Rate max:  " << av_rate_max << " errror average rate max:  "<< err_av_rate_max << endl;           
+
+    
+    
+//maxmore A1    
+float width_maxmore_A1 =  outputvect_maxmore_A1[0]- outputvect_maxmore_A1[1];    
+float error_width_maxmore_A1 = TMath::Sqrt(outputvect_maxmore_A1[2]*outputvect_maxmore_A1[2] +outputvect_maxmore_A1[3]*outputvect_maxmore_A1[3]);         
+
+float angle_maxmore_A1 =    TMath::ACos(width_maxmore_A1/init_width);
+    if(isnan(angle_maxmore_A1)) angle_maxmore_A1 = 0;
+float error_angle_maxmore_A1 =compute_err_Angle(width_maxmore_A1,error_width_maxmore_A1);    
+    
+
+    
+cout<< width_maxmore_A1 << "    " << error_width_maxmore_A1<< "   "<<angle_maxmore_A1<< "  "<< error_angle_maxmore_A1 << endl;
+
+
+//maxmore A2    
+float width_maxmore_A2 =  outputvect_maxmore_A2[0]- outputvect_maxmore_A2[1];    
+float error_width_maxmore_A2 = TMath::Sqrt(outputvect_maxmore_A2[2]*outputvect_maxmore_A2[2] +outputvect_maxmore_A2[3]*outputvect_maxmore_A2[3]);         
+
+float angle_maxmore_A2 =    TMath::ACos(width_maxmore_A2/init_width);
+    if(isnan(angle_maxmore_A2)) angle_maxmore_A2 = 0;
+float error_angle_maxmore_A2 =compute_err_Angle(width_maxmore_A2,error_width_maxmore_A2);    
+    
+
+    
+cout<< width_maxmore_A2 << "    " << error_width_maxmore_A2<< "   "<<angle_maxmore_A2<< "  "<< error_angle_maxmore_A2 << endl;    
+
+    
+    
+    
+////maxmore A3
+    
+float width_maxmore_A3 =  outputvect_maxmore_A3[0]- outputvect_maxmore_A3[1];    
+float error_width_maxmore_A3 = TMath::Sqrt(outputvect_maxmore_A3[2]*outputvect_maxmore_A3[2] +outputvect_maxmore_A3[3]*outputvect_maxmore_A3[3]);         
+
+float angle_maxmore_A3 =    TMath::ACos(width_maxmore_A3/init_width);
+    if(isnan(angle_maxmore_A3)) angle_maxmore_A3 = 0;
+float error_angle_maxmore_A3 =compute_err_Angle(width_maxmore_A3,error_width_maxmore_A3);    
+    
+
+    
+cout<< width_maxmore_A3 << "    " << error_width_maxmore_A3<< "   "<<angle_maxmore_A3<< "  "<< error_angle_maxmore_A3 << endl;        
+
+//maxmore A4
+    
+float width_maxmore_A4 =  outputvect_maxmore_A4[0]- outputvect_maxmore_A4[1];    
+float error_width_maxmore_A4 = TMath::Sqrt(outputvect_maxmore_A4[2]*outputvect_maxmore_A4[2] +outputvect_maxmore_A4[3]*outputvect_maxmore_A4[3]);         
+
+float angle_maxmore_A4 =    TMath::ACos(width_maxmore_A4/init_width);
+    if(isnan(angle_maxmore_A4)) angle_maxmore_A4 = 0;
+float error_angle_maxmore_A4 =compute_err_Angle(width_maxmore_A4,error_width_maxmore_A4);    
+    
+
+    
+
+   
+    
+    
+cout<< width_maxmore_A4 << "    " << error_width_maxmore_A4<< "   "<<angle_maxmore_A4<< "  "<< error_angle_maxmore_A4 << endl;        
+ 
+float av_angle_maxmore =      (angle_maxmore_A1 + angle_maxmore_A2+ angle_maxmore_A3 +angle_maxmore_A4)/4.0;
+
+float err_av_angle_maxmore = TMath::Sqrt(error_angle_maxmore_A1* error_angle_maxmore_A1+error_angle_maxmore_A2* error_angle_maxmore_A2+error_angle_maxmore_A3* error_angle_maxmore_A3 +error_angle_maxmore_A4* error_angle_maxmore_A4) ;  
+    
+
+//normalizing the rate per sensors
+
+
+    
+
+//flat 2
+    
+float Normalized_flat2_A1 = outputvect_flat2_A1[4]/outputvect_flat2_A1[4];
+float Normalized_flat2_A2 = outputvect_flat2_A2[4]/outputvect_flat2_A2[4];
+float Normalized_flat2_A3 = outputvect_flat2_A3[4]/outputvect_flat2_A3[4];
+float Normalized_flat2_A4 = outputvect_flat2_A4[4]/outputvect_flat2_A4[4]; 
+float err_Normalized_flat2_A1 = propagateErrorDivision(outputvect_flat2_A1[4],outputvect_flat2_A1[5],outputvect_flat2_A1[4],outputvect_flat2_A1[5]);
+
+float err_Normalized_flat2_A2 = propagateErrorDivision(outputvect_flat2_A2[4],outputvect_flat2_A2[5],outputvect_flat2_A2[4],outputvect_flat2_A2[5]);
+    
+
+float err_Normalized_flat2_A3 = propagateErrorDivision(outputvect_flat2_A3[4],outputvect_flat2_A3[5],outputvect_flat2_A3[4],outputvect_flat2_A3[5]);
+    
+float err_Normalized_flat2_A4 = propagateErrorDivision(outputvect_flat2_A4[4],outputvect_flat2_A4[5],outputvect_flat2_A4[4],outputvect_flat2_A4[5]);
+    
+    
+
+    
+//200 mrad
+
+float Normalized_200mrad_A1 = outputvect_200mrad_A1[4]/outputvect_flat2_A1[4];
+float Normalized_200mrad_A2 = outputvect_200mrad_A2[4]/outputvect_flat2_A2[4];
+float Normalized_200mrad_A3 = outputvect_200mrad_A3[4]/outputvect_flat2_A3[4];
+float Normalized_200mrad_A4 = outputvect_200mrad_A4[4]/outputvect_flat2_A4[4]; 
+float err_Normalized_200mrad_A1 = propagateErrorDivision(outputvect_200mrad_A1[4],outputvect_200mrad_A1[5],outputvect_flat2_A1[4],outputvect_flat2_A1[5]);
+
+float err_Normalized_200mrad_A2 = propagateErrorDivision(outputvect_200mrad_A2[4],outputvect_200mrad_A2[5],outputvect_flat2_A2[4],outputvect_flat2_A2[5]);
+    
+
+float err_Normalized_200mrad_A3 = propagateErrorDivision(outputvect_200mrad_A3[4],outputvect_200mrad_A3[5],outputvect_flat2_A3[4],outputvect_flat2_A3[5]);
+    
+float err_Normalized_200mrad_A4 = propagateErrorDivision(outputvect_200mrad_A4[4],outputvect_200mrad_A4[5],outputvect_flat2_A4[4],outputvect_flat2_A4[5]);
+
+    
+    
+
+//max
+float Normalized_max_A1 = outputvect_max_A1[4]/outputvect_flat2_A1[4];
+float Normalized_max_A2 = outputvect_max_A2[4]/outputvect_flat2_A2[4];
+float Normalized_max_A3 = outputvect_max_A3[4]/outputvect_flat2_A3[4];
+float Normalized_max_A4 = outputvect_max_A4[4]/outputvect_flat2_A4[4]; 
+float err_Normalized_max_A1 = propagateErrorDivision(outputvect_max_A1[4],outputvect_max_A1[5],outputvect_flat2_A1[4],outputvect_flat2_A1[5]);
+
+float err_Normalized_max_A2 = propagateErrorDivision(outputvect_max_A2[4],outputvect_max_A2[5],outputvect_flat2_A2[4],outputvect_flat2_A2[5]);
+    
+
+float err_Normalized_max_A3 = propagateErrorDivision(outputvect_max_A3[4],outputvect_max_A3[5],outputvect_flat2_A3[4],outputvect_flat2_A3[5]);
+    
+float err_Normalized_max_A4 = propagateErrorDivision(outputvect_max_A4[4],outputvect_max_A4[5],outputvect_flat2_A4[4],outputvect_flat2_A4[5]);
+// maxmore 
+float Normalized_maxmore_A1 = outputvect_maxmore_A1[4]/outputvect_flat2_A1[4];
+float Normalized_maxmore_A2 = outputvect_maxmore_A2[4]/outputvect_flat2_A2[4];
+float Normalized_maxmore_A3 = outputvect_maxmore_A3[4]/outputvect_flat2_A3[4];
+float Normalized_maxmore_A4 = outputvect_maxmore_A4[4]/outputvect_flat2_A4[4]; 
+float err_Normalized_maxmore_A1 = propagateErrorDivision(outputvect_maxmore_A1[4],outputvect_maxmore_A1[5],outputvect_flat2_A1[4],outputvect_flat2_A1[5]);
+
+float err_Normalized_maxmore_A2 = propagateErrorDivision(outputvect_maxmore_A2[4],outputvect_maxmore_A2[5],outputvect_flat2_A2[4],outputvect_flat2_A2[5]);
+    
+
+float err_Normalized_maxmore_A3 = propagateErrorDivision(outputvect_maxmore_A3[4],outputvect_maxmore_A3[5],outputvect_flat2_A3[4],outputvect_flat2_A3[5]);
+    
+float err_Normalized_maxmore_A4 = propagateErrorDivision(outputvect_maxmore_A4[4],outputvect_maxmore_A4[5],outputvect_flat2_A4[4],outputvect_flat2_A4[5]);
+
+
+    
+
+    
+    
+    
+    
+//float av_rate_maxmore = (outputvect_maxmore_A1[4] + outputvect_maxmore_A2[4] +outputvect_maxmore_A3[4] + outputvect_maxmore_A4[4])/4.0;
+
+float av_rate_flat2 = (Normalized_flat2_A1 + Normalized_flat2_A2 + Normalized_flat2_A3 + Normalized_flat2_A4)/4.0;
+float err_av_rate_flat2 = (err_Normalized_flat2_A1*err_Normalized_flat2_A1 + err_Normalized_flat2_A2*err_Normalized_flat2_A2 + err_Normalized_flat2_A3*err_Normalized_flat2_A3 +err_Normalized_flat2_A4*err_Normalized_flat2_A4);    
+
+    
+
+    
+float av_rate_200mrad = (Normalized_200mrad_A1 + Normalized_200mrad_A2 + Normalized_200mrad_A3 + Normalized_200mrad_A4)/4.0;
+float err_av_rate_200mrad = (err_Normalized_200mrad_A1*err_Normalized_200mrad_A1 + err_Normalized_200mrad_A2*err_Normalized_200mrad_A2 + err_Normalized_200mrad_A3*err_Normalized_200mrad_A3 +err_Normalized_200mrad_A4*err_Normalized_200mrad_A4);    
+    
+    
+    
+float av_rate_max = (Normalized_max_A1 + Normalized_max_A2 + Normalized_max_A3 + Normalized_max_A4)/4.0;
+float err_av_rate_max = (err_Normalized_max_A1*err_Normalized_max_A1 + err_Normalized_max_A2*err_Normalized_max_A2 + err_Normalized_max_A3*err_Normalized_max_A3 +err_Normalized_max_A4*err_Normalized_max_A4);    
+
+float av_rate_maxmore = (Normalized_maxmore_A1 + Normalized_maxmore_A2 + Normalized_maxmore_A3 + Normalized_maxmore_A4)/4.0;
+float err_av_rate_maxmore = (err_Normalized_maxmore_A1*err_Normalized_maxmore_A1 + err_Normalized_maxmore_A2*err_Normalized_maxmore_A2 + err_Normalized_maxmore_A3*err_Normalized_maxmore_A3 +err_Normalized_maxmore_A4*err_Normalized_maxmore_A4);    
+    
+    
+
+
+    
+//float err_av_rate_maxmore =   TMath::Sqrt(outputvect_maxmore_A1[5]*outputvect_maxmore_A1[5] + outputvect_maxmore_A2[5]*outputvect_maxmore_A2[5] +outputvect_maxmore_A3[5]*outputvect_maxmore_A3[5] + outputvect_maxmore_A4[5]*outputvect_maxmore_A4[5]);  
+    
+cout<< " Average Rate maxmore:  " << av_rate_maxmore << " errror average rate maxmore:  "<< err_av_rate_maxmore << endl;    
+    
+    
+    TGraphErrors *graph_angle_vs_rate_A1 = new TGraphErrors();
+    
+    graph_angle_vs_rate_A1->SetPoint(0,angle_flat2_A1,outputvect_flat2_A1[4]);
+    graph_angle_vs_rate_A1->SetPoint(1,angle_200mrad_A1,outputvect_200mrad_A1[4]);
+    graph_angle_vs_rate_A1->SetPoint(2,angle_max_A1,outputvect_max_A1[4]);
+    graph_angle_vs_rate_A1->SetPoint(3,angle_maxmore_A1,outputvect_maxmore_A1[4]);
+    
+    graph_angle_vs_rate_A1->SetPointError(0,error_angle_flat2_A1,outputvect_flat2_A1[5]);
+    graph_angle_vs_rate_A1->SetPointError(1,error_angle_200mrad_A1,outputvect_200mrad_A1[5]);
+    graph_angle_vs_rate_A1->SetPointError(2,error_angle_max_A1,outputvect_max_A1[5]);
+    graph_angle_vs_rate_A1->SetPointError(3,error_angle_maxmore_A1,outputvect_maxmore_A1[5]);
+    
+    
+    
+    TGraphErrors *graph_angle_vs_rate_A2 = new TGraphErrors();
+    graph_angle_vs_rate_A2->SetPoint(0,angle_flat2_A2,outputvect_flat2_A2[4]);
+    graph_angle_vs_rate_A2->SetPoint(1,angle_200mrad_A2,outputvect_200mrad_A2[4]);
+    graph_angle_vs_rate_A2->SetPoint(2,angle_max_A2,outputvect_max_A2[4]);
+    graph_angle_vs_rate_A2->SetPoint(3,angle_maxmore_A2,outputvect_maxmore_A2[4]);
+    
+    graph_angle_vs_rate_A2->SetPointError(0,error_angle_flat2_A2,outputvect_flat2_A2[5]);
+    graph_angle_vs_rate_A2->SetPointError(1,error_angle_200mrad_A2,outputvect_200mrad_A2[5]);
+    graph_angle_vs_rate_A2->SetPointError(2,error_angle_max_A2,outputvect_max_A2[5]);
+    graph_angle_vs_rate_A2->SetPointError(3,error_angle_maxmore_A2,outputvect_maxmore_A2[5]);
+    
+    
+    
+    TGraphErrors *graph_angle_vs_rate_A3 = new TGraphErrors();
+    graph_angle_vs_rate_A3->SetPoint(0,angle_flat2_A3,outputvect_flat2_A3[4]);
+    graph_angle_vs_rate_A3->SetPoint(1,angle_200mrad_A3,outputvect_200mrad_A3[4]);
+    graph_angle_vs_rate_A3->SetPoint(2,angle_max_A3,outputvect_max_A3[4]);
+    graph_angle_vs_rate_A3->SetPoint(3,angle_maxmore_A3,outputvect_maxmore_A3[4]);
+    
+    graph_angle_vs_rate_A3->SetPointError(0,error_angle_flat2_A3,outputvect_flat2_A3[5]);
+    graph_angle_vs_rate_A3->SetPointError(1,error_angle_200mrad_A3,outputvect_200mrad_A3[5]);
+    graph_angle_vs_rate_A3->SetPointError(2,error_angle_max_A3,outputvect_max_A3[5]);
+    graph_angle_vs_rate_A3->SetPointError(3,error_angle_maxmore_A3,outputvect_maxmore_A3[5]);
+    
+    
+    
+    
+    
+    
+    TGraphErrors *graph_angle_vs_rate_A4 = new TGraphErrors();
+    graph_angle_vs_rate_A4->SetPoint(0,angle_flat2_A4,outputvect_flat2_A4[4]);
+    graph_angle_vs_rate_A4->SetPoint(1,angle_200mrad_A4,outputvect_200mrad_A4[4]);
+    graph_angle_vs_rate_A4->SetPoint(2,angle_max_A4,outputvect_max_A4[4]);
+    graph_angle_vs_rate_A4->SetPoint(3,angle_maxmore_A4,outputvect_maxmore_A4[4]);
+    
+    graph_angle_vs_rate_A4->SetPointError(0,error_angle_flat2_A4,outputvect_flat2_A4[5]);
+    graph_angle_vs_rate_A4->SetPointError(1,error_angle_200mrad_A4,outputvect_200mrad_A4[5]);
+    graph_angle_vs_rate_A4->SetPointError(2,error_angle_max_A4,outputvect_max_A4[5]);
+    graph_angle_vs_rate_A4->SetPointError(3,error_angle_maxmore_A4,outputvect_maxmore_A4[5]);
+    
+    
+    
+    
+    
+    
+    TGraphErrors *graph_avangle_vs_rate = new TGraphErrors();
+    graph_avangle_vs_rate->SetName("Average of all 4 sensors");
+    graph_avangle_vs_rate->SetPoint(0,av_angle_flat2, av_rate_flat2);
+    graph_avangle_vs_rate->SetPointError(0,err_av_angle_flat2, err_av_rate_flat2);
+    
+    graph_avangle_vs_rate->SetPoint(1,av_angle_200mrad, av_rate_200mrad);
+    graph_avangle_vs_rate->SetPointError(1,err_av_angle_200mrad, err_av_rate_200mrad);
+    
+    graph_avangle_vs_rate->SetPoint(2,av_angle_max, av_rate_max);
+    graph_avangle_vs_rate->SetPointError(2,err_av_angle_max, err_av_rate_max);
+    
+    graph_avangle_vs_rate->SetPoint(3,av_angle_maxmore, av_rate_maxmore);
+    graph_avangle_vs_rate->SetPointError(3,err_av_angle_maxmore, err_av_rate_maxmore);
+    
+    
+    
+    TGraphErrors *graph_av_angle_vs_normrate = new TGraphErrors();
+    float Norm_rate_flat2 = av_rate_flat2/av_rate_flat2;
+    float Norm_rate_200mrad = av_rate_200mrad/av_rate_flat2;
+    float Norm_rate_max = av_rate_max/av_rate_flat2;
+    float Norm_rate_maxmore = av_rate_maxmore/av_rate_flat2;
+    
+    float err_Norm_rate_flat2 = propagateErrorDivision(av_rate_flat2,err_av_rate_flat2,av_rate_flat2,err_av_rate_flat2);
+    
+    float err_Norm_rate_200mrad = propagateErrorDivision(av_rate_200mrad,err_av_rate_200mrad,av_rate_flat2,err_av_rate_flat2);
+    
+    float err_Norm_rate_max = propagateErrorDivision(av_rate_max,err_av_rate_max,av_rate_flat2,err_av_rate_flat2);
+    
+    float err_Norm_rate_maxmore = propagateErrorDivision(av_rate_maxmore,err_av_rate_maxmore,av_rate_flat2,err_av_rate_flat2);
+    
+    
+    
+    
+    
+    
+    
+    graph_av_angle_vs_normrate->SetPoint(0,av_angle_flat2, Norm_rate_flat2);
+    graph_av_angle_vs_normrate->SetPoint(1,av_angle_200mrad, Norm_rate_200mrad);
+    graph_av_angle_vs_normrate->SetPoint(2,av_angle_max, Norm_rate_max);
+    graph_av_angle_vs_normrate->SetPoint(3,av_angle_maxmore, Norm_rate_maxmore);
+    
+    graph_av_angle_vs_normrate->SetPointError(0,err_av_angle_flat2, err_Norm_rate_flat2);
+    graph_av_angle_vs_normrate->SetPointError(1,err_av_angle_200mrad, err_Norm_rate_200mrad);
+    graph_av_angle_vs_normrate->SetPointError(2,err_av_angle_max, err_Norm_rate_max);
+    graph_av_angle_vs_normrate->SetPointError(3,err_av_angle_maxmore, err_Norm_rate_maxmore);
+    
+     TCanvas* canvas_av_ang_vs_normrate = new TCanvas("canvas_av_ang_vs_normrate","",1600,1200);
+     canvas_av_ang_vs_normrate->cd();
+     canvas_av_ang_vs_normrate->DrawFrame(0,0,1,1);
+     graph_av_angle_vs_normrate->SetLineColor(46);
+     graph_av_angle_vs_normrate->SetMarkerStyle(24);
+     graph_av_angle_vs_normrate->SetLineWidth(3);
+     
+     graph_av_angle_vs_normrate->GetXaxis()->SetTitle("Average angle of 4 sensors");
+     
+     graph_av_angle_vs_normrate->GetYaxis()->SetTitle(" Normalized Average rate of photon detection ");
+     graph_av_angle_vs_normrate->SetName("Normalized rate ");
+     
+         
+         
+     graph_av_angle_vs_normrate->Draw("ALP");
+     canvas_av_ang_vs_normrate->SetLeftMargin(0.2); 
+     //canvas_av_ang_vs_normrate->BuildLegend();   
+     canvas_av_ang_vs_normrate->SaveAs("average_angle_vs_normrate.png"); 
+     canvas_av_ang_vs_normrate->SaveAs("average_angle_vs_normrate.pdf");   
+
+
+    
+ TCanvas* canvas_av_ang_vs_rate = new TCanvas("canvas_av_ang_vs_rate","",1600,1200);
+ canvas_av_ang_vs_rate->cd();
+ canvas_av_ang_vs_rate->DrawFrame(0,10000,1,25000);
+ graph_avangle_vs_rate->SetLineColor(46);
+ graph_avangle_vs_rate->SetMarkerStyle(24);
+ graph_avangle_vs_rate->SetLineWidth(3);
+    
+ graph_avangle_vs_rate->GetXaxis()->SetTitle("Average angle");
+ graph_avangle_vs_rate->GetYaxis()->SetTitle("Average rate");   
+    
+    
+ graph_avangle_vs_rate->Draw("ALP");
+ canvas_av_ang_vs_rate->SetLeftMargin(0.2); 
+ canvas_av_ang_vs_rate->BuildLegend();   
+ canvas_av_ang_vs_rate->SaveAs("average_angle_vs_rate.png"); 
+ canvas_av_ang_vs_rate->SaveAs("average_angle_vs_rate.pdf");   
+    
+    
+    
+ 
+    
+ TCanvas* canvas_ang_vs_rate = new TCanvas("canvas_ang_vs_rate","",1600,1200);
+ TMultiGraph *mg = new TMultiGraph();
+ //mg->SetTitle("");   
+    
+ canvas_ang_vs_rate->cd();
+ canvas_ang_vs_rate->DrawFrame(0,10000,1,25000);   
+    
+ graph_angle_vs_rate_A1->SetMarkerStyle(25);
+ graph_angle_vs_rate_A1->SetLineColor(42);
+ graph_angle_vs_rate_A1->SetLineWidth(3);   
+ 
+    
+ graph_angle_vs_rate_A2->SetMarkerStyle(24);
+ graph_angle_vs_rate_A2->SetLineColor(36);
+ graph_angle_vs_rate_A2->SetLineWidth(3);   
+ 
+    
+ graph_angle_vs_rate_A3->SetMarkerStyle(27);
+ graph_angle_vs_rate_A3->SetLineColor(30);
+ graph_angle_vs_rate_A3->SetLineWidth(3);   
+    
+    
+ graph_angle_vs_rate_A4->SetMarkerStyle(28);
+ graph_angle_vs_rate_A4->SetLineColor(41);
+ graph_angle_vs_rate_A4->SetLineWidth(3);   
+  
+    
+  mg->Add(graph_angle_vs_rate_A1);
+  mg->Add(graph_angle_vs_rate_A2);
+  mg->Add(graph_angle_vs_rate_A3);
+  mg->Add(graph_angle_vs_rate_A4);
+  
+    
+  canvas_ang_vs_rate->SetLeftMargin(0.2);  
+  //mg->Add(graph_angle_vs_rate_A5);  
+ //graph_angle_vs_rate_A1->Draw("ALP"); 
+ //graph_angle_vs_rate_A2->Draw("ALP SAME");
+    
+ //graph_angle_vs_rate_A3->Draw("ALP SAME"); 
+ //graph_angle_vs_rate_A4->Draw("ALP SAME");
+ graph_angle_vs_rate_A1->SetName("Sensor A1");
+ graph_angle_vs_rate_A2->SetName("Sensor A2");
+ graph_angle_vs_rate_A3->SetName("Sensor A3");
+ graph_angle_vs_rate_A4->SetName("Sensor A4");   
+    
+ mg->Draw("LP");
+ mg->GetYaxis()->SetTitle("Rate of photon detection");
+ mg->GetXaxis()->SetTitle("Angle of incidence");      
+ //mg->GetHistogram()->SetTitle("Global title");   
+ canvas_ang_vs_rate->BuildLegend(); 
+ canvas_ang_vs_rate->SaveAs("angle_rate_check_final.png");
+ canvas_ang_vs_rate->SaveAs("angle_rate_check_final.pdf");   
+    
+}
+
+

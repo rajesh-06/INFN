@@ -1,0 +1,412 @@
+ 
+For Flat....
+
+reading tree : input/scanx.flat.reference.A1.txt.tree.root creating tree flat.reference.A1
+############ x max -88.75 x min -91.9bkg 1395.27 maximum rate  27207
+reading tree : input/scanx.flat.target.A1.txt.tree.root creating tree flat.target.A1
+############ x max -97 x min -100.1bkg 1656.13 maximum rate  26562.1
+reading tree : input/scanx.flat.target.A2.txt.tree.root creating tree flat.target.A2
+############ x max -100.7 x min -103.85bkg 1957.29 maximum rate  27243.6
+reading tree : input/scanx.flat.target.A3.txt.tree.root creating tree flat.target.A3
+############ x max -104.45 x min -107.55bkg 1688.71 maximum rate  26304.8
+reading tree : input/scanx.flat.target.A4.txt.tree.root creating tree flat.target.A4
+############ x max -108.15 x min -111.3bkg 1567.06 maximum rate  27090.8
+ 
+ 
+ 
+ For A1 Rate is 24905.919922 +- 31.574463 before calibration 
+ and rate of reference 25811.732422 +- 29.239565 
+ and Calibrated rate is 0.964907 +- 0.001640 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A2 Rate is 25221.662109 +- 39.545509 before calibration 
+ and rate of reference 25811.732422 +- 29.239565 
+ and Calibrated rate is 0.977139 +- 0.001890 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A3 Rate is 24578.355469 +- 42.065029 before calibration 
+ and rate of reference 25811.732422 +- 29.239565 
+ and Calibrated rate is 0.952216 +- 0.001954 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A4 Rate is 25523.787109 +- 32.296276 before calibration 
+ and rate of reference 25811.732422 +- 29.239565 
+ and Calibrated rate is 0.988844 +- 0.001679 
+ 
+ 
+ 
+
+
+ 
+
+ width   sensor_name   errro in width  angle   error in angle  
+3.04211   A1            0.0173798         0  0
+3.03203   A2            0.0184879         0  0
+3.0167    A3            0.0183515         0  0
+3.04629   A4            0.0153372         0  0
+
+ 
+ 
+ 
+ Checking  normalization per sensor with respect to initial flat sensor 
+
+ 0.964907 / 0.964907 =  Normalized_A1 1.000000 +- 0.002404 
+ 0.977139 / 0.977139 =  Normalized_A2 1.000000 +- 0.002736 
+ 0.952216 / 0.952216 =  Normalized_A3 1.000000+- 0.002903 
+ 0.988844 / 0.988844 =  Normalized_A4 1.000000+-0.002402 
+
+
+ 
+ #### average normalized rate 1.000000 +-0.001310 
+
+
+
+
+******************* FOR 15 Deg **********
+reading tree : input/scanx.15deg.reference.A1.txt.tree.root creating tree 15deg.reference.A1
+############ x max -88.7 x min -91.85bkg 1315.56 maximum rate  25557.5
+reading tree : input/scanx.15deg.target.A1.txt.tree.root creating tree 15deg.target.A1
+############ x max -104.35 x min -107.25bkg 1573.77 maximum rate  24938.8
+reading tree : input/scanx.15deg.target.A2.txt.tree.root creating tree 15deg.target.A2
+############ x max -107.85 x min -110.8bkg 1844.07 maximum rate  25857.8
+reading tree : input/scanx.15deg.target.A3.txt.tree.root creating tree 15deg.target.A3
+############ x max -111.4 x min -114.3bkg 1575.6 maximum rate  24332.4
+reading tree : input/scanx.15deg.target.A4.txt.tree.root creating tree 15deg.target.A4
+############ x max -114.95 x min -117.85bkg 1505.54 maximum rate  24655.9
+ 
+ 
+ 
+ For A1 Rate is 23365.041016 +- 40.724159 before calibration 
+ and rate of reference 24174.919922 +- 33.109077 
+ and Calibrated rate is 0.966499 +- 0.002142 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A2 Rate is 23919.044922 +- 41.539631 before calibration 
+ and rate of reference 24174.919922 +- 33.109077 
+ and Calibrated rate is 0.989416 +- 0.002188 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A3 Rate is 22682.416016 +- 32.072811 before calibration 
+ and rate of reference 24174.919922 +- 33.109077 
+ and Calibrated rate is 0.938262 +- 0.001847 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A4 Rate is 23084.875000 +- 44.402058 before calibration 
+ and rate of reference 24174.919922 +- 33.109077 
+ and Calibrated rate is 0.954910 +- 0.002255 
+ 
+ 
+ 
+
+
+ 
+
+ width  sensor_name      errro in width  angle      error in angle  
+ 2.87357  A1             0.0166398       0.291347    0.0193097
+ 2.89775  A2             0.018337        0.261834    0.0236132
+ 2.87623  A3             0.0177607       0.28825     0.0208257
+ 2.9294   A4             0.0191368       0.21738     0.0295769
+
+ 
+ 
+ 
+ Checking  normalization per sensor with respect to initial flat sensor 
+
+ 0.966499 / 0.964907 =  Normalized_A1 1.001650 +- 0.002798 
+ 0.989416 / 0.977139 =  Normalized_A2 1.012563 +- 0.002975 
+ 0.938262 / 0.952216 =  Normalized_A3 0.985346+- 0.002802 
+ 0.954910 / 0.988844 =  Normalized_A4 0.965683+-0.002809 
+
+
+ 
+ ############ average normalized rate 0.991310 +-0.001424 
+
+
+
+
+******************* FOR 30 Deg **********
+
+reading tree : input/scanx.30deg.reference.A1.txt.tree.root creating tree 30deg.reference.A1
+############ x max -88.95 x min -92bkg 1320.65 maximum rate  26345.3
+reading tree : input/scanx.30deg.target.A1.txt.tree.root creating tree 30deg.target.A1
+############ x max -111.4 x min -114bkg 1556.75 maximum rate  25227.8
+reading tree : input/scanx.30deg.target.A2.txt.tree.root creating tree 30deg.target.A2
+############ x max -114.5 x min -117.1bkg 1827.78 maximum rate  26094
+reading tree : input/scanx.30deg.target.A3.txt.tree.root creating tree 30deg.target.A3
+############ x max -117.65 x min -120.25bkg 1576.66 maximum rate  24698.7
+reading tree : input/scanx.30deg.target.A4.txt.tree.root creating tree 30deg.target.A4
+############ x max -120.8 x min -123.45bkg 1483.07 maximum rate  25286.8
+ 
+ 
+
+ For A1 Rate is 23585.408203 +- 41.793961 before calibration 
+ and rate of reference 25024.630859 +- 35.852291 
+ and Calibrated rate is 0.942488 +- 0.002148 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A2 Rate is 24198.822266 +- 72.400925 before calibration 
+ and rate of reference 25024.630859 +- 35.852291 
+ and Calibrated rate is 0.967000 +- 0.003208 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A3 Rate is 23042.324219 +- 57.563843 before calibration 
+ and rate of reference 25024.630859 +- 35.852291 
+ and Calibrated rate is 0.920786 +- 0.002652 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A4 Rate is 23803.703125 +- 79.419968 before calibration 
+ and rate of reference 25024.630859 +- 35.852291 
+ and Calibrated rate is 0.951211 +- 0.003454 
+ 
+ 
+ 
+
+
+ 
+ 
+ for 30deg
+ 
+ 
+ width  sensor_name    errro in width  angle       error in angle  
+2.57097  A1             0.016981       0.541397     0.0109838
+2.5605   A2             0.0189657      0.54813      0.012132
+2.58639  A3             0.0190863      0.531339     0.0125562
+2.52424  A4             0.0183311      0.570904     0.0113073
+
+ 
+ 
+ 
+ Checking  normalization per sensor with respect to initial flat sensor 
+
+ 0.942488 / 0.964907 =  Normalized_A1 0.976765 +- 0.002777 
+ 0.967000 / 0.977139 =  Normalized_A2 0.989623 +- 0.003800 
+ 0.920786 / 0.952216 =  Normalized_A3 0.966992+- 0.003420 
+ 0.951211 / 0.988844 =  Normalized_A4 0.961942+-0.003856 
+
+
+ 
+############### average normalized rate 0.973831 +-0.001745 
+
+
+
+
+
+
+******************* FOR 40 Deg **********
+
+reading tree : input/scanx.40deg.reference.A1.txt.tree.root creating tree 40deg.reference.A1
+############ x max -88.8 x min -91.9bkg 1461.55 maximum rate  27073.9
+
+reading tree : input/scanx.40deg.target.A1.txt.tree.root creating tree 40deg.target.A1
+############ x max -115.9 x min -118.25bkg 1576.6 maximum rate  25438.6
+
+reading tree : input/scanx.40deg.target.A2.txt.tree.root creating tree 40deg.target.A2
+############ x max -118.65 x min -121bkg 1816.32 maximum rate  26341.1
+
+reading tree : input/scanx.40deg.target.A3.txt.tree.root creating tree 40deg.target.A3
+############ x max -121.45 x min -123.75bkg 1568.44 maximum rate  25266.8
+
+reading tree : input/scanx.40deg.target.A4.txt.tree.root creating tree 40deg.target.A4
+############ x max -124.15 x min -126.55bkg 1486.53 maximum rate  25832.1
+ 
+ 
+ 
+ For A1 Rate is 23788.744141 +- 77.602409 before calibration 
+ and rate of reference 25612.373047 +- 33.749870 
+ and Calibrated rate is 0.928799 +- 0.003268 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A2 Rate is 24498.160156 +- 72.026787 before calibration 
+ and rate of reference 25612.373047 +- 33.749870 
+ and Calibrated rate is 0.956497 +- 0.003082 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A3 Rate is 23643.933594 +- 189.449036 before calibration 
+ and rate of reference 25612.373047 +- 33.749870 
+ and Calibrated rate is 0.923145 +- 0.007496 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A4 Rate is 24300.724609 +- 37.321705 before calibration 
+ and rate of reference 25612.373047 +- 33.749870 
+ and Calibrated rate is 0.948788 +- 0.001920 
+ 
+ 
+ 
+
+ width  sensor name     errro in width  angle   error in angle  
+2.27403  A1                0.0168064   0.710538  0.00858907
+2.26178  A2                0.0189811   0.716778  0.00963081
+2.23515  A3                0.0209239   0.730185  0.0104566
+2.27878  A4                0.0166655   0.70811   0.00854119
+
+ 
+ 
+ 
+ Checking  normalization per sensor with respect to initial flat sensor 
+ 
+ 0.928799 / 0.964907 =  Normalized_A1 0.962579 +- 0.003761 
+ 0.956497 / 0.977139 =  Normalized_A2 0.978875 +- 0.003679 
+ 0.923145 / 0.952216 =  Normalized_A3 0.969470+- 0.008120 
+ 0.948788 / 0.988844 =  Normalized_A4 0.959492+-0.002535 
+
+
+ ###############average normalized rate 0.967604 +-0.002500 
+
+
+******************* FOR 45 Deg **********
+reading tree : input/scanx.45deg.reference.A1.txt.tree.root creating tree 45deg.reference.A1
+############ x max -88.75 x min -91.85bkg 1342.8 maximum rate  24150.8
+
+reading tree : input/scanx.45deg.target.A1.txt.tree.root creating tree 45deg.target.A1
+############ x max -117 x min -119.25bkg 1564.81 maximum rate  23274.6
+
+reading tree : input/scanx.45deg.target.A2.txt.tree.root creating tree 45deg.target.A2
+############ x max -119.65 x min -121.9bkg 1849.25 maximum rate  24173.8
+
+reading tree : input/scanx.45deg.target.A3.txt.tree.root creating tree 45deg.target.A3
+############ x max -122.3 x min -124.5bkg 1569.91 maximum rate  22903.9
+
+reading tree : input/scanx.45deg.target.A4.txt.tree.root creating tree 45deg.target.A4
+############ x max -125 x min -127.2bkg 1469.67 maximum rate  23450.1
+ 
+ 
+ 
+ For A1 Rate is 21653.919922 +- 49.861332 before calibration 
+ and rate of reference 22751.386719 +- 25.643831 
+ and Calibrated rate is 0.951763 +- 0.002440 
+ 
+ 
+ 
+
+ For A2 Rate is 22277.632812 +- 84.588242 before calibration 
+ and rate of reference 22751.386719 +- 25.643831 
+ and Calibrated rate is 0.979177 +- 0.003878 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A3 Rate is 21263.953125 +- 44.052792 before calibration 
+ and rate of reference 22751.386719 +- 25.643831 
+ and Calibrated rate is 0.934622 +- 0.002204 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A4 Rate is 21923.816406 +- 204.778763 before calibration 
+ and rate of reference 22751.386719 +- 25.643831 
+ and Calibrated rate is 0.963625 +- 0.009066 
+ 
+ 
+ 
+
+
+ 
+ 
+
+ width  sensor name           errro in width  angle          error in angle  
+2.20173  A1                     0.0164974      0.746736         0.00809595
+2.15977  A2                     0.0188532      0.767106         0.00905464
+2.20494  A3                     0.0168504      0.745159         0.00828327
+2.14262  A4                     0.0187454      0.775308         0.0089272
+
+ 
+ 
+ 
+ Checking  normalization per sensor with respect to initial flat sensor 
+
+ 0.951763 / 0.964907 =  Normalized_A1 0.986378 +- 0.003034 
+ 0.979177 / 0.977139 =  Normalized_A2 1.002085 +- 0.004417 
+ 0.934622 / 0.952216 =  Normalized_A3 0.981523+- 0.003069 
+ 0.963625 / 0.988844 =  Normalized_A4 0.974497+-0.009316 
+ 
+ 
+############# average normalized rate 0.986121 +-0.002794 
+
+
+ 
+Final Check For All measurements  
+ average_angle of flat          0.000000 +- 0.000000 
+ average angle of 15 degree     0.264703 +- 0.011829 
+ average angle of 30deg         0.547943 +- 0.005881 
+ average angle of 40deg         0.716403 +- 0.004669 
+ average angle of 45deg         0.758577 +- 0.004300  
+
+ 
+ 
+
+
+ 
+ 
+ average rate of flat         1.000000 +- 0.001310 
+ average rate of 15 degree    0.991310 +- 0.001424 
+ average rate of 30deg        0.973831 +- 0.001745 
+ average rate of 40deg        0.967604 +- 0.002500 
+ average rate of 45deg        0.986121 +- 0.002794  
+
+Processing angle_measurement.C...

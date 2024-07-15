@@ -1,0 +1,90 @@
+#include "iostream"
+#include "fstream"
+
+using namespace std;
+
+void findcenter(TString filename = "scanx.200mrad.A1.txt.tree.root"){
+
+     int n_mes = 10; // number of measurement done for each position.
+    // this file is for the second test, we have 10 measurements for each position ,, 
+    TFile * File = new TFile(filename.Data()); // first sipm
+    
+    // getting treee from each file 
+    TTree *tree=(TTree*) File->Get("tree");
+    
+    // each tree have 3 branches x , y and rate 
+    float x, y, rate;
+    
+    
+    // defining branches for each file
+    tree->SetBranchAddress("x", &x);
+    tree->SetBranchAddress("y", &y);
+    tree->SetBranchAddress("rate", &rate);
+
+    
+
+    //setting some initial x and y limits to set graph frame to make sure the 
+    float xlim_min =0.;
+    float xlim_max =-1000.;  
+
+    //
+    float ylim_min = 10000000.;
+    float ylim_max  = 0;   
+    TGraphErrors * RatevsX = new TGraphErrors();
+
+    for (int i = 0 ; i<tree->GetEntries();i=i+n_mes){
+    
+        std::vector <float> vrate; //vector of rate
+        std:: vector <float> vx; // vector of x
+
+        for (int j = 0 ; j<n_mes ; j++){
+
+            tree->GetEntry(i+j);
+
+
+            vrate.push_back(rate);
+            vx.push_back(x);
+
+
+        }
+
+        // cout << vrate.size()<< endl; // checking if the size is correct should be 10 in my case because we have 10 measurements
+   
+        float average_rate = accumulate( vrate.begin(), vrate.end(), 0.0)/vrate.size(); // computing the averate
+       // cout << average_rate<< endl; // checking if average is computed correctly
+
+        float std_dev_rate = TMath::StdDev(vrate.begin(), vrate.end());
+        float err_ave_rate = std_dev_rate/TMath::Sqrt(vrate.size());
+   //  cout << "check calculations "<< "  " << std_dev_rate<< endl; // just to check calculcation if correct
+   
+        float av_x = accumulate( vx.begin(), vx.end(), 0.0)/vx.size(); // computing the averate 
+   
+   
+       
+       // cout<< ((i+1)/10)<< endl;
+        int graph_entry = (i+1)/n_mes; // just to fill one value per 
+
+
+
+        //cout << graph_entry<< "    "<<i << endl;
+        RatevsX->SetPoint(graph_entry , av_x, average_rate);
+
+        RatevsX->SetPointError(graph_entry , 0., err_ave_rate);
+        
+        
+
+    
+    }// end get Entry A1
+    
+    TCanvas * can = new TCanvas("can", "", 1200,1200);
+
+    can->DrawFrame(xlim_min,ylim_min,xlim_max,ylim_max);
+
+    RatevsX->Draw("Z");
+
+    can->Draw();
+    
+    can->SaveAs("averagerates_vs_x.png");
+
+
+}

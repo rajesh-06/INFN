@@ -1,0 +1,333 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "83d797a3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "Error in <TNetXNGFile::Open>: [ERROR] Server responded with an error: [3001] Required argument not present\n"
+     ]
+    }
+   ],
+   "source": [
+    "file = TFile::Open(\"outfile_2.root\");\n",
+    "\n",
+    "int colors[] = {33, 43, 18, 54,66};\n",
+    "vector < const char *>  ang_name = {\"40deg\", \"40deg-a\",\"40deg-b\", \"40deg-c\", \"40deg-d\"};\n",
+    "double measurement[] ={1.,2.,3.,4.,5.};"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "00f4373f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "TMultiGraph *pull_graph(TGraphErrors *graph, int mstyle ){\n",
+    "    float sumy =0;\n",
+    "    float erry= 0; \n",
+    "    TMultiGraph *mgraph = new TMultiGraph();\n",
+    "    for(int i =0; i < graph->GetN(); i++){\n",
+    "        sumy += graph->GetY()[i];\n",
+    "\n",
+    "        erry += graph->GetErrorX(i)*graph->GetErrorX(i); \n",
+    "    \n",
+    "    }\n",
+    "\n",
+    "    float avgy = sumy/graph->GetN();\n",
+    "    erry = TMath::Sqrt(erry)/graph->GetN();\n",
+    "    \n",
+    "    for(int i =0; i < graph->GetN(); i++){\n",
+    "        TGraph * pull_gr = new TGraph();\n",
+    "        pull_gr->SetName(ang_name[i]);\n",
+    "        float pull = (graph->GetY()[i]-avgy)/erry;\n",
+    "        //pull_gr->SetPoint(0,Sen_A1->GetX()[i], pull);pull_gr->SetMarkerStyle(33);\n",
+    "        pull_gr->SetPoint(0,i, pull);\n",
+    "        \n",
+    "        pull_gr->SetMarkerSize(5);\n",
+    "\n",
+    "        pull_gr->SetMarkerColor(colors[i]);\n",
+    "        pull_gr->SetMarkerStyle(mstyle);\n",
+    "\n",
+    "        \n",
+    "        mgraph->Add(pull_gr);\n",
+    "    \n",
+    "    \n",
+    "}\n",
+    "    \n",
+    "   return mgraph;\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "bac80785",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "void plot_pull(TGraphErrors*graph ,int mstyle)\n",
+    "{\n",
+    "    auto Gr = pull_graph(graph,mstyle);\n",
+    "    TCanvas * canvas = new TCanvas(\"canvas\",\"\",1200,1200);\n",
+    "    canvas->SetLeftMargin(0.2);\n",
+    "    Gr->Draw(\"AP\");\n",
+    "    TAxis *xAxis = Gr->GetXaxis();\n",
+    "    for (int i=0;i< graph->GetN(); i++){\n",
+    "      xAxis->SetBinLabel(xAxis->FindFixBin(i),ang_name[i]);\n",
+    "    }\n",
+    "\n",
+    "    Gr->GetYaxis()->SetTitle(\"PULL\");\n",
+    "    Gr->SetTitle(grph->GetName);\n",
+    "\n",
+    "\n",
+    "    canvas->Draw();\n",
+    "    //canvas->SaveAs(\"average_error_A1.png\");    \n",
+    "    \n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "ef07bf42",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "TGraphErrors * Sen_A1 = (TGraphErrors*)Sensor_A1->Clone(\"Sen_A1\");\n",
+    "TGraphErrors * Sen_A2 = (TGraphErrors*)Sensor_A2->Clone(\"Sen_A2\");\n",
+    "TGraphErrors * Sen_A3 = (TGraphErrors*)Sensor_A3->Clone(\"Sen_A3\");\n",
+    "TGraphErrors * Sen_A4 = (TGraphErrors*)Sensor_A4->Clone(\"Sen_A4\");\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "0eecce88",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "input_line_43:2:13: error: use of undeclared identifier 'Sen_A1'\n",
+      " (plot_pull(Sen_A1, 47))\n",
+      "            ^\n",
+      "Error in <HandleInterpreterException>: Error evaluating expression (plot_pull(Sen_A1, 47))\n",
+      "Execution of your code was aborted.\n"
+     ]
+    }
+   ],
+   "source": [
+    "plot_pull(Sen_A1,47);\n",
+    "plot_pull(Sen_A4,47);"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "80997b78",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "auto A1_Gr = pull_graph(Sen_A1);\n",
+    "\n",
+    "\n",
+    "TCanvas * canvas = new TCanvas(\"canvas\",\"\",1200,1200);\n",
+    "canvas->SetLeftMargin(0.2);\n",
+    "\n",
+    "A1_Gr->Draw(\"AP\");\n",
+    "TAxis *xAxis = A1_Gr->GetXaxis();\n",
+    "\n",
+    "for (int i=0;i< A1_Gr->GetN(); i++){\n",
+    "    \n",
+    "     xAxis->SetBinLabel(xAxis->FindFixBin(i),ang_name[i]);\n",
+    "}\n",
+    "\n",
+    "A1_Gr->GetYaxis()->SetTitle(\"PULL\");\n",
+    "\n",
+    "\n",
+    "canvas->Draw();\n",
+    "canvas->SaveAs(\"average_error_A1.png\");"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fc5aace3",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 54,
+   "id": "1f8dd411",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "float sumy =0;\n",
+    "float erry= 0; \n",
+    "float sumsq = 0;\n",
+    "\n",
+    "for(int i =0; i < Sen_A1->GetN(); i++){\n",
+    "     //cout<<\"X values \\n \"<< Sen_A1->GetX()[i]<<\" +-   \"<<  Sen_A1->GetErrorX(i)<< \" \\n\\n Y values \\n\" <<  Sen_A1->GetY()[i]<<\" +- \"<<Sen_A1->GetErrorY(i)<<endl;\n",
+    "    sumy += Sen_A1->GetY()[i];\n",
+    "    sumsq += Sen_A1->GetY()[i] *Sen_A1->GetY()[i];\n",
+    "    erry += Sen_A1->GetErrorX(i)*Sen_A1->GetErrorX(i); \n",
+    "   // cout<<<<\"   \" <<  Sen_A1->GetErrorY(i)<<endl;\n",
+    "\n",
+    "    \n",
+    "}\n",
+    "\n",
+    "float avgy = sumy/Sen_A1->GetN();\n",
+    "double variance = (sumsq / Sen_A1->GetN()) - avgy*avgy;\n",
+    "erry = TMath::Sqrt(erry)/Sen_A1->GetN();\n",
+    "\n",
+    "//double std = TMath::Sqrt(variance);\n",
+    "//cout << erry << endl;\n",
+    "//cout << std << endl;"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "id": "cafc5c3e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "TMultiGraph * mgraph = new TMultiGraph();\n",
+    "\n",
+    "\n",
+    "for(int i =0; i < Sen_A1->GetN(); i++){\n",
+    "    TGraph * pull_gr = new TGraph();\n",
+    "    pull_gr->SetName(ang_name[i]);\n",
+    "    float pull = (Sen_A1->GetY()[i]-avgy)/erry;\n",
+    "    \n",
+    "    //pull_gr->SetPoint(0,Sen_A1->GetX()[i], pull);pull_gr->SetMarkerStyle(33);\n",
+    "    pull_gr->SetPoint(0,i, pull);pull_gr->SetMarkerStyle(33);\n",
+    "    pull_gr->SetMarkerSize(5);\n",
+    "\n",
+    "    pull_gr->SetMarkerColor(colors[i]);\n",
+    "    pull_gr->SetMarkerStyle(43);\n",
+    "    \n",
+    "    //TAxis *xAxis = pull_gr->GetXaxis();\n",
+    "    //xAxis->SetBinLabel(1,ang_name[i]);\n",
+    "//pull_gr->SetMarkerColor(38);\n",
+    "    \n",
+    "    mgraph->Add(pull_gr);\n",
+    "    \n",
+    "    \n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 59,
+   "id": "c622bfdd",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<IPython.core.display.Image object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "Warning in <TCanvas::Constructor>: Deleting canvas with same name: canvas\n",
+      "Info in <TCanvas::Print>: png file average_error_A1.png has been created\n"
+     ]
+    }
+   ],
+   "source": [
+    "TCanvas * canvas = new TCanvas(\"canvas\",\"\",1200,1200);\n",
+    "canvas->SetLeftMargin(0.2);\n",
+    "//TGraph *name = newTGraph();\n",
+    "\n",
+    "\n",
+    "mgraph->Draw(\"AP\");\n",
+    "TAxis *xAxis = mgraph->GetXaxis();\n",
+    "\n",
+    "for (int i=0;i< Sen_A1->GetN(); i++){\n",
+    "    \n",
+    "     xAxis->SetBinLabel(xAxis->FindFixBin(i),ang_name[i]);\n",
+    "}\n",
+    "//mgraph->GetXaxis()->SetTitle(\"Angle\");\n",
+    "\n",
+    "mgraph->GetYaxis()->SetTitle(\"PULL\");\n",
+    "\n",
+    "//canvas->BuildLegend(0.6,0.6,0.8,0.8);\n",
+    "\n",
+    "canvas->Draw();\n",
+    "canvas->SaveAs(\"average_error_A1.png\");"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 60,
+   "id": "d80884dd",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "28\n"
+     ]
+    }
+   ],
+   "source": [
+    "cout << xAxis->FindFixBin(1) <<endl;"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "878a676f",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d883a421",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "@webio": {
+   "lastCommId": null,
+   "lastKernelId": null
+  },
+  "kernelspec": {
+   "display_name": "ROOT C++",
+   "language": "c++",
+   "name": "root"
+  },
+  "language_info": {
+   "codemirror_mode": "text/x-c++src",
+   "file_extension": ".C",
+   "mimetype": " text/x-c++src",
+   "name": "c++"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

@@ -1,0 +1,337 @@
+#include "iostream"
+#include "fstream"
+
+using namespace std;
+
+
+vector <float> Fitter(TGraphErrors * _graph, float minvalx =-104., float maxvalx =-101. , float bkg = 1000. , float sigtop = 25000,float dipvalue = 2000){
+    vector <float> fitresult;
+    //double fermi function
+    float minfunc = minvalx -20;
+    float maxfunc = maxvalx+20;
+    
+    float mid = 0.5*(minvalx + maxvalx );
+    float widthx = TMath::Abs(maxvalx-minvalx);
+
+    TF1 *doublefermiFunction = new TF1("doublefermiFunction", [](double *x, double *p) {
+            return p[0]+ (p[1]/(TMath::Exp((x[0] - p[3]) /p[4]) + 1.0)/(TMath::Exp((p[2]-x[0] ) /p[5]) + 1.0));
+    }, minfunc, maxfunc, 6); // Defining the function from 0 to 10, 0 parameters
+
+    doublefermiFunction->SetParameters(bkg,sigtop,minvalx, maxvalx,0.05,0.05);
+
+
+    
+TF1 *doublefermiFunction_dip = new TF1("doublefermiFunction_dip", [](double *x, double *p) {
+            return p[0]+ (p[1]/(TMath::Exp((x[0] - p[3]) /p[4]) + 1.0)/(TMath::Exp((p[2]-x[0] ) /p[5]) + 1.0))-p[6]*exp(-0.5*((x[0]-p[7])/p[8])*((x[0]-p[7])/p[8]));
+    }, minfunc, maxfunc, 9); // Defining the function from 0 to 10, 0 parameters
+
+    doublefermiFunction_dip->SetParameters(bkg,sigtop,minvalx, maxvalx,0.05,0.05,dipvalue,mid,0.2);
+
+     
+    
+TF1 *doublefermiFunction_dip2 = new TF1("doublefermiFunction_dip2", [](double *x, double *p) {
+            return p[0]+ (p[1]/(TMath::Exp((x[0] - (p[2]+0.5*p[3])) /p[4]) + 1.0)/(TMath::Exp(((p[2]-0.5*p[3])-x[0] ) /p[5]) + 1.0))-p[6]*exp(-0.5*((x[0]-p[2])/p[7])*((x[0]-p[2])/p[7]));
+    }, minfunc, maxfunc, 8); // Defining the function from 0 to 10, 0 parameters
+
+    doublefermiFunction_dip2->SetNpx(1000);
+    doublefermiFunction_dip2->SetParameters(bkg,sigtop,mid,widthx,0.05,0.05,dipvalue,0.2);
+    
+    doublefermiFunction_dip2->SetParName(0,"Dark_count");
+    
+    doublefermiFunction_dip2->SetParName(1,"Rate");
+    
+    doublefermiFunction_dip2->SetParName(2,"centre");
+    doublefermiFunction_dip2->SetParName(3,"width");
+    
+    doublefermiFunction_dip2->FixParameter(6,0);
+    
+  /*  doublefermiFunction_dip2->FixParameter(0,bkg);
+    doublefermiFunction_dip2->FixParameter(1,sigtop);
+    doublefermiFunction_dip2->FixParameter(2,mid);
+    doublefermiFunction_dip2->FixParameter(3,widthx);
+    
+    doublefermiFunction_dip2->FixParameter(6,dipvalue);*/
+    //doublefermiFunction_dip2->FixParameter(4,);
+    
+    
+
+
+        //gaussian error function    
+    TF1 * double_erf = new TF1("double_erf", [](double *x, double *p) {
+            return p[0] + p[1] * (TMath::Erf((x[0] - p[2]) /p[4]) + 1.) * (TMath::Erf((p[3]-x[0] ) /p[5]) + 1.) * 0.25;
+    },minfunc, maxfunc, 6); // Defining the function from 0 to 10, 0 parameters
+
+
+    double_erf->SetNpx(1000);
+    doublefermiFunction->SetNpx(1000); 
+    doublefermiFunction_dip->SetNpx(1000); 
+    doublefermiFunction_dip->SetLineColor(kBlue+3);
+
+    double_erf->SetParameters(bkg,sigtop,minvalx,maxvalx,0.1,0.1);
+    double_erf->SetLineColor(kGreen+3);
+    cout<< "DOUBLE FERMI FUNCTION "<< endl;
+    _graph->Fit("doublefermiFunction","R");
+    
+    
+     cout<< "DOUBLE ERF FUNCTION "<< endl;
+     _graph->Fit("double_erf","R");
+
+    
+    cout<< "DOUBLE FERMI FUNCTION  WITH DIP "<< endl;
+    _graph->Fit("doublefermiFunction_dip","R");
+    
+    
+    
+    
+    cout<< "DOUBLE FERMI FUNCTION  WITH DIP With Width and Center"<< endl;
+    _graph->Fit("doublefermiFunction_dip2","R");
+    
+    //fitresult.push_back(doublefermiFunction->GetParameter(0));
+    
+    //fitresult.push_back(doublefermiFunction->GetParameter(1));
+   
+    
+    fitresult.push_back(doublefermiFunction->GetParameter(2));
+    fitresult.push_back(doublefermiFunction->GetParError(2));
+    fitresult.push_back(doublefermiFunction->GetParameter(3));
+    fitresult.push_back(doublefermiFunction->GetParError(3));
+    
+    //fitresult.push_back(doublefermiFunction->GetParameter(4));
+    //fitresult.push_back(doublefermiFunction->GetParameter(5));
+    //fitresult.push_back(doublefermiFunction->GetParameter(6));
+  doublefermiFunction->Draw("SAME");
+    
+   
+  double_erf->Draw("SAME");  
+  doublefermiFunction_dip->Draw("SAME");  
+
+    return fitresult;
+}//end fitter
+
+
+
+
+
+
+
+
+//this function finds the center x and y value of the edge of sensor provided the filename and the bool to know x or y scan.  
+void findcenter_xy(TString filename = "scanx.200mrad.A1.txt.tree.root", bool yaxis= true ){
+     
+     int n_mes = 10; // number of measurement done for each position.
+   
+    
+    
+    // this file is for the second test, we have 10 measurements for each position ,, 
+    TFile * File = new TFile(filename.Data()); // first sipm
+    
+    TH1D* ratehist= new TH1D("ratehist","",30,0,3000);
+    
+    if(!File){
+        cout << "can not find the file " << filename.Data()<<endl;
+        return;
+    }
+    // getting treee from each file 
+    TTree *tree=(TTree*) File->Get("tree");
+    
+    // each tree have 3 branches x , y and rate 
+    float x, rate; // here variable x just means the axis of measurement
+    vector <float> vavx;
+    vector <float> vavrate;
+     
+    // defining branches for each file
+    
+    
+    if(yaxis){
+        tree->SetBranchAddress("y", &x);
+    
+    }
+    else{
+        tree->SetBranchAddress("x", &x);
+    
+    }
+    
+    
+    
+    
+    tree->SetBranchAddress("rate", &rate);
+
+    
+
+    //setting some initial x and y limits to set graph frame to make sure the 
+    float xlim_min =0.;
+    float xlim_max =-1000.;  
+
+    //
+    float ylim_min = 10000000.;
+    float ylim_max  = 0.;   
+    TGraphErrors * RatevsX = new TGraphErrors();
+
+    for (int i = 0 ; i<tree->GetEntries();i=i+n_mes){
+        
+        
+        //bool remove = false;
+        
+        if(rate<ylim_min) ylim_min = rate;
+        if(rate> ylim_max) ylim_max = rate;
+    
+        std::vector <float> vrate; //vector of rate
+        std:: vector <float> vx; // vector of x
+        
+
+        for (int j = 0 ; j<n_mes ; j++){
+
+            tree->GetEntry(i+j);
+           
+            if(rate<0.1) continue; // flag to remove measruement with zero rate
+            vrate.push_back(rate);
+            vx.push_back(x);
+        
+           
+            if((j+i)<200){
+                 ratehist->Fill(rate);
+            }
+       
+        }
+        
+        //if(remove) continue; //removed the zero rate events
+        
+        
+       
+        if(x<xlim_min) xlim_min = x;
+      
+        if(x > xlim_max) xlim_max = x;
+
+        
+        
+        
+         
+        float average_rate = accumulate( vrate.begin(), vrate.end(), 0.0)/vrate.size(); // computing the averate
+      
+        float std_dev_rate = TMath::StdDev(vrate.begin(), vrate.end()); // standard deviation
+        float err_ave_rate = std_dev_rate/TMath::Sqrt(vrate.size()); // error in rate.
+        float av_x = accumulate( vx.begin(), vx.end(), 0.0)/vx.size(); // computing the averate 
+   
+       //saving the average values to the vector.
+        vavx.push_back(av_x);
+        vavrate.push_back(average_rate);
+       
+       
+        int graph_entry = (i+1)/n_mes; // just to fill one value per 
+
+
+
+       
+        //graph...
+        RatevsX->SetPoint(graph_entry , av_x, average_rate);
+
+        RatevsX->SetPointError(graph_entry , 0., err_ave_rate);
+        
+        
+
+    
+    }// end get Entry A1
+    
+    
+    // computing the bkg initial value
+    TCanvas * cani = new TCanvas("cani", "", 1200,1200);
+    cani->cd();
+    TF1 * mygaus_bkg =new  TF1("mygaus_bkg","gaus" , 500,2500);
+    ratehist->Fit("mygaus_bkg");
+    cani->SaveAs("bkg_fit.png");
+    
+    
+    
+    float bkg_val = mygaus_bkg->GetParameter(1); // dark current
+    float bkg_err = mygaus_bkg->GetParameter(2); // error in estimation
+
+    
+    //initial threshold value to enter the loop
+    float threshold_val = 10000;    
+    float xmin = 1000;
+    float xmax = -1000;
+    float maxval = -1000;    
+   
+    for(int k=0; k<vavrate.size();k++){
+        // cout<< vavrate[k]<< "###########"<< threshold_val << endl;
+        if(vavrate[k]>threshold_val){
+         //   cout<< rate<< endl;
+          //  cout<< vavx[k]<< "###########"<< xmin << endl;
+            if(vavx[k]<xmin){
+                xmin = vavx[k] ;
+            }
+            
+            if(vavx[k]>xmax){
+                xmax=vavx[k];
+            }
+            if(vavrate[k]>maxval){
+                maxval = vavrate[k];
+            }
+    
+    
+        }
+    }// end of xmin , x max and max rate..
+    
+    float centx = 0.5 *(xmin+xmax);
+    float dip_val = maxval*10;
+    
+    for(int l=0; l<vavrate.size();l++){
+            
+            if(TMath::Abs(vavx[l]-centx)>0.2) continue;
+            
+            if(vavrate[l]<dip_val){
+                dip_val = vavrate[l];
+            }
+            
+    
+    }// end dip_estimation
+        
+        
+    cout << dip_val << "###############***********##########" << endl;
+    
+    
+    TCanvas * can = new TCanvas("can", "", 1200,1200);
+    can->cd();
+    can->DrawFrame(xlim_min,ylim_min,xlim_max,ylim_max);
+
+    RatevsX->Draw("Z"); //drawing before fitting to draw fit results...
+    
+    vector <float> myresult = Fitter(RatevsX,xmin,xmax,bkg_val,maxval,dip_val);
+
+    
+    //lines for maximum value
+    TLine line(myresult[0],0,myresult[0],maxval);
+
+    TLine line2(myresult[2],0,myresult[2],maxval);
+    
+    TLine line3(centx-2,dip_val,centx+2,dip_val);
+
+    line.SetLineColor(12);
+    line.SetLineWidth(4);
+    line.SetLineStyle(10);
+
+    line2.SetLineColor(32);
+    line2.SetLineStyle(10);
+    line2.SetLineWidth(4);
+    
+    line3.SetLineColor(32);
+    line3.SetLineStyle(10);
+    line3.SetLineWidth(4);
+
+
+    line.Draw("SAME");
+    line2.Draw("SAME");
+    line3.Draw("SAME");
+    
+    can->Draw();
+    
+    if(yaxis) can->SaveAs("averagerates_vs_y.png");
+    else can->SaveAs("averagerates_vs_x.png");
+    
+    
+    
+
+}// end of findcenter
+
+
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#directory="/path/to/your/directory"
+
+for file in *; do
+  if [[ -f "$file" ]]; then
+    new_name="50deg$(basename "$file" | cut -c14-)"
+    mv "$file" "$new_name"
+    echo "Renamed $(basename "$file") to $(basename "$new_name")"
+  fi
+done

@@ -1,0 +1,1790 @@
+
+Processing angle_measurement.C...
+reading tree : input/scanx.flat.reference.A1.txt.tree.root creating tree flat.reference.A1
+############ x max -88.75 x min -91.9bkg 1395.27 maximum rate  27207
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      3698.18
+NDf                       =          195
+Edm                       =  1.18605e-05
+NCalls                    =          282
+p0                        =      1442.86   +/-   3.09974     
+p1                        =      24496.9   +/-   21.5448     
+p2                        =     -91.8629   +/-   0.0110624   
+p3                        =      -88.768   +/-   0.0118928   
+p4                        =    0.0949115   +/-   0.00472503  
+p5                        =    0.0872847   +/-   0.003641    
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      3683.17
+NDf                       =          195
+Edm                       =  1.00765e-06
+NCalls                    =          288
+p0                        =      1444.61   +/-   3.01918     
+p1                        =      24485.2   +/-   21.7828     
+p2                        =     -91.8567   +/-   0.0139958   
+p3                        =     -88.7666   +/-   0.0128359   
+p4                        =     0.249691   +/-   0.0117522   
+p5                        =     0.258267   +/-   0.0108875   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      281.696
+NDf                       =          192
+Edm                       =   3.5926e-06
+NCalls                    =          793
+p0                        =      1439.47   +/-   3.18791     
+p1                        =      25388.3   +/-   39.8816     
+p2                        =     -91.8209   +/-   0.0133484   
+p3                        =     -88.7948   +/-   0.0138676   
+p4                        =     0.116806   +/-   0.00473292  
+p5                        =     0.106784   +/-   0.00495787  
+p6                        =      3526.98   +/-   122.789      	 (limited)
+p7                        =     -90.3213   +/-   0.0135874   
+p8                        =     0.186296   +/-   0.0116854   
+reading tree : input/scanx.flat.target.A1.txt.tree.root creating tree flat.target.A1
+############ x max -97 x min -100.1bkg 1656.13 maximum rate  26562.1
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      776.188
+NDf                       =          595
+Edm                       =  1.68419e-07
+NCalls                    =          273
+p0                        =      1675.62   +/-   1.59453     
+p1                        =      24381.4   +/-   23.554      
+p2                        =     -100.098   +/-   0.0124942   
+p3                        =     -97.0407   +/-   0.010819    
+p4                        =     0.099191   +/-   0.0036858   
+p5                        =     0.112978   +/-   0.00435419  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      788.409
+NDf                       =          595
+Edm                       =  1.53443e-05
+NCalls                    =          310
+p0                        =      1676.27   +/-   1.59225     
+p1                        =      24367.4   +/-   23.1241     
+p2                        =       -100.1   +/-   0.0127882   
+p3                        =     -97.0374   +/-   0.0114906   
+p4                        =     0.297207   +/-   0.0123259   
+p5                        =     0.265815   +/-   0.00980117  
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      722.138
+NDf                       =          592
+Edm                       =  6.25911e-07
+NCalls                    =          297
+p0                        =       1675.5   +/-   1.57026     
+p1                        =        24485   +/-   31.4407     
+p2                        =     -100.088   +/-   0.0134638   
+p3                        =      -97.046   +/-   0.0111125   
+p4                        =     0.101511   +/-   0.00379001  
+p5                        =     0.117427   +/-   0.00478329  
+p6                        =      539.402   +/-   88.0819      	 (limited)
+p7                        =     -98.6337   +/-   0.0290792   
+p8                        =     0.118804   +/-   0.0340111   
+reading tree : input/scanx.flat.target.A2.txt.tree.root creating tree flat.target.A2
+############ x max -100.7 x min -103.85bkg 1957.29 maximum rate  27243.6
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =       850.58
+NDf                       =          595
+Edm                       =  5.34537e-10
+NCalls                    =          262
+p0                        =       1955.5   +/-   1.83792     
+p1                        =      24854.2   +/-   21.4706     
+p2                        =     -103.799   +/-   0.0116867   
+p3                        =     -100.743   +/-   0.0122923   
+p4                        =      0.11164   +/-   0.00382651  
+p5                        =    0.0999844   +/-   0.0044315   
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      869.017
+NDf                       =          595
+Edm                       =  2.16315e-06
+NCalls                    =          292
+p0                        =      1955.98   +/-   1.83005     
+p1                        =      24844.2   +/-   20.9609     
+p2                        =       -103.8   +/-   0.012816    
+p3                        =     -100.731   +/-   0.0131168   
+p4                        =     0.267111   +/-   0.0116834   
+p5                        =     0.311962   +/-   0.0102857   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      758.334
+NDf                       =          592
+Edm                       =  1.12582e-05
+NCalls                    =          299
+p0                        =      1955.27   +/-   1.84019     
+p1                        =      25035.8   +/-   39.5302     
+p2                        =     -103.786   +/-   0.0131477   
+p3                        =     -100.754   +/-   0.0129959   
+p4                        =     0.115768   +/-   0.00407047  
+p5                        =     0.107721   +/-   0.00524737  
+p6                        =      621.254   +/-   71.2736      	 (limited)
+p7                        =      -102.29   +/-   0.0285723   
+p8                        =     0.227346   +/-   0.0350327   
+reading tree : input/scanx.flat.target.A3.txt.tree.root creating tree flat.target.A3
+############ x max -104.45 x min -107.55bkg 1688.71 maximum rate  26304.8
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      872.557
+NDf                       =          595
+Edm                       =  1.87258e-05
+NCalls                    =          228
+p0                        =      1684.29   +/-   1.66781     
+p1                        =      24178.9   +/-   24.4719     
+p2                        =     -107.515   +/-   0.010793    
+p3                        =     -104.468   +/-   0.00464391  
+p4                        =     0.120386   +/-   0.00404868  
+p5                        =     0.110099   +/-   0.0038205   
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =       901.91
+NDf                       =          595
+Edm                       =  4.70315e-06
+NCalls                    =          304
+p0                        =      1684.84   +/-   1.6622      
+p1                        =      24163.1   +/-   24.5658     
+p2                        =      -107.52   +/-   0.0119121   
+p3                        =     -104.459   +/-   0.0135141   
+p4                        =     0.295891   +/-   0.0100454   
+p5                        =     0.331015   +/-   0.0113852   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      791.095
+NDf                       =          592
+Edm                       =  8.24136e-07
+NCalls                    =          359
+p0                        =      1684.06   +/-   1.67809     
+p1                        =      24372.9   +/-   42.0692     
+p2                        =     -107.501   +/-   0.0118283   
+p3                        =     -104.485   +/-   0.0140317   
+p4                        =     0.126909   +/-   0.00445062  
+p5                        =     0.116332   +/-   0.00420626  
+p6                        =      705.388   +/-   84.4227      	 (limited)
+p7                        =     -106.012   +/-   0.0282141   
+p8                        =     0.208147   +/-   0.0278739   
+reading tree : input/scanx.flat.target.A4.txt.tree.root creating tree flat.target.A4
+############ x max -108.15 x min -111.3bkg 1567.06 maximum rate  27090.8
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      953.765
+NDf                       =          595
+Edm                       =  4.80689e-06
+NCalls                    =          270
+p0                        =      1575.84   +/-   1.60684     
+p1                        =      24834.3   +/-   21.616      
+p2                        =     -111.271   +/-   0.0107172   
+p3                        =       -108.2   +/-   0.0127645   
+p4                        =     0.126822   +/-   0.00387185  
+p5                        =     0.103809   +/-   0.00381767  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      982.082
+NDf                       =          595
+Edm                       =  6.56705e-06
+NCalls                    =          399
+p0                        =      1576.25   +/-   1.61415     
+p1                        =      24824.3   +/-   20.2807     
+p2                        =     -111.275   +/-   0.012969    
+p3                        =     -108.179   +/-   0.0140738   
+p4                        =      0.28624   +/-   0.0110528   
+p5                        =     0.361972   +/-   0.00989464  
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      835.281
+NDf                       =          592
+Edm                       =  6.17393e-06
+NCalls                    =          347
+p0                        =       1575.6   +/-   1.60509     
+p1                        =      25097.9   +/-   42.4128     
+p2                        =     -111.255   +/-   0.0116488   
+p3                        =     -108.215   +/-   0.0133497   
+p4                        =     0.132396   +/-   0.00404101  
+p5                        =     0.110432   +/-   0.00423456  
+p6                        =      761.107   +/-   75.5383      	 (limited)
+p7                        =     -109.788   +/-   0.0215132   
+p8                        =     0.228659   +/-   0.025719    
+ 
+ 
+ 
+ For A1 Rate is 24485.011719 +- 31.440731 before calibration 
+ and rate of reference 25388.310547 +- 39.881622 
+ and Calibrated rate is 0.964421 +- 0.001957 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A2 Rate is 25035.833984 +- 39.530247 before calibration 
+ and rate of reference 25388.310547 +- 39.881622 
+ and Calibrated rate is 0.986117 +- 0.002196 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A3 Rate is 24372.910156 +- 42.069180 before calibration 
+ and rate of reference 25388.310547 +- 39.881622 
+ and Calibrated rate is 0.960005 +- 0.002241 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A4 Rate is 25097.865234 +- 42.412838 before calibration 
+ and rate of reference 25388.310547 +- 39.881622 
+ and Calibrated rate is 0.988560 +- 0.002281 
+ 
+ 
+ 
+
+
+ 
+ 
+ for flat
+ width  sensor name errro in width  angle   error in angle  
+3.04212  A1  0.0174574   0  0
+3.03207  A2  0.0184866   0  0
+3.01672  A3  0.0183521   0  0
+3.04044  A4  0.0160992   0 0
+
+ 
+ 
+ 
+ Checking  normalization per sensor with respect to initial flat sensor 
+
+ 
+ 
+ 0.964421 / 0.964421 =  Normalized_A1 1.000000 +- 0.002869 
+ 0.986117 / 0.986117 =  Normalized_A2 1.000000 +- 0.003150 
+ 0.960005 / 0.960005 =  Normalized_A3 1.000000+- 0.003301 
+ 0.988560 / 0.988560 =  Normalized_A4 1.000000+-0.003263 
+
+
+ 
+
+ 
+ 
+ average normalized rate 1.000000 +-0.001575 
+
+reading tree : input/scanx.15deg.reference.A1.txt.tree.root creating tree 15deg.reference.A1
+############ x max -88.7 x min -91.85bkg 1315.56 maximum rate  25557.5
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2836.83
+NDf                       =          195
+Edm                       =  6.63061e-06
+NCalls                    =          206
+p0                        =      1319.67   +/-   3.13678     
+p1                        =      23221.8   +/-   19.705      
+p2                        =     -91.8478   +/-   0.0116745   
+p3                        =     -88.7567   +/-   0.00946117  
+p4                        =    0.0924162   +/-   0.00245001  
+p5                        =    0.0971969   +/-   0.00423825  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2825.05
+NDf                       =          195
+Edm                       =  4.07353e-06
+NCalls                    =          266
+p0                        =      1320.07   +/-   3.14997     
+p1                        =      23190.6   +/-   22.1196     
+p2                        =     -91.8194   +/-   0.0159923   
+p3                        =     -88.7871   +/-   0.0159435   
+p4                        =     0.309701   +/-   0.0106881   
+p5                        =     0.287969   +/-   0.0119014   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      219.609
+NDf                       =          192
+Edm                       =  2.54788e-06
+NCalls                    =          422
+p0                        =      1317.87   +/-   3.15459     
+p1                        =      23898.4   +/-   33.19       
+p2                        =     -91.8187   +/-   0.0125322   
+p3                        =     -88.7826   +/-   0.011466    
+p4                        =     0.104092   +/-   0.00423089  
+p5                        =     0.108869   +/-   0.00407617  
+p6                        =      3112.87   +/-   95.7469      	 (limited)
+p7                        =     -90.3221   +/-   0.0141229   
+p8                        =     0.212396   +/-   0.00982022  
+reading tree : input/scanx.15deg.target.A1.txt.tree.root creating tree 15deg.target.A1
+############ x max -104.35 x min -107.25bkg 1573.77 maximum rate  24938.8
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      4725.56
+NDf                       =          695
+Edm                       =  4.19534e-08
+NCalls                    =          268
+p0                        =      1585.25   +/-   1.45237     
+p1                        =      22223.1   +/-   20.5831     
+p2                        =     -107.271   +/-   0.0106529   
+p3                        =     -104.332   +/-   0.0106361   
+p4                        =    0.0995112   +/-   0.00384637  
+p5                        =    0.0996344   +/-   0.00375853  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =         4693
+NDf                       =          695
+Edm                       =  3.04421e-07
+NCalls                    =          462
+p0                        =      1585.39   +/-   1.45537     
+p1                        =      22175.1   +/-   22.5512     
+p2                        =     -107.191   +/-   0.0127016   
+p3                        =     -104.342   +/-   0.0192103   
+p4                        =     0.345525   +/-   0.00958993  
+p5                        =       0.2842   +/-   0.0197224   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      943.896
+NDf                       =          692
+Edm                       =  7.00951e-07
+NCalls                    =          536
+p0                        =       1584.8   +/-   1.45739     
+p1                        =      23071.3   +/-   40.7267     
+p2                        =     -107.238   +/-   0.0115759   
+p3                        =     -104.364   +/-   0.0119541   
+p4                        =     0.115465   +/-   0.00464123  
+p5                        =     0.113114   +/-   0.00414945  
+p6                        =      4036.22   +/-   125.249      	 (limited)
+p7                        =     -105.818   +/-   0.0123251   
+p8                        =      0.18961   +/-   0.0104206   
+reading tree : input/scanx.15deg.target.A2.txt.tree.root creating tree 15deg.target.A2
+############ x max -107.85 x min -110.8bkg 1844.07 maximum rate  25857.8
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      3917.79
+NDf                       =          695
+Edm                       =  1.07427e-05
+NCalls                    =          295
+p0                        =      1876.42   +/-   1.64134     
+p1                        =      22781.7   +/-   24.2007     
+p2                        =      -110.81   +/-   0.0120297   
+p3                        =     -107.893   +/-   0.0159666   
+p4                        =     0.113158   +/-   0.00479886  
+p5                        =     0.103886   +/-   0.00373797  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      3875.81
+NDf                       =          695
+Edm                       =   1.3274e-08
+NCalls                    =          312
+p0                        =       1876.7   +/-   1.65427     
+p1                        =      22742.5   +/-   24.5483     
+p2                        =     -110.811   +/-   0.0150506   
+p3                        =     -107.908   +/-   0.0122806   
+p4                        =     0.301006   +/-   0.0110645   
+p5                        =     0.320982   +/-   0.00936366  
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      942.761
+NDf                       =          692
+Edm                       =   6.5945e-07
+NCalls                    =          403
+p0                        =      1876.09   +/-   1.65788     
+p1                        =      23748.8   +/-   41.5404     
+p2                        =     -110.749   +/-   0.0135988   
+p3                        =     -107.852   +/-   0.0123009   
+p4                        =     0.103993   +/-   0.00422421  
+p5                        =     0.125056   +/-   0.0041186   
+p6                        =      4376.46   +/-   170.63       	 (limited)
+p7                        =     -109.323   +/-   0.0126435   
+p8                        =      0.17692   +/-   0.00953509  
+reading tree : input/scanx.15deg.target.A3.txt.tree.root creating tree 15deg.target.A3
+############ x max -111.4 x min -114.3bkg 1575.6 maximum rate  24332.4
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      3676.38
+NDf                       =          695
+Edm                       =  7.80669e-07
+NCalls                    =          251
+p0                        =      1596.78   +/-   1.46151     
+p1                        =      21873.6   +/-   21.4274     
+p2                        =     -114.271   +/-   0.0127126   
+p3                        =      -111.41   +/-   0.0144569   
+p4                        =     0.110873   +/-   0.00444317  
+p5                        =     0.114749   +/-   0.00401663  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =       3624.9
+NDf                       =          695
+Edm                       =  4.72629e-06
+NCalls                    =          342
+p0                        =      1597.18   +/-   1.45993     
+p1                        =      21833.6   +/-   21.8711     
+p2                        =     -114.266   +/-   0.0122502   
+p3                        =     -111.424   +/-   0.0137366   
+p4                        =     0.317852   +/-   0.00948268  
+p5                        =       0.3176   +/-   0.0108443   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      940.684
+NDf                       =          692
+Edm                       =  4.19481e-06
+NCalls                    =          409
+p0                        =       1596.6   +/-   1.46226     
+p1                        =      22577.1   +/-   32.0744     
+p2                        =      -114.28   +/-   0.0124426   
+p3                        =     -111.404   +/-   0.0126757   
+p4                        =      0.11306   +/-   0.00469722  
+p5                        =     0.116406   +/-   0.00471182  
+p6                        =      3513.63   +/-   144.466      	 (limited)
+p7                        =     -112.863   +/-   0.0126582   
+p8                        =      0.17229   +/-   0.00993356  
+reading tree : input/scanx.15deg.target.A4.txt.tree.root creating tree 15deg.target.A4
+############ x max -114.95 x min -117.85bkg 1505.54 maximum rate  24655.9
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2423.16
+NDf                       =          695
+Edm                       =  4.86157e-08
+NCalls                    =          345
+p0                        =      1493.12   +/-   1.46046     
+p1                        =      22338.1   +/-   22.9999     
+p2                        =     -117.883   +/-   0.0197008   
+p3                        =     -114.927   +/-   0.0130036   
+p4                        =    0.0979803   +/-   0.00419859  
+p5                        =     0.127335   +/-   0.00663359  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2428.38
+NDf                       =          695
+Edm                       =   5.4499e-08
+NCalls                    =          383
+p0                        =      1493.63   +/-   1.45492     
+p1                        =      22298.1   +/-   24.9186     
+p2                        =      -117.86   +/-   0.0198548   
+p3                        =     -114.947   +/-   0.0179567   
+p4                        =     0.355723   +/-   0.0182662   
+p5                        =     0.289463   +/-   0.0137487   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      935.187
+NDf                       =          692
+Edm                       =  1.63026e-05
+NCalls                    =          420
+p0                        =      1492.55   +/-   1.45764     
+p1                        =      23065.3   +/-   44.3917     
+p2                        =     -117.883   +/-   0.0149449   
+p3                        =     -114.954   +/-   0.0124112   
+p4                        =     0.108653   +/-   0.00427007  
+p5                        =     0.140503   +/-   0.00497961  
+p6                        =      2495.99   +/-   91.118       	 (limited)
+p7                        =     -116.395   +/-   0.0153146   
+p8                        =     0.194321   +/-   0.0143687   
+ 
+ 
+ 
+ For A1 Rate is 23071.341797 +- 40.726654 before calibration 
+ and rate of reference 23898.357422 +- 33.190022 
+ and Calibrated rate is 0.965394 +- 0.002168 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A2 Rate is 23748.839844 +- 41.540375 before calibration 
+ and rate of reference 23898.357422 +- 33.190022 
+ and Calibrated rate is 0.993744 +- 0.002219 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A3 Rate is 22577.123047 +- 32.074360 before calibration 
+ and rate of reference 23898.357422 +- 33.190022 
+ and Calibrated rate is 0.944714 +- 0.001877 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A4 Rate is 23065.339844 +- 44.391659 before calibration 
+ and rate of reference 23898.357422 +- 33.190022 
+ and Calibrated rate is 0.965143 +- 0.002291 
+ 
+ 
+ 
+
+
+ 
+ 
+ for 15deg
+ width  sensor name errro in width  angle   error in angle  
+2.8736  A1  0.0166404   0.291312  0.0193127
+2.89774  A2  0.0183368   0.261843  0.0236121
+2.87622  A3  0.0177621   0.288259  0.0208268
+2.92941  A4  0.0191377   0.217356 0.0295816
+
+ 
+ 
+ 
+ Checking  normalization per sensor with respect to initial flat sensor 
+
+ 
+ 
+ 0.965394 / 0.964421 =  Normalized_A1 1.001010 +- 0.003030 
+ 0.993744 / 0.986117 =  Normalized_A2 1.007734 +- 0.003179 
+ 0.944714 / 0.960005 =  Normalized_A3 0.984072+- 0.003016 
+ 0.965143 / 0.988560 =  Normalized_A4 0.976312+-0.003232 
+
+
+ 
+
+ 
+ 
+ average normalized rate 0.992282 +-0.001558 
+
+reading tree : input/scanx.30deg.reference.A1.txt.tree.root creating tree 30deg.reference.A1
+############ x max -88.95 x min -92bkg 1320.65 maximum rate  26345.3
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      779.186
+NDf                       =          195
+Edm                       =  5.30048e-08
+NCalls                    =          287
+p0                        =      1340.34   +/-   2.95678     
+p1                        =        24308   +/-   21.91       
+p2                        =      -92.011   +/-   0.0105904   
+p3                        =     -88.9542   +/-   0.0106577   
+p4                        =    0.0980464   +/-   0.00336344  
+p5                        =     0.104286   +/-   0.00339639  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      779.889
+NDf                       =          195
+Edm                       =  1.94596e-08
+NCalls                    =          284
+p0                        =      1342.26   +/-   2.92458     
+p1                        =      24300.7   +/-   21.7695     
+p2                        =     -92.0134   +/-   0.0116817   
+p3                        =     -88.9491   +/-   0.0122352   
+p4                        =     0.283527   +/-   0.00976435  
+p5                        =     0.272835   +/-   0.00968182  
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =        250.9
+NDf                       =          192
+Edm                       =   6.7493e-06
+NCalls                    =          337
+p0                        =       1339.3   +/-   2.98163     
+p1                        =      24671.1   +/-   36.1428     
+p2                        =     -91.9884   +/-   0.0116525   
+p3                        =     -88.9784   +/-   0.0114952   
+p4                        =     0.107434   +/-   0.00389101  
+p5                        =     0.113047   +/-   0.00392956  
+p6                        =      1681.18   +/-   96.9279      	 (limited)
+p7                        =     -90.5182   +/-   0.0156176   
+p8                        =     0.195119   +/-   0.0152877   
+reading tree : input/scanx.30deg.target.A1.txt.tree.root creating tree 30deg.target.A1
+############ x max -111.4 x min -114bkg 1556.75 maximum rate  25227.8
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      3370.71
+NDf                       =          895
+Edm                       =  5.75466e-08
+NCalls                    =          329
+p0                        =      1575.93   +/-   1.24947     
+p1                        =      22297.3   +/-   34.5719     
+p2                        =     -113.927   +/-   0.0144305   
+p3                        =       -111.5   +/-   0.0128551   
+p4                        =     0.137179   +/-   0.00404887  
+p5                        =     0.125204   +/-   0.00453646  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      3291.92
+NDf                       =          895
+Edm                       =  1.62509e-06
+NCalls                    =          331
+p0                        =      1576.36   +/-   1.23328     
+p1                        =      22218.7   +/-   34.1533     
+p2                        =     -113.925   +/-   0.0126305   
+p3                        =     -111.491   +/-   0.0114198   
+p4                        =     0.342291   +/-   0.00981377  
+p5                        =     0.372613   +/-   0.0083953   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1324.03
+NDf                       =          892
+Edm                       =  4.68233e-06
+NCalls                    =          409
+p0                        =      1575.98   +/-   1.23467     
+p1                        =      23417.6   +/-   59.1142     
+p2                        =     -113.977   +/-   0.013152    
+p3                        =     -111.429   +/-   0.0140195   
+p4                        =     0.121832   +/-   0.00454527  
+p5                        =     0.114825   +/-   0.00442931  
+p6                        =      3202.59   +/-   115.176      	 (limited)
+p7                        =      -112.72   +/-   0.0138022   
+p8                        =     0.183081   +/-   0.0123447   
+reading tree : input/scanx.30deg.target.A2.txt.tree.root creating tree 30deg.target.A2
+############ x max -114.5 x min -117.1bkg 1827.78 maximum rate  26094
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      3825.66
+NDf                       =          895
+Edm                       =  1.43852e-06
+NCalls                    =          281
+p0                        =      1845.19   +/-   1.40285     
+p1                        =      22802.5   +/-   27.6251     
+p2                        =     -117.134   +/-   0.0162508   
+p3                        =     -114.589   +/-   0.010665    
+p4                        =     0.131593   +/-   0.00347983  
+p5                        =     0.109083   +/-   0.0051406   
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      3761.92
+NDf                       =          895
+Edm                       =  3.88719e-08
+NCalls                    =          309
+p0                        =      1845.54   +/-   1.3961      
+p1                        =      22746.1   +/-   28.9145     
+p2                        =     -117.103   +/-   0.0162264   
+p3                        =     -114.581   +/-   0.0102785   
+p4                        =     0.325613   +/-   0.0133043   
+p5                        =     0.350106   +/-   0.00803095  
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1214.65
+NDf                       =          892
+Edm                       =  1.05373e-05
+NCalls                    =          395
+p0                        =      1844.89   +/-   1.3998      
+p1                        =      24134.6   +/-   73.4209     
+p2                        =     -117.085   +/-   0.0143472   
+p3                        =     -114.524   +/-   0.0125239   
+p4                        =     0.116622   +/-   0.00421172  
+p5                        =     0.129482   +/-   0.00449242  
+p6                        =      3844.35   +/-   133.496      	 (limited)
+p7                        =     -115.805   +/-   0.0128131   
+p8                        =     0.185744   +/-   0.0107887   
+reading tree : input/scanx.30deg.target.A3.txt.tree.root creating tree 30deg.target.A3
+############ x max -117.65 x min -120.25bkg 1576.66 maximum rate  24698.7
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2411.09
+NDf                       =          895
+Edm                       =  3.55586e-07
+NCalls                    =          268
+p0                        =      1585.88   +/-   1.24271     
+p1                        =      22287.1   +/-   25.2668     
+p2                        =     -120.264   +/-   0.0109652   
+p3                        =     -117.681   +/-   0.0170641   
+p4                        =     0.131589   +/-   0.004937    
+p5                        =      0.10226   +/-   0.00392018  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2399.29
+NDf                       =          895
+Edm                       =  1.80653e-06
+NCalls                    =          329
+p0                        =      1586.43   +/-   1.23749     
+p1                        =        22254   +/-   25.2244     
+p2                        =     -120.264   +/-   0.01286     
+p3                        =     -117.682   +/-   0.0144491   
+p4                        =     0.283426   +/-   0.0101663   
+p5                        =     0.346309   +/-   0.013632    
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1300.24
+NDf                       =          892
+Edm                       =  1.60964e-07
+NCalls                    =          336
+p0                        =      1585.66   +/-   1.21767     
+p1                        =      23020.1   +/-   56.3916     
+p2                        =      -120.23   +/-   0.0124177   
+p3                        =     -117.643   +/-   0.0147645   
+p4                        =      0.12752   +/-   0.00491969  
+p5                        =     0.117011   +/-   0.00481182  
+p6                        =      2548.66   +/-   107.08       	 (limited)
+p7                        =      -118.94   +/-   0.012659    
+p8                        =      0.19068   +/-   0.0123696   
+reading tree : input/scanx.30deg.target.A4.txt.tree.root creating tree 30deg.target.A4
+############ x max -120.8 x min -123.45bkg 1483.07 maximum rate  25286.8
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1769.08
+NDf                       =          895
+Edm                       =  1.82114e-06
+NCalls                    =          275
+p0                        =      1475.92   +/-   1.23162     
+p1                        =      23148.6   +/-   25.9702     
+p2                        =     -123.402   +/-   0.0119076   
+p3                        =     -120.803   +/-   0.0127969   
+p4                        =      0.10425   +/-   0.00419472  
+p5                        =     0.117025   +/-   0.00421434  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1791.98
+NDf                       =          895
+Edm                       =   1.6886e-06
+NCalls                    =          366
+p0                        =      1476.16   +/-   1.23024     
+p1                        =      23115.6   +/-   30.3394     
+p2                        =     -123.408   +/-   0.0130033   
+p3                        =     -120.845   +/-   0.0198549   
+p4                        =     0.313311   +/-   0.0125878   
+p5                        =     0.333244   +/-   0.0136746   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1319.04
+NDf                       =          892
+Edm                       =  1.23452e-05
+NCalls                    =          319
+p0                        =      1475.59   +/-   1.2329      
+p1                        =      23757.8   +/-   79.436      
+p2                        =      -123.37   +/-   0.0136764   
+p3                        =     -120.845   +/-   0.0135339   
+p4                        =     0.119455   +/-   0.00422146  
+p5                        =     0.131118   +/-   0.00484995  
+p6                        =      1640.33   +/-   106.544      	 (limited)
+p7                        =     -122.077   +/-   0.0158194   
+p8                        =     0.209603   +/-   0.0194309   
+ 
+ 
+ 
+ For A1 Rate is 23417.572266 +- 59.114204 before calibration 
+ and rate of reference 24671.101562 +- 36.142784 
+ and Calibrated rate is 0.949190 +- 0.002770 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A2 Rate is 24134.552734 +- 73.420868 before calibration 
+ and rate of reference 24671.101562 +- 36.142784 
+ and Calibrated rate is 0.978252 +- 0.003303 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A3 Rate is 23020.089844 +- 56.391644 before calibration 
+ and rate of reference 24671.101562 +- 36.142784 
+ and Calibrated rate is 0.933079 +- 0.002663 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A4 Rate is 23757.835938 +- 79.435959 before calibration 
+ and rate of reference 24671.101562 +- 36.142784 
+ and Calibrated rate is 0.962982 +- 0.003515 
+ 
+ 
+ 
+
+
+ 
+ 
+ for 30deg
+ width  sensor name errro in width  angle   error in angle  
+2.54773  A1  0.0192229   0.556246  0.0121356
+2.5605  A2  0.0190444   0.54813  0.0121824
+2.58638  A3  0.0192922   0.531344  0.0126916
+2.52422  A4  0.0195854   0.570913 0.0120808
+
+ 
+ 
+ 
+ Checking  normalization per sensor with respect to initial flat sensor 
+
+ 
+ 
+ 0.949190 / 0.964421 =  Normalized_A1 0.984208 +- 0.003498 
+ 0.978252 / 0.986117 =  Normalized_A2 0.992025 +- 0.004013 
+ 0.933079 / 0.960005 =  Normalized_A3 0.971952+- 0.003584 
+ 0.962982 / 0.988560 =  Normalized_A4 0.974126+-0.004207 
+
+
+ 
+
+ 
+ 
+ average normalized rate 0.980578 +-0.001918 
+
+reading tree : input/scanx.40deg.reference.A1.txt.tree.root creating tree 40deg.reference.A1
+############ x max -88.8 x min -91.9bkg 1461.55 maximum rate  27073.9
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =       2624.2
+NDf                       =          195
+Edm                       =  1.17788e-05
+NCalls                    =          275
+p0                        =      1459.99   +/-   3.17101     
+p1                        =      24505.4   +/-   22.6483     
+p2                        =     -91.8945   +/-   0.0107673   
+p3                        =     -88.8155   +/-   0.0113875   
+p4                        =     0.093755   +/-   0.0040154   
+p5                        =    0.0924746   +/-   0.00345943  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2614.42
+NDf                       =          195
+Edm                       =  3.81375e-06
+NCalls                    =          287
+p0                        =      1461.17   +/-   3.15628     
+p1                        =      24496.1   +/-   22.7919     
+p2                        =     -91.8928   +/-   0.0151109   
+p3                        =     -88.8144   +/-   0.016903    
+p4                        =     0.261629   +/-   0.0120863   
+p5                        =     0.260889   +/-   0.014016    
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      186.606
+NDf                       =          192
+Edm                       =  1.50895e-06
+NCalls                    =          395
+p0                        =      1458.26   +/-   3.17726     
+p1                        =      25205.6   +/-   33.6638     
+p2                        =      -91.863   +/-   0.0122977   
+p3                        =     -88.8427   +/-   0.0115986   
+p4                        =     0.107105   +/-   0.00449738  
+p5                        =     0.105993   +/-   0.00440033  
+p6                        =      3607.01   +/-   103.02       	 (limited)
+p7                        =     -90.3547   +/-   0.0138201   
+p8                        =     0.174653   +/-   0.0101164   
+reading tree : input/scanx.40deg.target.A1.txt.tree.root creating tree 40deg.target.A1
+############ x max -115.9 x min -118.25bkg 1576.6 maximum rate  25438.6
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      3007.03
+NDf                       =          995
+Edm                       =   2.9854e-07
+NCalls                    =          468
+p0                        =      1568.12   +/-   1.16744     
+p1                        =      23309.1   +/-   55.6769     
+p2                        =     -117.954   +/-   0.007889    
+p3                        =     -115.907   +/-   0.0101712   
+p4                        =    0.0914327   +/-   0.00340572  
+p5                        =     0.252644   +/-   0.00353464  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      3277.54
+NDf                       =          995
+Edm                       =  1.87795e-05
+NCalls                    =          424
+p0                        =      1569.57   +/-   1.15203     
+p1                        =      22209.1   +/-   35.0048     
+p2                        =     -118.136   +/-   0.0127203   
+p3                        =     -116.034   +/-   0.0119373   
+p4                        =      0.35617   +/-   0.0114323   
+p5                        =     0.352069   +/-   0.0121781   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1318.01
+NDf                       =          992
+Edm                       =  1.96443e-05
+NCalls                    =          478
+p0                        =      1569.39   +/-   1.16754     
+p1                        =        23846   +/-   77.5987     
+p2                        =     -118.208   +/-   0.0122261   
+p3                        =     -115.934   +/-   0.0115282   
+p4                        =     0.101859   +/-   0.00406722  
+p5                        =     0.113892   +/-   0.00492689  
+p6                        =      3365.47   +/-   125.426      	 (limited)
+p7                        =     -117.101   +/-   0.0117136   
+p8                        =     0.177677   +/-   0.0114015   
+reading tree : input/scanx.40deg.target.A2.txt.tree.root creating tree 40deg.target.A2
+############ x max -118.65 x min -121bkg 1816.32 maximum rate  26341.1
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2560.05
+NDf                       =          995
+Edm                       =  3.93288e-07
+NCalls                    =          234
+p0                        =      1841.24   +/-   1.29106     
+p1                        =      23572.8   +/-   27.6466     
+p2                        =     -120.989   +/-   0.0118882   
+p3                        =     -118.652   +/-   0.0131314   
+p4                        =     0.104613   +/-   0.00400859  
+p5                        =     0.102013   +/-   0.00393531  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2552.52
+NDf                       =          995
+Edm                       =  2.82113e-06
+NCalls                    =          312
+p0                        =      1841.43   +/-   1.2835      
+p1                        =      23546.5   +/-   28.8545     
+p2                        =     -120.983   +/-   0.0182665   
+p3                        =     -118.661   +/-   0.0154098   
+p4                        =     0.287062   +/-   0.0149677   
+p5                        =     0.295808   +/-   0.0113818   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1372.38
+NDf                       =          992
+Edm                       =  7.93815e-07
+NCalls                    =          320
+p0                        =         1841   +/-   1.29256     
+p1                        =      24437.6   +/-   72.0353     
+p2                        =     -120.946   +/-   0.0129437   
+p3                        =     -118.684   +/-   0.0138842   
+p4                        =     0.117065   +/-   0.0046562   
+p5                        =     0.117691   +/-   0.00430863  
+p6                        =       3224.3   +/-   186.516      	 (limited)
+p7                        =     -119.826   +/-   0.0129035   
+p8                        =     0.154556   +/-   0.011895    
+reading tree : input/scanx.40deg.target.A3.txt.tree.root creating tree 40deg.target.A3
+############ x max -121.45 x min -123.75bkg 1568.44 maximum rate  25266.8
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =       1552.1
+NDf                       =          995
+Edm                       =  5.92265e-05
+NCalls                    =          245
+p0                        =       1577.4   +/-   1.19414     
+p1                        =      23022.3   +/-   29.3442     
+p2                        =     -123.731   +/-   0.0114245   
+p3                        =     -121.412   +/-   0.0122688   
+p4                        =     0.113437   +/-   0.00432288  
+p5                        =     0.103439   +/-   0.00369358  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1569.51
+NDf                       =          995
+Edm                       =  2.51672e-07
+NCalls                    =          285
+p0                        =      1577.69   +/-   1.1966      
+p1                        =        23002   +/-   29.301      
+p2                        =     -123.739   +/-   0.0128868   
+p3                        =     -121.408   +/-   0.0135539   
+p4                        =     0.286251   +/-   0.00993416  
+p5                        =     0.305164   +/-   0.0133918   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1314.61
+NDf                       =          992
+Edm                       =  9.78458e-06
+NCalls                    =          385
+p0                        =      1577.13   +/-   1.19538     
+p1                        =      23825.8   +/-   189.472     
+p2                        =     -123.687   +/-   0.0147367   
+p3                        =     -121.452   +/-   0.0148605   
+p4                        =     0.128122   +/-   0.00478852  
+p5                        =      0.11882   +/-   0.00483324  
+p6                        =      1616.29   +/-   173.372      	 (limited)
+p7                        =     -122.555   +/-   0.0143563   
+p8                        =     0.247418   +/-   0.0347239   
+reading tree : input/scanx.40deg.target.A4.txt.tree.root creating tree 40deg.target.A4
+############ x max -124.15 x min -126.55bkg 1486.53 maximum rate  25832.1
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1464.06
+NDf                       =          995
+Edm                       =  9.80974e-08
+NCalls                    =          232
+p0                        =      1489.29   +/-   1.16547     
+p1                        =      23800.1   +/-   26.5767     
+p2                        =     -126.506   +/-   0.0120994   
+p3                        =     -124.216   +/-   0.0107575   
+p4                        =      0.10443   +/-   0.00381761  
+p5                        =     0.111417   +/-   0.00429653  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1472.23
+NDf                       =          995
+Edm                       =  3.39271e-08
+NCalls                    =          312
+p0                        =      1489.57   +/-   1.1818      
+p1                        =      23782.6   +/-   26.2546     
+p2                        =     -126.513   +/-   0.0126276   
+p3                        =      -124.21   +/-   0.0126918   
+p4                        =     0.296274   +/-   0.0110749   
+p5                        =     0.286457   +/-   0.0114516   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1380.14
+NDf                       =          992
+Edm                       =  3.48947e-06
+NCalls                    =          498
+p0                        =       1489.1   +/-   1.18098     
+p1                        =      24510.6   +/-   292.041     
+p2                        =     -126.476   +/-   0.0139847   
+p3                        =     -124.242   +/-   0.0142066   
+p4                        =     0.114715   +/-   0.00497635  
+p5                        =     0.123049   +/-   0.00493146  
+p6                        =      987.181   +/-   273.294      	 (limited)
+p7                        =     -125.386   +/-   0.0261855   
+p8                        =     0.330479   +/-   0.089023    
+ 
+ 
+ 
+ For A1 Rate is 23845.996094 +- 77.598740 before calibration 
+ and rate of reference 25205.625000 +- 33.663803 
+ and Calibrated rate is 0.946059 +- 0.003328 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A2 Rate is 24437.648438 +- 72.035339 before calibration 
+ and rate of reference 25205.625000 +- 33.663803 
+ and Calibrated rate is 0.969532 +- 0.003138 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A3 Rate is 23825.765625 +- 189.472412 before calibration 
+ and rate of reference 25205.625000 +- 33.663803 
+ and Calibrated rate is 0.945256 +- 0.007622 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A4 Rate is 24510.615234 +- 292.040924 before calibration 
+ and rate of reference 25205.625000 +- 33.663803 
+ and Calibrated rate is 0.972426 +- 0.011659 
+ 
+ 
+ 
+
+
+ 
+ 
+ for 40deg
+ width  sensor name errro in width  angle   error in angle  
+2.27403  A1  0.0168041   0.710538  0.00858785
+2.26178  A2  0.0189818   0.716778  0.00963116
+2.23521  A3  0.0209286   0.730154  0.0104593
+2.23414  A4  0.0181238   0.730692 0.00905212
+
+ 
+ 
+ 
+ Checking  normalization per sensor with respect to initial flat sensor 
+
+ 
+ 
+ 0.946059 / 0.964421 =  Normalized_A1 0.980960 +- 0.003983 
+ 0.969532 / 0.986117 =  Normalized_A2 0.983181 +- 0.003862 
+ 0.945256 / 0.960005 =  Normalized_A3 0.984636+- 0.008266 
+ 0.972426 / 0.988560 =  Normalized_A4 0.983680+-0.012010 
+
+
+ 
+
+ 
+ 
+ average normalized rate 0.983114 +-0.003900 
+
+reading tree : input/scanx.45deg.reference.A1.txt.tree.root creating tree 45deg.reference.A1
+############ x max -88.75 x min -91.85bkg 1342.8 maximum rate  24150.8
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2359.04
+NDf                       =          195
+Edm                       =  1.68461e-05
+NCalls                    =          234
+p0                        =      1332.37   +/-   2.99367     
+p1                        =      21858.5   +/-   19.8157     
+p2                        =     -91.8481   +/-   0.0102418   
+p3                        =      -88.761   +/-   0.0105055   
+p4                        =    0.0938434   +/-   0.00322166  
+p5                        =    0.0906162   +/-   0.00304075  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2344.01
+NDf                       =          195
+Edm                       =  9.87908e-08
+NCalls                    =          385
+p0                        =      1333.36   +/-   3.00766     
+p1                        =      21849.3   +/-   19.9869     
+p2                        =     -91.8512   +/-   0.0125579   
+p3                        =     -88.7579   +/-   0.0138481   
+p4                        =     0.253475   +/-   0.00987894  
+p5                        =     0.263897   +/-   0.0108168   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =       214.67
+NDf                       =          192
+Edm                       =   1.0971e-05
+NCalls                    =          337
+p0                        =      1330.73   +/-   2.94087     
+p1                        =      22577.3   +/-   33.9878     
+p2                        =     -91.8118   +/-   0.0118902   
+p3                        =     -88.7997   +/-   0.0114585   
+p4                        =     0.108843   +/-   0.00376592  
+p5                        =     0.104857   +/-   0.00387188  
+p6                        =      2840.82   +/-   119.817      	 (limited)
+p7                        =     -90.2947   +/-   0.0146944   
+p8                        =     0.181322   +/-   0.0112846   
+reading tree : input/scanx.45deg.target.A1.txt.tree.root creating tree 45deg.target.A1
+############ x max -117 x min -119.25bkg 1564.81 maximum rate  23274.6
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2681.15
+NDf                       =         1095
+Edm                       =  2.86719e-07
+NCalls                    =          314
+p0                        =      1550.89   +/-   1.11381     
+p1                        =      20361.2   +/-   33.6319     
+p2                        =      -119.15   +/-   0.0113995   
+p3                        =     -117.144   +/-   0.0103457   
+p4                        =     0.139275   +/-   0.00414167  
+p5                        =     0.148303   +/-   0.00477913  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2608.09
+NDf                       =         1095
+Edm                       =   1.5208e-05
+NCalls                    =          365
+p0                        =      1551.39   +/-   1.11889     
+p1                        =      20281.5   +/-   33.6426     
+p2                        =     -119.176   +/-   0.010234    
+p3                        =     -117.134   +/-   0.010398    
+p4                        =     0.372833   +/-   0.00888565  
+p5                        =     0.357078   +/-   0.00881726  
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1406.31
+NDf                       =         1092
+Edm                       =  1.02835e-06
+NCalls                    =          413
+p0                        =      1551.13   +/-   1.11179     
+p1                        =      21908.2   +/-   115.816     
+p2                        =     -119.236   +/-   0.0136159   
+p3                        =     -117.058   +/-   0.0129711   
+p4                        =     0.114431   +/-   0.00479811  
+p5                        =     0.122493   +/-   0.00471533  
+p6                        =      3069.86   +/-   138.242      	 (limited)
+p7                        =     -118.157   +/-   0.0117952   
+p8                        =     0.202425   +/-   0.0159514   
+reading tree : input/scanx.45deg.target.A2.txt.tree.root creating tree 45deg.target.A2
+############ x max -119.65 x min -121.9bkg 1849.25 maximum rate  24173.8
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =       2564.8
+NDf                       =         1095
+Edm                       =  6.81179e-06
+NCalls                    =          250
+p0                        =       1829.5   +/-   1.2213      
+p1                        =      21344.8   +/-   30.6075     
+p2                        =     -121.867   +/-   0.0233929   
+p3                        =     -119.656   +/-   0.0122829   
+p4                        =     0.102871   +/-   0.00407499  
+p5                        =     0.105781   +/-   0.00740658  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2535.47
+NDf                       =         1095
+Edm                       =  3.62068e-06
+NCalls                    =          331
+p0                        =      1829.63   +/-   1.22435     
+p1                        =      21276.5   +/-   33.4741     
+p2                        =     -121.831   +/-   0.0141682   
+p3                        =     -119.664   +/-   0.0191301   
+p4                        =     0.317451   +/-   0.0109837   
+p5                        =     0.288203   +/-   0.0146102   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1444.29
+NDf                       =         1092
+Edm                       =  1.39707e-05
+NCalls                    =          343
+p0                        =      1829.32   +/-   1.22797     
+p1                        =      22293.7   +/-   84.6145     
+p2                        =     -121.852   +/-   0.0135292   
+p3                        =     -119.692   +/-   0.0131325   
+p4                        =     0.117431   +/-   0.00479388  
+p5                        =     0.113225   +/-   0.00492147  
+p6                        =      2788.84   +/-   139.286      	 (limited)
+p7                        =     -120.772   +/-   0.0141464   
+p8                        =     0.173244   +/-   0.0139736   
+reading tree : input/scanx.45deg.target.A3.txt.tree.root creating tree 45deg.target.A3
+############ x max -122.3 x min -124.5bkg 1569.91 maximum rate  22903.9
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1632.88
+NDf                       =         1095
+Edm                       =  5.77927e-07
+NCalls                    =          235
+p0                        =      1574.17   +/-   1.09862     
+p1                        =      20797.2   +/-   27.4439     
+p2                        =     -124.545   +/-   0.0116041   
+p3                        =     -122.305   +/-   0.0115247   
+p4                        =     0.106842   +/-   0.00394415  
+p5                        =     0.103269   +/-   0.00395243  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1631.32
+NDf                       =         1095
+Edm                       =  4.84903e-06
+NCalls                    =          318
+p0                        =      1574.35   +/-   1.11866     
+p1                        =      20779.1   +/-   27.4511     
+p2                        =     -124.548   +/-   0.0139864   
+p3                        =     -122.303   +/-   0.0132713   
+p4                        =     0.284482   +/-   0.0115801   
+p5                        =     0.292289   +/-   0.0106629   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1329.95
+NDf                       =         1092
+Edm                       =   3.2896e-06
+NCalls                    =          392
+p0                        =      1573.98   +/-   1.11799     
+p1                        =      21519.3   +/-   129.474     
+p2                        =     -124.504   +/-   0.0144648   
+p3                        =     -122.335   +/-   0.0132965   
+p4                        =     0.118459   +/-   0.00480656  
+p5                        =     0.118014   +/-   0.00473688  
+p6                        =      1451.85   +/-   130.414      	 (limited)
+p7                        =     -123.418   +/-   0.0157575   
+p8                        =     0.220942   +/-   0.027178    
+reading tree : input/scanx.45deg.target.A4.txt.tree.root creating tree 45deg.target.A4
+############ x max -125 x min -127.2bkg 1469.67 maximum rate  23450.1
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1541.45
+NDf                       =         1095
+Edm                       =  6.45449e-06
+NCalls                    =          296
+p0                        =      1470.18   +/-   1.09053     
+p1                        =      21753.3   +/-   27.6535     
+p2                        =     -127.199   +/-   0.0111105   
+p3                        =     -125.005   +/-   0.011649    
+p4                        =     0.112934   +/-   0.0037654   
+p5                        =     0.105961   +/-   0.00402706  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1555.51
+NDf                       =         1095
+Edm                       =  2.94097e-06
+NCalls                    =          288
+p0                        =      1470.43   +/-   1.07823     
+p1                        =      21733.9   +/-   26.3337     
+p2                        =     -127.202   +/-   0.012187    
+p3                        =     -124.994   +/-   0.0126201   
+p4                        =     0.286085   +/-   0.00996346  
+p5                        =     0.307778   +/-   0.0105452   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1480.17
+NDf                       =         1092
+Edm                       =  1.30874e-05
+NCalls                    =          423
+p0                        =      1470.04   +/-   1.09162     
+p1                        =      22233.6   +/-   205.376     
+p2                        =     -127.171   +/-   0.0148484   
+p3                        =     -125.028   +/-   0.0138655   
+p4                        =     0.120355   +/-   0.00431672  
+p5                        =     0.117742   +/-   0.00541185  
+p6                        =      846.517   +/-   192.41       	 (limited)
+p7                        =     -126.087   +/-   0.0233089   
+p8                        =     0.272133   +/-   0.0631877   
+ 
+ 
+ 
+ For A1 Rate is 21908.175781 +- 115.816460 before calibration 
+ and rate of reference 22577.298828 +- 33.987827 
+ and Calibrated rate is 0.970363 +- 0.005334 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A2 Rate is 22293.664062 +- 84.614487 before calibration 
+ and rate of reference 22577.298828 +- 33.987827 
+ and Calibrated rate is 0.987437 +- 0.004032 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A3 Rate is 21519.296875 +- 129.474014 before calibration 
+ and rate of reference 22577.298828 +- 33.987827 
+ and Calibrated rate is 0.953139 +- 0.005911 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A4 Rate is 22233.623047 +- 205.376053 before calibration 
+ and rate of reference 22577.298828 +- 33.987827 
+ and Calibrated rate is 0.984778 +- 0.009217 
+ 
+ 
+ 
+
+
+ 
+ 
+ for 45deg
+ width  sensor name errro in width  angle   error in angle  
+2.17785  A1  0.0188054   0.758382  0.00911446
+2.15974  A2  0.0188547   0.767117  0.00905526
+2.16885  A3  0.0196476   0.762736  0.00947922
+2.14263  A4  0.0197161   0.775301 0.00938954
+
+ 
+ 
+ 
+ Checking  normalization per sensor with respect to initial flat sensor 
+
+ 
+ 
+ 0.970363 / 0.964421 =  Normalized_A1 1.006162 +- 0.005895 
+ 0.987437 / 0.986117 =  Normalized_A2 1.001339 +- 0.004657 
+ 0.953139 / 0.960005 =  Normalized_A3 0.992847+- 0.006579 
+ 0.984778 / 0.988560 =  Normalized_A4 0.996174+-0.009602 
+
+
+ 
+
+ 
+ 
+ average normalized rate 0.999131 +-0.003464 
+
+reading tree : input/scanx.50deg.reference.A1.txt.tree.root creating tree 50deg.reference.A1
+############ x max -88.7 x min -91.8bkg 1354.9 maximum rate  24529
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2580.82
+NDf                       =          195
+Edm                       =  8.55494e-06
+NCalls                    =          243
+p0                        =      1356.86   +/-   3.06596     
+p1                        =      22366.3   +/-   20.2622     
+p2                        =     -91.8108   +/-   0.0102803   
+p3                        =     -88.7158   +/-   0.0113696   
+p4                        =     0.100091   +/-   0.00343435  
+p5                        =    0.0933616   +/-   0.00340293  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2575.42
+NDf                       =          195
+Edm                       =  9.49469e-06
+NCalls                    =          310
+p0                        =      1357.79   +/-   3.0575      
+p1                        =      22358.9   +/-   20.3724     
+p2                        =     -91.8136   +/-   0.0135405   
+p3                        =     -88.7072   +/-   0.0159088   
+p4                        =      0.26284   +/-   0.0102783   
+p5                        =     0.289682   +/-   0.0111248   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      250.802
+NDf                       =          192
+Edm                       =  7.60241e-07
+NCalls                    =          362
+p0                        =      1354.86   +/-   3.08153     
+p1                        =      23037.8   +/-   34.8448     
+p2                        =     -91.7751   +/-   0.0123647   
+p3                        =      -88.749   +/-   0.0115719   
+p4                        =     0.112275   +/-   0.00363934  
+p5                        =     0.110506   +/-   0.00506696  
+p6                        =      2971.77   +/-   122.233      	 (limited)
+p7                        =     -90.2688   +/-   0.0133027   
+p8                        =       0.1957   +/-   0.0104997   
+reading tree : input/scanx.50deg.target.A1.txt.tree.root creating tree 50deg.target.A1
+############ x max -120.4 x min -122.35bkg 1535.97 maximum rate  23047.1
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2159.47
+NDf                       =         1095
+Edm                       =  2.31973e-06
+NCalls                    =          383
+p0                        =      1552.27   +/-   1.12341     
+p1                        =      20408.7   +/-   56.9248     
+p2                        =      -122.34   +/-   0.0138898   
+p3                        =     -120.573   +/-   0.0129207   
+p4                        =     0.174501   +/-   0.00746518  
+p5                        =     0.100546   +/-   0.0049088   
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      2122.42
+NDf                       =         1095
+Edm                       =  5.16401e-06
+NCalls                    =          408
+p0                        =      1552.81   +/-   1.12857     
+p1                        =        20149   +/-   37.3919     
+p2                        =     -122.285   +/-   0.0133088   
+p3                        =     -120.519   +/-   0.00979141  
+p4                        =     0.323337   +/-   0.0115467   
+p5                        =     0.371962   +/-   0.00947403  
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1328.43
+NDf                       =         1092
+Edm                       =  2.09881e-06
+NCalls                    =          615
+p0                        =      1552.59   +/-   1.1244      
+p1                        =      21766.6   +/-   176.794     
+p2                        =     -122.307   +/-   0.0126044   
+p3                        =      -120.43   +/-   0.0137752   
+p4                        =     0.110575   +/-   0.00483139  
+p5                        =     0.114433   +/-   0.00467937  
+p6                        =      2869.16   +/-   184.812      	 (limited)
+p7                        =     -121.415   +/-   0.0112643   
+p8                        =     0.196903   +/-   0.0164632   
+reading tree : input/scanx.50deg.target.A2.txt.tree.root creating tree 50deg.target.A2
+############ x max -122.65 x min -124.6bkg 1847.97 maximum rate  23535.9
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =       1869.4
+NDf                       =         1095
+Edm                       =   1.5263e-06
+NCalls                    =          249
+p0                        =      1838.12   +/-   1.21548     
+p1                        =      21153.3   +/-   29.028      
+p2                        =     -124.637   +/-   0.0113437   
+p3                        =      -122.67   +/-   0.0134508   
+p4                        =     0.102113   +/-   0.00463102  
+p5                        =    0.0952878   +/-   0.00407898  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =       1865.4
+NDf                       =         1095
+Edm                       =  1.71881e-06
+NCalls                    =          326
+p0                        =      1838.33   +/-   1.22937     
+p1                        =      21129.5   +/-   29.7895     
+p2                        =     -124.639   +/-   0.0133849   
+p3                        =     -122.673   +/-   0.016465    
+p4                        =     0.258942   +/-   0.0119146   
+p5                        =     0.282302   +/-   0.0158517   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1577.66
+NDf                       =         1092
+Edm                       =  2.11364e-06
+NCalls                    =          339
+p0                        =      1837.94   +/-   1.21652     
+p1                        =      21849.4   +/-   129.206     
+p2                        =     -124.605   +/-   0.0131193   
+p3                        =     -122.696   +/-   0.0146475   
+p4                        =     0.113111   +/-   0.00506382  
+p5                        =     0.107253   +/-   0.00454827  
+p6                        =      1669.87   +/-   140.866      	 (limited)
+p7                        =     -123.669   +/-   0.0151558   
+p8                        =     0.169769   +/-   0.0254191   
+reading tree : input/scanx.50deg.target.A3.txt.tree.root creating tree 50deg.target.A3
+############ x max -125 x min -126.95bkg 1605.58 maximum rate  22894.7
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1592.99
+NDf                       =         1095
+Edm                       =  5.82728e-06
+NCalls                    =          259
+p0                        =       1579.5   +/-   1.11365     
+p1                        =      20876.1   +/-   30.8099     
+p2                        =     -126.946   +/-   0.0117416   
+p3                        =     -124.995   +/-   0.0118369   
+p4                        =     0.107412   +/-   0.00401589  
+p5                        =       0.1061   +/-   0.0039663   
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1605.72
+NDf                       =         1095
+Edm                       =  8.10218e-08
+NCalls                    =          312
+p0                        =      1579.73   +/-   1.11336     
+p1                        =      20850.4   +/-   29.5254     
+p2                        =     -126.953   +/-   0.012217    
+p3                        =     -124.986   +/-   0.012407    
+p4                        =     0.283208   +/-   0.0100449   
+p5                        =     0.287939   +/-   0.0101778   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1537.07
+NDf                       =         1092
+Edm                       =  4.08846e-06
+NCalls                    =          413
+p0                        =      1579.38   +/-   1.11376     
+p1                        =      21312.9   +/-   147.308     
+p2                        =      -126.92   +/-   0.0149611   
+p3                        =     -125.019   +/-   0.0138574   
+p4                        =     0.115552   +/-   0.00467581  
+p5                        =     0.115981   +/-   0.0050721   
+p6                        =      833.056   +/-   149.252      	 (limited)
+p7                        =     -125.942   +/-   0.0206654   
+p8                        =     0.195275   +/-   0.036644    
+reading tree : input/scanx.50deg.target.A4.txt.tree.root creating tree 50deg.target.A4
+############ x max -127.35 x min -129.25bkg 1500.04 maximum rate  23440.6
+###  RUNNING THE FITTER ####
+DOUBLE FERMI FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =       1547.4
+NDf                       =         1095
+Edm                       =  8.73389e-07
+NCalls                    =          263
+p0                        =      1478.48   +/-   1.08522     
+p1                        =      21681.5   +/-   36.0458     
+p2                        =     -129.255   +/-   0.0114628   
+p3                        =     -127.364   +/-   0.0113379   
+p4                        =     0.111885   +/-   0.00409526  
+p5                        =     0.104341   +/-   0.00421238  
+DOUBLE ERF FUNCTION 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1552.91
+NDf                       =         1095
+Edm                       =  6.24991e-07
+NCalls                    =          365
+p0                        =      1478.74   +/-   1.09638     
+p1                        =      21650.3   +/-   35.2058     
+p2                        =      -129.26   +/-   0.0128154   
+p3                        =     -127.356   +/-   0.0122653   
+p4                        =     0.280985   +/-   0.0112532   
+p5                        =     0.303202   +/-   0.0101053   
+DOUBLE FERMI FUNCTION  WITH DIP 
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      1537.28
+NDf                       =         1092
+Edm                       =  1.53672e-06
+NCalls                    =          846
+p0                        =       1478.4   +/-   1.09517     
+p1                        =      22823.9   +/-   697.853     
+p2                        =      -129.24   +/-   0.0128223   
+p3                        =     -127.388   +/-   0.0150458   
+p4                        =     0.121072   +/-   0.00626968  
+p5                        =     0.110483   +/-   0.00623395  
+p6                        =      1268.83   +/-   711.185      	 (limited)
+p7                        =     -128.328   +/-   0.0386664   
+p8                        =     0.497972   +/-   0.0955533   
+ 
+ 
+ 
+ For A1 Rate is 21766.591797 +- 176.794403 before calibration 
+ and rate of reference 23037.789062 +- 34.844841 
+ and Calibrated rate is 0.944821 +- 0.007806 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A2 Rate is 21849.378906 +- 129.205734 before calibration 
+ and rate of reference 23037.789062 +- 34.844841 
+ and Calibrated rate is 0.948415 +- 0.005789 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A3 Rate is 21312.923828 +- 147.307770 before calibration 
+ and rate of reference 23037.789062 +- 34.844841 
+ and Calibrated rate is 0.925129 +- 0.006545 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ For A4 Rate is 22823.910156 +- 697.853394 before calibration 
+ and rate of reference 23037.789062 +- 34.844841 
+ and Calibrated rate is 0.990716 +- 0.030329 
+ 
+ 
+ 
+
+
+ 
+ 
+ for 50deg
+ width  sensor name errro in width  angle   error in angle  
+1.87744  A1  0.0186716   0.894622  0.0079796
+1.90844  A2  0.0196638   0.881303  0.00849517
+1.90052  A3  0.0203927   0.884719  0.00878536
+1.85145  A4  0.0188193   0.905682 0.00797248
+
+ 
+ 
+ 
+ Checking  normalization per sensor with respect to initial flat sensor 
+
+ 
+ 
+ 0.944821 / 0.964421 =  Normalized_A1 0.979677 +- 0.008334 
+ 0.948415 / 0.986117 =  Normalized_A2 0.961767 +- 0.006249 
+ 0.925129 / 0.960005 =  Normalized_A3 0.963671+- 0.007180 
+ 0.990716 / 0.988560 =  Normalized_A4 1.002181+-0.030767 
+
+
+ 
+
+ 
+ 
+ average normalized rate 0.976824 +-0.008317 
+
+
+ 
+ 
+ average_angle of flat 0.000000 +- 0.000000 
+ average angle of 15 degree 0.264693 +- 0.011830 
+ average angle of 30deg 0.551659 +- 0.006138 
+ average angle of 40deg 0.722041 +- 0.004729 
+ average angle of 45deg 0.765884 +- 0.004631  
+
+ 
+ 
+
+
+ 
+ 
+ average rate of flat 1.000000 +- 0.001575 
+ average rate of 15 degree 0.992282 +- 0.001558 
+ average rate of 30deg 0.980578 +- 0.001918 
+ average rate of 40deg 0.983114 +- 0.003900 
+ average rate of 45deg 0.999131 +- 0.003464  
+
+ 
+ 
+

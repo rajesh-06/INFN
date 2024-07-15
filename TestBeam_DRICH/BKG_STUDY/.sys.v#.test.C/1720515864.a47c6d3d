@@ -1,0 +1,74 @@
+#include "iostream"
+#include "radius.h"
+
+void test(){
+
+radius rad_1;
+radius rad_2;
+radius rad_3;
+radius rad_4;    
+    
+    
+    
+    
+    //rad_1.find_radius("../20231017-194703/recodata.root");
+    
+   // cout<< rad_1.center_x << " , " << rad_1.center_y << endl;
+    
+    
+    rad_1.Set_Time_Cut(-20,20);
+    rad_2.Set_Time_Cut(-20,20);
+    rad_1.find_radius("../Data/TB_24/20240526-221557/recodata.root"); 
+    rad_2.find_radius("../Data/TB_24/20240526-220929/recodata.root");
+    
+    rad_3.find_radius("../Data/TB_24/20240527-000410/recodata.root");
+    
+    rad_4.find_radius("../Data/TB_24/20240527-001117/recodata.root");
+    
+    
+   // cout<< rad_1.center_x << " , " << rad_1.center_y << endl;
+    
+    vector<float> rad1 = rad_1.rad_;
+    vector<float> tim1 = rad_1.time;
+    
+    
+    vector<float> rad2 = rad_2.rad_;
+    vector<float> tim2 = rad_2.time;
+    
+    
+    
+    //auto histo_rad_1 = rad_1.plot_histo2d("check1", rad1 ,tim1,"COLZ");
+    auto rad_histo1 = rad_1.plot_histo1d("check3", rad_1.rad_);
+    auto rad_histo2 = rad_1.plot_histo1d("check4", rad_2.rad_);
+    auto rad_histo3 = rad_1.plot_histo1d("check4", rad_3.rad_);
+    auto rad_histo4 = rad_1.plot_histo1d("check4", rad_4.rad_);
+    
+    
+    
+    
+    
+    
+    
+    auto can = rad_1.BuildCanvas("can");
+    can->cd();
+    rad_histo1->Draw();
+    rad_histo1->SetLineWidth(2);
+    
+    rad_histo1->SetLineColor(kRed);
+    
+    rad_histo3->SetLineColor(kGreen);
+    
+                rad_histo4->SetLineColor(kMagenta);
+     
+    
+    rad_histo2->Draw("SAME");
+    rad_histo3->Draw("SAME");
+    rad_histo4->Draw("SAME");
+    can->SaveAs("dist.png");
+    
+    
+    
+    
+
+
+}
