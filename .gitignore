@@ -33,4 +33,5 @@
 # Output
 *.png
 *.root
+*.tgz
 token.txt
