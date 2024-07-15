@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+# Output
+*.png
+*.root
+token.txt
