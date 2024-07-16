@@ -381,6 +381,7 @@ vector<double> PDEvsAngle(string fileinitial = "flat/flat.scanx.yoff", string sc
         err_target_sensor_width.push_back(propagate_error_add_sub(temp_err1));
     }
 
+
     double avg_rate = accumulate(rates.begin(), rates.end(), 0.0) / rates.size();
     double err_avg_rate = propagate_error_add_sub(err_rates) / err_rates.size();
 
@@ -388,7 +389,15 @@ vector<double> PDEvsAngle(string fileinitial = "flat/flat.scanx.yoff", string sc
 
     double avg_width = accumulate(target_sensor_width.begin(), target_sensor_width.end(), 0.0) / target_sensor_width.size();
     double err_width = propagate_error_add_sub(err_target_sensor_width) / err_target_sensor_width.size();
+    
+    if (avg_width / ref_sensor_width > 1.0){//acos(theta)> 1.0 does not exist
+        double angle_rad = std::acos(ref_sensor_width/avg_width);
+        double angle_deg = angle_rad * 180.0 / TMath::Pi();
+        double err_angle_rad = std::abs(1 / std::sqrt(1 - std::pow(ref_sensor_width / avg_width, 2))) * propagate_error_division( ref_sensor_width, err_ref_sensor_width, avg_width, err_width);
+        double err_angle_deg = err_angle_rad * 180.0 / TMath::Pi();
 
+        return {angle_deg, err_angle_deg, avg_rate / ref_rate, err_result};
+    }
     double angle_rad = std::acos(avg_width / ref_sensor_width);
     double angle_deg = angle_rad * 180.0 / TMath::Pi();
 
@@ -397,7 +406,7 @@ vector<double> PDEvsAngle(string fileinitial = "flat/flat.scanx.yoff", string sc
     double err_angle_deg = err_angle_rad * 180.0 / TMath::Pi();
 
     // Create and return result vector
-    vector<double> result = {angle_deg, avg_rate / ref_rate, err_result, err_angle_deg};
+    vector<double> result = {angle_deg, err_angle_deg, avg_rate / ref_rate, err_result};
     return result;
 }
 

@@ -11,7 +11,7 @@
 using namespace std;
 
 void normalised_rate() {
-    TCanvas *c1 = new TCanvas("c1", "All Data", 1600, 1200); // Increased canvas height for better visibility
+    TCanvas *c1 = new TCanvas("c1", "All Data", 800,600); // Increased canvas height for better visibility
 
     vector<string> measurements = {//6 measurements
         "40deg",

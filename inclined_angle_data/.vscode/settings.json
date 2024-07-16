@@ -26,6 +26,13 @@
         "array": "cpp",
         "string_view": "cpp",
         "initializer_list": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "cmath": "cpp",
+        "iosfwd": "cpp",
+        "sstream": "cpp",
+        "loop_bkg.C": "cpp",
+        "loop_rate.C": "cpp",
+        "header.C": "cpp",
+        "loop_width.C": "cpp"
     }
 }
