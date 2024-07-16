@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-void loop_rate() {
+void loop_width() {
     TCanvas *c1 = new TCanvas("c1", "Sensor width analysis", 1200, 800);
 
 
@@ -46,17 +46,38 @@ void loop_rate() {
     
 
     auto *gr_yoffl = get_graph(filenames, 2);
-    auto *gr_yoffr = get_graph(filenames, 3);
+    auto *gr_yoffh = get_graph(filenames, 3);
 
     auto *gr_ycenl = get_cen_graph(file_ycen, 2);
-    auto *gr_ycenr = get_cen_graph(file_ycen, 3);
+    auto *gr_ycenh = get_cen_graph(file_ycen, 3);
 
     auto *gr_xcenl = get_cen_graph(file_xcen, 2, "y");
-    auto *gr_xcenr = get_cen_graph(file_xcen, 3, "y");
+    auto *gr_xcenh = get_cen_graph(file_xcen, 3, "y");
 
-    /*
-    auto _ymin = {GetYMinimum(gr), GetYMinimum(gr_ycen), GetYMinimum(gr_xcen)};
-    auto _ymax = {GetYMaximum(gr), GetYMaximum(gr_ycen), GetYMaximum(gr_xcen)};
+    
+    // auto *gr_high = get_graph(filenames, 3);
+
+    auto gr_yoff = new TGraphErrors(gr_yoffl->GetN());
+    auto gr_ycen = new TGraphErrors(gr_yoffl->GetN());
+    auto gr_xcen = new TGraphErrors(gr_yoffl->GetN());
+
+    for (int i = 0; i < gr_yoff->GetN(); i++){
+        gr_yoff->SetPoint(i, i+1, gr_yoffh->GetPointY(i) - gr_yoffl->GetPointY(i) );
+        auto error = propagate_error_add_sub({gr_yoffh->GetErrorY(i), gr_yoffl->GetErrorY(i) });
+        gr_yoff->SetPointError(i, 0, error );
+
+        gr_ycen->SetPoint(i, i+1, gr_ycenh->GetPointY(i) - gr_ycenl->GetPointY(i) );
+        auto error1 = propagate_error_add_sub({gr_ycenh->GetErrorY(i), gr_ycenl->GetErrorY(i) });
+        gr_ycen->SetPointError(i, 0, error1 );
+
+        gr_xcen->SetPoint(i, i+1, gr_xcenh->GetPointY(i) - gr_xcenl->GetPointY(i) );
+        auto error2 = propagate_error_add_sub({gr_xcenh->GetErrorY(i), gr_xcenl->GetErrorY(i) });
+        gr_xcen->SetPointError(i, 0, error2 );
+    }
+
+
+    auto _ymin = {GetYMinimum(gr_yoff), GetYMinimum(gr_ycen), GetYMinimum(gr_xcen)};
+    auto _ymax = {GetYMaximum(gr_yoff), GetYMaximum(gr_ycen), GetYMaximum(gr_xcen)};
     
     
     auto ymax = std::max_element(_ymax.begin(), _ymax.end());
@@ -71,20 +92,11 @@ void loop_rate() {
     }
     Double_t ymin_ = *ymin;
     Double_t ymax_ = *ymax;
-    */
+    
 
-    gr->SetMinimum(ymin_ - 0.1 * (ymax_ - ymin_)); // Adjust buffer
-    gr->SetMaximum(ymax_ + 0.1 * (ymax_ - ymin_));
+    gr_yoff->SetMinimum(ymin_ - 0.1 * (ymax_ - ymin_)); // Adjust buffer
+    gr_yoff->SetMaximum(ymax_ + 0.1 * (ymax_ - ymin_));
 
-    // auto *gr_high = get_graph(filenames, 3);
-
-    // auto gr = new TGraphErrors(gr_low->GetN());
-    // for (int i = 0; i < gr_low->GetN(); i++){
-    //     gr->SetPoint(i, i+1, gr_high->GetPointY(i) - gr_low->GetPointY(i) );
-    //     auto error = propagate_error_add_sub({gr_high->GetErrorY(i), gr_low->GetErrorY(i) });
-    //     gr->SetPointError(i, 0, error );
-
-    // }
 
     //auto gr = PlotPulls(gr_a1);
   //string _data = " Photon rate detected by the sensor";
@@ -93,11 +105,11 @@ void loop_rate() {
   string title = "; loop number ;"+ _data+" [mm]";
 
 
-  gr->SetTitle(title.c_str());
-  gr->Draw("ALP");
-  gr->SetMarkerStyle(21);
-  gr->SetMarkerSize(1);
-  gr->SetMarkerColor(kRed);
+  gr_yoff->SetTitle(title.c_str());
+  gr_yoff->Draw("ALP");
+  gr_yoff->SetMarkerStyle(21);
+  gr_yoff->SetMarkerSize(1);
+  gr_yoff->SetMarkerColor(kRed);
 
   gr_ycen->Draw("samelp");
   gr_ycen->SetMarkerStyle(21);
@@ -114,7 +126,7 @@ void loop_rate() {
 
   
     auto *legend = new TLegend(0.7,0.75, 0.9, 0.87);
-    legend->AddEntry(gr, "yoff", "lpfe");
+    legend->AddEntry(gr_yoff, "yoff", "lpfe");
     legend->AddEntry(gr_ycen, "ycen", "lpfe");
     legend->AddEntry(gr_xcen, "xcen", "lpfe");
 
