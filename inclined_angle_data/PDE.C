@@ -25,6 +25,8 @@
 void PDE() {
     vector <string> directory = {
         "flat/flat.scanx.yoff",
+        "flat-v2.1/flat-v2.1.scanx.yoff",
+
         "30deg/30deg.scanx.yoff",
         "40deg/40deg.scanx.yoff",
         "40deg-a/40deg-a.scanx.yoff",

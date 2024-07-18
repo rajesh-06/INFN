@@ -344,7 +344,7 @@ TGraphErrors *get_sensor_scan(std::string infilename = "data/scanx.45deg.target.
     delete input_file;
     return rate_scan;
 }
-vector<double> PDEvsAngle(string fileinitial = "flat/flat.scanx.yoff", string scan_axis = "x") {
+vector<double> PDEvsAngle(string fileinitial = "flat/flat.scanx.yoff", string scan_axis = "x", bool dip = 1) {
     vector<string> filenames = {
         fileinitial + ".chip-0.channel-A1.txt.tree.root",
         fileinitial + ".chip-1.channel-A1.txt.tree.root",
@@ -362,7 +362,15 @@ vector<double> PDEvsAngle(string fileinitial = "flat/flat.scanx.yoff", string sc
         cerr << "Error: Could not get reference graph from file " << filenames[0] << endl;
         return {};
     }
-    auto ref_res = get_scan_fit(ref_gr);
+    
+    auto ref_res = new TF1();
+    if (dip){
+        ref_res = get_scan_fit(ref_gr);
+    }
+    else{
+        ref_res = get_fermi_fit(ref_gr);
+    }
+    
 
     double ref_rate = ref_res->GetParameter(1);
     double err_ref_rate = ref_res->GetParError(1);
@@ -376,7 +384,13 @@ vector<double> PDEvsAngle(string fileinitial = "flat/flat.scanx.yoff", string sc
             cerr << "Error: Could not get graph from file " << filenames[i] << endl;
             continue;
         }
-        auto result = get_scan_fit(graph);
+        auto result = new TF1();
+        if (dip){
+            result = get_scan_fit(ref_gr);
+        }
+        else{
+            result = get_fermi_fit(ref_gr);
+        }
         rates.push_back(result->GetParameter(1));
         err_rates.push_back(result->GetParError(1));
 

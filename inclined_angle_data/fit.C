@@ -20,7 +20,7 @@ std::vector<string> getFilesInDirectory(const std::string& directoryPath) {
 
     return filePaths;
 }
-void fit(string fit_dir = "flat-v2.1"){
+void fit(string fit_dir = "flat"){
     std::string folder = fit_dir;
     // std::string out_result = folder+"_result.txt";
 
@@ -32,7 +32,7 @@ void fit(string fit_dir = "flat-v2.1"){
         std::cerr << "Error: Unable to open file " << folder+"_result.txt" << std::endl;
         return 1;
     }
-    outFile << "File\t backgroud \t max rate \t xlow \t xhigh \t center \t dip center \t dip height"<<endl; 
+    outFile << "###################################File#####################\t bkg \t rate \t xlow \t xhigh \t center \t dip center \t dip height"<<endl; 
     
 
     for (auto file: filenames){cout<<file<<endl;}
@@ -48,20 +48,32 @@ void fit(string fit_dir = "flat-v2.1"){
             if(run<5){ 
                 c1->cd(run+1);
                 gr->Draw("ap"); 
+                auto *fit = get_scan_fit(gr);
+                outFile << "\t" << fit->GetParameter(0);
+                outFile << "\t" << fit->GetParameter(1);
+                outFile << "\t" << fit->GetParameter(2);
+                outFile << "\t" << fit->GetParameter(3);
+                outFile << "\t" << (fit->GetParameter(2)+fit->GetParameter(3))*0.5;
+                outFile << "\t" << fit->GetParameter(7);
+                outFile << "\t" << fit->GetParameter(6);
+                if (run ==4){outFile<<endl;}
+                
             }
+            // outFile << endl;
             else{
                 c1->cd(run+1-5);
                 gr->Draw("samep");
+                auto *fit = get_fermi_fit(gr);
+                outFile << "\t" << fit->GetParameter(0);
+                outFile << "\t" << fit->GetParameter(1);
+                outFile << "\t" << fit->GetParameter(2);
+                outFile << "\t" << fit->GetParameter(3);
+                outFile << "\t" << (fit->GetParameter(2)+fit->GetParameter(3))*0.5;
+                outFile << "\t" << fit->GetParameter(7);
+                outFile << "\t" << fit->GetParameter(6);
+                if (run ==9){outFile<<endl;}
             }
             
-            auto *fit = get_scan_fit(gr);
-            outFile << "\t" << fit->GetParameter(0);
-            outFile << "\t" << fit->GetParameter(1);
-            outFile << "\t" << fit->GetParameter(2);
-            outFile << "\t" << fit->GetParameter(3);
-            outFile << "\t" << (fit->GetParameter(2)+fit->GetParameter(3))*0.5;
-            outFile << "\t" << fit->GetParameter(7);
-            outFile << "\t" << fit->GetParameter(6);
 
            // run++;
         }
