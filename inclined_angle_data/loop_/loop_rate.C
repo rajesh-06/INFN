@@ -49,6 +49,23 @@ void loop_rate() {
     auto *gr_ycen = get_cen_graph(file_ycen, 1);
     auto *gr_xcen = get_cen_graph(file_xcen, 1, "y");
 
+    double ref_gr = gr->GetPointY(0);
+    double ref_gr_ycen = gr_ycen->GetPointY(0);
+    double ref_gr_xcen = gr_xcen->GetPointY(0);
+
+
+    if(bool normalise = 0){
+        for (int i = 0; i<gr->GetN(); ++i){
+            gr->SetPoint(i, gr->GetPointX(i), gr->GetPointY(i)/ref_gr);
+            gr_ycen->SetPoint(i, gr_ycen->GetPointX(i), gr_ycen->GetPointY(i)/ref_gr_ycen);
+            gr_xcen->SetPoint(i, gr_xcen->GetPointX(i), gr_xcen->GetPointY(i)/ref_gr_xcen);
+
+            gr->GetEY()[i] = gr->GetEY()[i]/ref_gr;
+            gr_ycen->GetEY()[i] = gr_ycen->GetEY()[i]/ref_gr_ycen;
+            gr_xcen->GetEY()[i] = gr_xcen->GetEY()[i]/ref_gr_xcen;
+        }
+    }
+
     auto _ymin = {GetYMinimum(gr), GetYMinimum(gr_ycen), GetYMinimum(gr_xcen)};
     auto _ymax = {GetYMaximum(gr), GetYMaximum(gr_ycen), GetYMaximum(gr_xcen)};
     

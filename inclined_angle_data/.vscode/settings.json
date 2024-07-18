@@ -33,6 +33,8 @@
         "loop_bkg.C": "cpp",
         "loop_rate.C": "cpp",
         "header.C": "cpp",
-        "loop_width.C": "cpp"
+        "loop_width.C": "cpp",
+        "loop_center.C": "cpp",
+        "fourier_transform.C": "cpp"
     }
 }

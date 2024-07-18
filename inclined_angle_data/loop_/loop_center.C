@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-void loop_width() {
+void loop_center() {
     TCanvas *c1 = new TCanvas("c1", "Sensor width analysis", 1200, 800);
 
 
@@ -62,16 +62,16 @@ void loop_width() {
     auto gr_xcen = new TGraphErrors(gr_yoffl->GetN());
 
     for (int i = 0; i < gr_yoff->GetN(); i++){
-        gr_yoff->SetPoint(i, i+1, gr_yoffh->GetPointY(i) - gr_yoffl->GetPointY(i) );
-        auto error = propagate_error_add_sub({gr_yoffh->GetErrorY(i), gr_yoffl->GetErrorY(i) });
+        gr_yoff->SetPoint(i, i+1, 90.0 + 1.5 + (gr_yoffh->GetPointY(i) + gr_yoffl->GetPointY(i) )*0.5);
+        auto error = propagate_error_add_sub({gr_yoffh->GetErrorY(i), gr_yoffl->GetErrorY(i) })*0.5;
         gr_yoff->SetPointError(i, 0, error );
 
-        gr_ycen->SetPoint(i, i+1, gr_ycenh->GetPointY(i) - gr_ycenl->GetPointY(i) );
-        auto error1 = propagate_error_add_sub({gr_ycenh->GetErrorY(i), gr_ycenl->GetErrorY(i) });
+        gr_ycen->SetPoint(i, i+1, 90.0 + 1.5 + (gr_ycenh->GetPointY(i) + gr_ycenl->GetPointY(i) )*0.5);
+        auto error1 = propagate_error_add_sub({gr_ycenh->GetErrorY(i), gr_ycenl->GetErrorY(i) })*0.5;
         gr_ycen->SetPointError(i, 0, error1 );
 
-        gr_xcen->SetPoint(i, i+1, gr_xcenh->GetPointY(i) - gr_xcenl->GetPointY(i) );
-        auto error2 = propagate_error_add_sub({gr_xcenh->GetErrorY(i), gr_xcenl->GetErrorY(i) });
+        gr_xcen->SetPoint(i, i+1, (gr_xcenh->GetPointY(i) - gr_xcenl->GetPointY(i))*0.5 );
+        auto error2 = propagate_error_add_sub({gr_xcenh->GetErrorY(i), gr_xcenl->GetErrorY(i) })*0.5;
         gr_xcen->SetPointError(i, 0, error2 );
     }
 
@@ -100,7 +100,7 @@ void loop_width() {
 
     //auto gr = PlotPulls(gr_a1);
   //string _data = " Photon rate detected by the sensor";
-  string _data = "sensor width";
+  string _data = "sensor center ";
 
   string title = "; loop number ;"+ _data+" [mm]";
 
@@ -142,17 +142,20 @@ void loop_width() {
     // for (size_t i = 0; i < measurements.size(); ++i) {
     //     axis->SetBinLabel(axis->FindBin(x[i]), measurements[i].c_str());
     // }
-    c1->SetLeftMargin(0.1362725);
-    c1->SetBottomMargin(0.1316309);
+    c1->SetLeftMargin(0.13);
+    c1->SetBottomMargin(0.13);
     c1->Update();
     c1->Draw();
-    string outfile = "results/loop_sensor_width.png";
+    string outfile = "results/loop_sensor_center.png";
     c1->SaveAs(outfile.c_str());
 
-    if (true){
+    // auto *hist_can = new TCanvas("hist_can", "center histogram", 1200, 800);
+    // auto *hist_yoff = new TH1D("hist_yoff", "y-offset scan (sensor center)", 10, -95, )
+
+    if (1){
 
         //xcen vs ycen
-        auto *corr_can = new TCanvas("corr_can", "Correlation of Width", 650, 600);
+        auto *corr_can = new TCanvas("corr_can", "Correlation of center", 650, 600);
         auto *corr_gr = new TGraphErrors(gr_yoff->GetN());
         for (int i = 0; i < gr_yoff->GetN(); ++i){
             corr_gr->GetX()[i] = gr_xcen->GetY()[i];
@@ -164,17 +167,17 @@ void loop_width() {
         corr_can->cd();
         corr_can->SetLeftMargin(0.13);
 
-        corr_gr->SetTitle("; x-center: sensor width [mm]; y-center scan: sensor width [mm]");
+        corr_gr->SetTitle("; x-center scany: center of sensor  [mm]; y-center scanx: center of sensor [mm]");
         corr_gr->SetMarkerStyle(21);
         corr_gr->SetMarkerSize(1);
         corr_gr->SetMarkerColor(kViolet);
         corr_gr->Draw("AP");
         corr_can->Draw();
-        corr_can->SaveAs("results/correlation_xcen_ycen.png");
+        corr_can->SaveAs("results/correlation_xcen_ycen_center.png");
 
 
         //xcen vs yoff
-        auto *corr_can2 = new TCanvas("corr_can2", "Correlation of Width", 650, 600);
+        auto *corr_can2 = new TCanvas("corr_can2", "Correlation of center", 650, 600);
         auto *corr_gr2 = new TGraphErrors(gr_yoff->GetN());
         for (int i = 0; i < gr_yoff->GetN(); ++i){
             corr_gr2->GetX()[i] = gr_xcen->GetY()[i];
@@ -185,13 +188,13 @@ void loop_width() {
         }
         corr_can2->cd();
         corr_can2->SetLeftMargin(0.13);
-        corr_gr2->SetTitle(";x-center scan: sensor width [mm]; y-offset scan: sensor width [mm]");
+        corr_gr2->SetTitle(";x-center scany: center of sensor [mm]; y-offset scanx: center of sensor [mm]");
         corr_gr2->SetMarkerStyle(21);
         corr_gr2->SetMarkerSize(1);
         corr_gr2->SetMarkerColor(kViolet);
         corr_gr2->Draw("AP");
         corr_can2->Draw();
-        corr_can2->SaveAs("results/correlation_xcen_yoff.png");
+        corr_can2->SaveAs("results/correlation_xcen_yoff_center.png");
 
         //ycen vs yoff
         auto *corr_can3 = new TCanvas("corr_can3", "Correlation of Width", 650, 600);
@@ -206,13 +209,13 @@ void loop_width() {
         corr_can3->cd();
         corr_can3->SetLeftMargin(0.13);
 
-        corr_gr3->SetTitle(";y-center scan: sensor width [mm]; y-offset scan: sensor width [mm]");
+        corr_gr3->SetTitle(";y-center scanx: center of sensor [mm]; y-offset scanx: center of sensor [mm]");
         corr_gr3->SetMarkerStyle(21);
         corr_gr3->SetMarkerSize(1);
         corr_gr3->SetMarkerColor(kViolet);
         corr_gr3->Draw("AP");
         corr_can3->Draw();
-        corr_can3->SaveAs("results/correlation_ycen_yoff.png");
+        corr_can3->SaveAs("results/correlation_ycen_yoff_center.png");
     }
     
 

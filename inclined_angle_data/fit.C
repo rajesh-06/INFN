@@ -20,8 +20,8 @@ std::vector<string> getFilesInDirectory(const std::string& directoryPath) {
 
     return filePaths;
 }
-void fit(){
-    std::string folder = "40deg-b";
+void fit(string fit_dir = "flat-v2.1"){
+    std::string folder = fit_dir;
     // std::string out_result = folder+"_result.txt";
 
 

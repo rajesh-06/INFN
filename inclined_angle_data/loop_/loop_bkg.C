@@ -1,5 +1,6 @@
 #pragma once
 #include "header.C"
+#include "fourier_transform.C"
 
 void loop_bkg() {
     TCanvas *c1 = new TCanvas("c1", "DCR analysis", 1200, 800);
@@ -46,7 +47,8 @@ void loop_bkg() {
 
     // auto *gr_high = get_graph(filenames, 3);
 
-    // auto gr = new TGraphErrors(gr_low->GetN());
+    
+    // auto gr = new TGraphErrors(gr_low->GetN());  
     // for (int i = 0; i < gr_low->GetN(); i++){
     //     gr->SetPoint(i, i+1, gr_high->GetPointY(i) - gr_low->GetPointY(i) );
     //     auto error = propagate_error_add_sub({gr_high->GetErrorY(i), gr_low->GetErrorY(i) });
@@ -105,4 +107,5 @@ void loop_bkg() {
     auto outfile = "results/"+ _data +".png";
     c1->SaveAs(outfile.c_str());
 
+  FourierTransform(gr_ycen);
 }

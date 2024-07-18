@@ -137,22 +137,26 @@ TF1* get_scan_fit(TGraphErrors *f1) {
     double xlow = 1000.;
     double xhigh = -1000.;
     double threshold = (bkg+max_rate)*0.5;
-
+    vector <int> ind_;
     for(int i = 0; i<f1->GetN(); ++i){
        if (threshold < f1->GetPointY(i)){
             if(f1->GetPointX(i) <xlow){
-                xlow = f1->GetPointX(i) ;
+                xlow = f1->GetPointX(i);
+                ind_.push_back(i);
             }
             if(f1->GetPointX(i) >xhigh){
-                xhigh=f1->GetPointX(i) ;
+                xhigh=f1->GetPointX(i);
+                ind_.push_back(i);
             }
         }
     }
+    double dip_height = 2000;//GetYMaximum(f1) - f1->GetPointY((ind_[0]+ind_[1])/2);
+    
     cout<<f1->GetTitle()<<endl;
 
     // Define the fit function
     TF1 *fermidip = new TF1("Double Fermi with Dip", doubleFermiDip, xlow-5, xhigh+5, 9); 
-    fermidip->SetParameters(bkg, max_rate, xlow, xhigh, 0.05, 0.05, 5000, (xlow+xhigh)*0.5, 0.2); // Initial guess for the parameters
+    fermidip->SetParameters(bkg, max_rate, xlow, xhigh, 0.05, 0.05, dip_height, (xlow+xhigh)*0.5, 0.2); // Initial guess for the parameters
     fermidip->SetNpx(500);
     //f1->Fit(fermidip, "R"); // "R" stands for fit within the range specified in TF1
     TFitResultPtr fitResult = f1->Fit(fermidip, "R S");
