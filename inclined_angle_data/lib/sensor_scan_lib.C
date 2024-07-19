@@ -18,18 +18,6 @@
 
 using namespace std;
 
-// #pragma once
-// #include <iostream>
-// #include <vector>
-// #include "lib/sensor_scan_lib.C"
-// #include <TString.h>
-// #include <TMath.h>
-// #include <numeric> // For std::accumulate
-
-// using namespace std;
-
-// Function to compute efficiency from sensor scan data
-
 
 double 
 propagate_error_division(double a, double a_err, double b, double b_err) {
@@ -344,7 +332,8 @@ TGraphErrors *get_sensor_scan(std::string infilename = "data/scanx.45deg.target.
     delete input_file;
     return rate_scan;
 }
-vector<double> PDEvsAngle(string fileinitial = "flat/flat.scanx.yoff", string scan_axis = "x", bool dip = 1) {
+
+vector<double> average_pde_angle(string fileinitial = "flat/flat.scanx.yoff", string scan_axis = "x", bool dip = 1) {
     vector<string> filenames = {
         fileinitial + ".chip-0.channel-A1.txt.tree.root",
         fileinitial + ".chip-1.channel-A1.txt.tree.root",
@@ -362,21 +351,17 @@ vector<double> PDEvsAngle(string fileinitial = "flat/flat.scanx.yoff", string sc
         cerr << "Error: Could not get reference graph from file " << filenames[0] << endl;
         return {};
     }
-    
-    auto ref_res = new TF1();
-    if (dip){
-        ref_res = get_scan_fit(ref_gr);
+
+    TF1* ref_res = dip ? get_scan_fit(ref_gr) : get_fermi_fit(ref_gr);
+    if (!ref_res) {
+        cerr << "Error: Could not get fit for reference graph from file " << filenames[0] << endl;
+        return {};
     }
-    else{
-        ref_res = get_fermi_fit(ref_gr);
-    }
-    
 
     double ref_rate = ref_res->GetParameter(1);
     double err_ref_rate = ref_res->GetParError(1);
     double ref_sensor_width = ref_res->GetParameter(3) - ref_res->GetParameter(2);
-    vector<double> temp_err = {static_cast<double>(ref_res->GetParError(3)), static_cast<double>(ref_res->GetParError(2))};
-    double err_ref_sensor_width = propagate_error_add_sub(temp_err);
+    double err_ref_sensor_width = propagate_error_add_sub({ref_res->GetParError(3), ref_res->GetParError(2)});
 
     for (size_t i = 1; i < filenames.size(); ++i) {
         auto graph = get_sensor_scan(filenames[i], scan_axis);
@@ -384,47 +369,35 @@ vector<double> PDEvsAngle(string fileinitial = "flat/flat.scanx.yoff", string sc
             cerr << "Error: Could not get graph from file " << filenames[i] << endl;
             continue;
         }
-        auto result = new TF1();
-        if (dip){
-            result = get_scan_fit(ref_gr);
+
+        TF1* result = dip ? get_scan_fit(graph) : get_fermi_fit(graph);
+        if (!result) {
+            cerr << "Error: Could not get fit for graph from file " << filenames[i] << endl;
+            continue;
         }
-        else{
-            result = get_fermi_fit(ref_gr);
-        }
+
         rates.push_back(result->GetParameter(1));
         err_rates.push_back(result->GetParError(1));
-
         target_sensor_width.push_back(result->GetParameter(3) - result->GetParameter(2));
-        vector<double> temp_err1 = {static_cast<double>(result->GetParError(3)), static_cast<double>(result->GetParError(2))};
-        err_target_sensor_width.push_back(propagate_error_add_sub(temp_err1));
+        err_target_sensor_width.push_back(propagate_error_add_sub({result->GetParError(3), result->GetParError(2)}));
     }
-
 
     double avg_rate = accumulate(rates.begin(), rates.end(), 0.0) / rates.size();
     double err_avg_rate = propagate_error_add_sub(err_rates) / err_rates.size();
-
     double err_result = propagate_error_division(avg_rate, err_avg_rate, ref_rate, err_ref_rate);
-
     double avg_width = accumulate(target_sensor_width.begin(), target_sensor_width.end(), 0.0) / target_sensor_width.size();
     double err_width = propagate_error_add_sub(err_target_sensor_width) / err_target_sensor_width.size();
-    
-    if (avg_width / ref_sensor_width > 1.0){//acos(theta)> 1.0 does not exist
-        double angle_rad = std::acos(ref_sensor_width/avg_width);
-        double angle_deg = angle_rad * 180.0 / TMath::Pi();
-        double err_angle_rad = std::abs(1 / std::sqrt(1 - std::pow(ref_sensor_width / avg_width, 2))) * propagate_error_division( ref_sensor_width, err_ref_sensor_width, avg_width, err_width);
-        double err_angle_deg = err_angle_rad * 180.0 / TMath::Pi();
 
-        return {angle_deg, err_angle_deg, avg_rate / ref_rate, err_result};
+    double angle_rad, angle_deg, err_angle_rad, err_angle_deg;
+    if (avg_width / ref_sensor_width > 1.0) {
+        angle_rad = std::acos(ref_sensor_width / avg_width);
+        err_angle_rad = std::abs(1 / std::sqrt(1 - std::pow(ref_sensor_width / avg_width, 2))) * propagate_error_division(ref_sensor_width, err_ref_sensor_width, avg_width, err_width);
+    } else {
+        angle_rad = std::acos(avg_width / ref_sensor_width);
+        err_angle_rad = std::abs(1 / std::sqrt(1 - std::pow(avg_width / ref_sensor_width, 2))) * propagate_error_division(avg_width, err_width, ref_sensor_width, err_ref_sensor_width);
     }
-    double angle_rad = std::acos(avg_width / ref_sensor_width);
-    double angle_deg = angle_rad * 180.0 / TMath::Pi();
+    angle_deg = angle_rad * 180.0 / TMath::Pi();
+    err_angle_deg = err_angle_rad * 180.0 / TMath::Pi();
 
-    // Calculate the error in the angle
-    double err_angle_rad = std::abs(1 / std::sqrt(1 - std::pow(avg_width / ref_sensor_width, 2))) * propagate_error_division(avg_width, err_width, ref_sensor_width, err_ref_sensor_width);
-    double err_angle_deg = err_angle_rad * 180.0 / TMath::Pi();
-
-    // Create and return result vector
-    vector<double> result = {angle_deg, err_angle_deg, avg_rate / ref_rate, err_result};
-    return result;
+    return {angle_deg, err_angle_deg, avg_rate / ref_rate, err_result};
 }
-

@@ -1,4 +1,4 @@
-############################File#####################	 bkg 	 rate 	 xlow 	 xhigh 	 center 	 dip center 	 dip height
+###################################File#####################	 bkg 	 rate 	 xlow 	 xhigh 	 center 	 dip center 	 dip height
 flat/flat.scanx.ycen.chip-0.channel-A1.txt.tree.root	1330.64	23532.1	-91.5149	-88.4984	-90.0066	-90.0311	3543.45
 flat/flat.scanx.ycen.chip-1.channel-A1.txt.tree.root	1606.92	22901.5	-100.088	-97.0581	-98.5733	-98.5488	3138.27
 flat/flat.scanx.ycen.chip-1.channel-A2.txt.tree.root	1858.57	23500.9	-103.756	-100.719	-102.238	-102.251	3199.03
