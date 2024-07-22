@@ -1,0 +1,18 @@
+###################################File#####################	 bkg 	 rate 	 xlow 	 xhigh 	 center 	 dip center 	 dip height
+flat-v2.1-c/flat-v2.1-c.scanx.ycen.chip-0.channel-A1.txt.tree.root	1431.38	26092.4	-91.5157	-88.4522	-89.9839	-90.0093	3697.45
+flat-v2.1-c/flat-v2.1-c.scanx.ycen.chip-1.channel-A1.txt.tree.root	1640.32	23949.4	-100.091	-97.084	-98.5874	-98.5699	3455.48
+flat-v2.1-c/flat-v2.1-c.scanx.ycen.chip-1.channel-A2.txt.tree.root	1930.32	25228.2	-103.782	-100.736	-102.259	-102.289	3689.65
+flat-v2.1-c/flat-v2.1-c.scanx.ycen.chip-1.channel-A3.txt.tree.root	1749.13	25277.8	-107.52	-104.483	-106.002	-106.001	3794.74
+flat-v2.1-c/flat-v2.1-c.scanx.ycen.chip-1.channel-A4.txt.tree.root	1650.52	25973	-111.292	-108.253	-109.772	-109.769	4001.64
+
+flat-v2.1-c/flat-v2.1-c.scanx.yoff.chip-0.channel-A1.txt.tree.root	1435.08	26287.4	-91.5503	-88.4617	-90.006	0	0
+flat-v2.1-c/flat-v2.1-c.scanx.yoff.chip-1.channel-A1.txt.tree.root	1612.34	23887.4	-100.12	-97.1077	-98.6139	0	0
+flat-v2.1-c/flat-v2.1-c.scanx.yoff.chip-1.channel-A2.txt.tree.root	1942.33	24963	-103.82	-100.771	-102.296	0	0
+flat-v2.1-c/flat-v2.1-c.scanx.yoff.chip-1.channel-A3.txt.tree.root	1753.32	25515.8	-107.552	-104.506	-106.029	0	0
+flat-v2.1-c/flat-v2.1-c.scanx.yoff.chip-1.channel-A4.txt.tree.root	1628.25	25534	-111.333	-108.285	-109.809	0	0
+
+flat-v2.1-c/flat-v2.1-c.scany.xcen.chip-0.channel-A1.txt.tree.root	1396.05	26377	-46.785	-43.7817	-45.2833	-45.28	3988
+flat-v2.1-c/flat-v2.1-c.scany.xcen.chip-1.channel-A1.txt.tree.root	1653.23	23799.8	-22.2606	-19.2535	-20.757	-20.7644	3407.61
+flat-v2.1-c/flat-v2.1-c.scany.xcen.chip-1.channel-A2.txt.tree.root	1979.69	25022.3	-22.2276	-19.2211	-20.7243	-20.7283	2927.99
+flat-v2.1-c/flat-v2.1-c.scany.xcen.chip-1.channel-A3.txt.tree.root	1745.9	25232.7	-22.2025	-19.1968	-20.6996	-20.7011	3474.57
+flat-v2.1-c/flat-v2.1-c.scany.xcen.chip-1.channel-A4.txt.tree.root	1619.91	25702	-22.1883	-19.1847	-20.6865	-20.6914	3703.24
