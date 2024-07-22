@@ -34,4 +34,6 @@
 *.png
 *.root
 *.tgz
+*.pdf
+*.txt
 token.txt
